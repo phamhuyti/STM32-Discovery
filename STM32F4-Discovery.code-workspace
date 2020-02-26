@@ -1,0 +1,67 @@
+{
+  "folders": [
+    {
+      "path": "STM32 V1"
+    },
+    {
+      "path": "STM32 V1.1"
+    },
+    {
+      "path": "STM32 V2"
+    },
+    {
+      "path": "STM32F4 RFID RC522"
+    },
+    {
+      "path": "STM32 V3 Finish Gyro _ RFID"
+    },
+    {
+      "path": "STM32 V4"
+    },
+    {
+      "path": "STM32 V5 FreeRTOS"
+    },
+    {
+      "path": "STM32 V6 Matric"
+    }
+  ],
+  "settings": {
+    "files.associations": {
+      "main.h": "c",
+      "tm_stm32f4_mfrc522.h": "c",
+      "tm_stm32f4_spi.h": "c",
+      "stm32f4xx.h": "c",
+      "defines.h": "c",
+      "stm32f4xx_spi.h": "c",
+      "stm32f4xx_gpio.h": "c",
+      "stm32f4xx_hal_spi.h": "c",
+      "tm_stm32f4_delay.h": "c",
+      "tm_stm32f4_disco.h": "c",
+      "tm_stm32f4_gpio.h": "c",
+      "tm_stm32f4_ili9341.h": "c",
+      "string.h": "c",
+      "stm32f4xx_hal.h": "c",
+      "stm32f4xx_hal_conf.h": "c",
+      "stm32f4xx_hal_rcc.h": "c",
+      "stm32f4xx_hal_def.h": "c",
+      "stm32f4xx_hal_gpio.h": "c",
+      "gyro.h": "c",
+      "usb_host.h": "c",
+      "stm32f4xx_can.h": "c",
+      "__locale": "c",
+      "xlocale": "c",
+      "stm32f4xx_hal_tim.h": "c",
+      "mfrc522.h": "c",
+      "limits": "c",
+      "type_traits": "c",
+      "cstddef": "c",
+      "__config": "c",
+      "__nullptr": "c",
+      "mfrc522_1.h": "c",
+      "port_init.h": "c",
+      "wheel_init.h": "c",
+      "rc522.h": "c"
+    },
+    "editor.formatOnSave": true
+  }
+}

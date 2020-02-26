@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "tm_stm32f4_mfrc522.h": "c",
+        "tm_stm32f4_spi.h": "c",
+        "attributes.h": "c",
+        "tm_stm32f4_gpio.h": "c"
+    }
+}
