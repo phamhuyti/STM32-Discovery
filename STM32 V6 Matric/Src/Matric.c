@@ -3,7 +3,7 @@ int Len = 0;
 int dx[5] = {0, 0, 1, 0, -1}, dy[5] = {0, -1, 0, 1, 0};
 int m = 5, n = 5, inx = 1, iny = 1, outx, outy, Result;
 int temb[10][10];
-int input[10][10]={0};
+int input[10][10] = {0};
 int x[100], y[100];
 /**
   * @brief Calculator
@@ -22,7 +22,7 @@ void Prepare()
 {
     for (int i = 0; i < m; ++i)
         for (int j = 0; j < n; ++j)
-            temb[i][j] = 0;
+            temb[i][j] = 1;
     temb[inx - 1][iny - 1] = -1;
     Result = 0;
 }
@@ -45,7 +45,7 @@ int ok(int i, int j)
 {
     if ((i < 0) || (i >= m) || (j < 0) || (j >= n))
         return 0;
-    if ((input[i][j] != 0) || (temb[i][j] != 0))
+    if ((input[i][j] == 0) || (temb[i][j] == 0))
         return 0;
     return 1;
 }
