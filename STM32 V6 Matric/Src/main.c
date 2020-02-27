@@ -53,24 +53,73 @@ int main(void)
       else
         for (int i = 0; i < 5; i++)
           IDCard[i] = 0;
-      if (ID == 0x896f0dc52e)
+      if (ID == 0x199fdc82d8)
         i++;
       /* code */
       break;
     case 2:
       moveSidewaysRight();
+      if (MFRC522_Check(IDCard) == MI_OK)
+      {
+        ID = 0;
+        ID = IDCard[0];
+        for (int i = 1; i < 5; i++)
+        {
+          ID <<= 8;
+          ID += IDCard[i];
+        }
+      }
+      else
+        for (int i = 0; i < 5; i++)
+          IDCard[i] = 0;
+      if (ID == 0xc95e678272)
+        i++;
       /* code */
       break;
     case 3:
       moveBackward(1);
+      if (MFRC522_Check(IDCard) == MI_OK)
+      {
+        ID = 0;
+        ID = IDCard[0];
+        for (int i = 1; i < 5; i++)
+        {
+          ID <<= 8;
+          ID += IDCard[i];
+        }
+      }
+      else
+        for (int i = 0; i < 5; i++)
+          IDCard[i] = 0;
+      if (ID == 0x192f6c82d8)
+        i++;
       /* code */
       break;
     case 4:
       moveSidewaysLeft();
+      if (MFRC522_Check(IDCard) == MI_OK)
+      {
+        ID = 0;
+        ID = IDCard[0];
+        for (int i = 1; i < 5; i++)
+        {
+          ID <<= 8;
+          ID += IDCard[i];
+        }
+      }
+      else
+        for (int i = 0; i < 5; i++)
+          IDCard[i] = 0;
+      if (ID == 0x796ebb812d)
+        i++;
       /* code */
       break;
 
     default:
+      HAL_GPIO_WritePin(LD_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(LD_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(LD_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(LD_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
       break;
     }
   }

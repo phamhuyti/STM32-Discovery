@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32 V6 Matric\STM32 V6 Matric.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32 V6 Matric\STM32 V6 Matric.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Feb 27 15:36:35 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Feb 28 00:32:45 2020
 <BR><P>
 <H3>Maximum Stack Usage =        224 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -397,11 +397,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI1_WriteReg
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI1_ReadReg
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PORTRC522_Init
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveSidewaysRight
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveSidewaysLeft
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveForward
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveBackward
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveSidewaysRight
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveSidewaysLeft
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveForward
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveBackward
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wheel_GPIO_Init
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[5e]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_hal.o(i.HAL_GetTick))
@@ -686,8 +687,8 @@ Global Symbols
 <P><STRONG><a name="[6f]"></a>PORTRC522_Init</STRONG> (Thumb, 68 bytes, Stack size 32 bytes, rc522.o(i.PORTRC522_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = PORTRC522_Init &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
+<BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MFRC522_Init
@@ -714,8 +715,8 @@ Global Symbols
 <P><STRONG><a name="[71]"></a>SPI1_ReadReg</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, rc522.o(i.SPI1_ReadReg))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = SPI1_ReadReg &rArr; SPI1SendByte &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI1SendByte
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI1SendByte
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MFRC522_ReadRegister
 </UL>
@@ -723,8 +724,8 @@ Global Symbols
 <P><STRONG><a name="[72]"></a>SPI1_WriteReg</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, rc522.o(i.SPI1_WriteReg))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = SPI1_WriteReg &rArr; SPI1SendByte &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI1SendByte
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI1SendByte
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MFRC522_WriteRegister
 </UL>
@@ -760,8 +761,8 @@ Global Symbols
 <P><STRONG><a name="[79]"></a>Wheel_GPIO_Init</STRONG> (Thumb, 168 bytes, Stack size 48 bytes, wheel_init.o(i.Wheel_GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = Wheel_GPIO_Init &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
+<BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -784,24 +785,25 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[43]"></a>main</STRONG> (Thumb, 162 bytes, Stack size 0 bytes, main.o(i.main))
+<P><STRONG><a name="[43]"></a>main</STRONG> (Thumb, 450 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = main &rArr; MFRC522_Check &rArr; MFRC522_Anticoll &rArr; MFRC522_ToCard &rArr; MFRC522_SetBitMask &rArr; MFRC522_WriteRegister &rArr; SPI1_WriteReg &rArr; SPI1SendByte &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveSidewaysRight
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveSidewaysLeft
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveForward
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveBackward
+<BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveSidewaysRight
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveSidewaysLeft
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveForward
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveBackward
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calculator
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wheel_GPIO_Init
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MFRC522_Init
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MFRC522_Check
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_SPI1_Init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[81]"></a>moveBackward</STRONG> (Thumb, 176 bytes, Stack size 8 bytes, wheel_init.o(i.moveBackward))
+<P><STRONG><a name="[80]"></a>moveBackward</STRONG> (Thumb, 176 bytes, Stack size 8 bytes, wheel_init.o(i.moveBackward))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = moveBackward
 </UL>
 <BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
@@ -809,7 +811,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7f]"></a>moveForward</STRONG> (Thumb, 176 bytes, Stack size 16 bytes, wheel_init.o(i.moveForward))
+<P><STRONG><a name="[7e]"></a>moveForward</STRONG> (Thumb, 176 bytes, Stack size 16 bytes, wheel_init.o(i.moveForward))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = moveForward
 </UL>
 <BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
@@ -817,7 +819,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7e]"></a>moveSidewaysLeft</STRONG> (Thumb, 178 bytes, Stack size 8 bytes, wheel_init.o(i.moveSidewaysLeft))
+<P><STRONG><a name="[81]"></a>moveSidewaysLeft</STRONG> (Thumb, 178 bytes, Stack size 8 bytes, wheel_init.o(i.moveSidewaysLeft))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = moveSidewaysLeft
 </UL>
 <BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
@@ -825,7 +827,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[80]"></a>moveSidewaysRight</STRONG> (Thumb, 176 bytes, Stack size 8 bytes, wheel_init.o(i.moveSidewaysRight))
+<P><STRONG><a name="[7f]"></a>moveSidewaysRight</STRONG> (Thumb, 176 bytes, Stack size 8 bytes, wheel_init.o(i.moveSidewaysRight))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = moveSidewaysRight
 </UL>
 <BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
