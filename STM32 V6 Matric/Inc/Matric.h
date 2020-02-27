@@ -1,8 +1,8 @@
 #include "main.h"
 
-void calculator(int x, int y);
+void calculator(uint8_t x, uint8_t y, uint8_t output[]);
 void Prepare(void);
-void DFS(int i, int j);
-int ok(int i, int j);
+void DFS(uint8_t i, uint8_t j);
+int ok(int8_t i, int8_t j);
 void tim(void);
-void Output(uint8_t a[100]);
+void Output(uint8_t a[]);

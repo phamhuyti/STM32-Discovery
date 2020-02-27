@@ -4,6 +4,8 @@
 "stm32 v6 matric\stm32f4xx_it.o"
 "stm32 v6 matric\stm32f4xx_hal_msp.o"
 "stm32 v6 matric\matric.o"
+"stm32 v6 matric\rc522.o"
+"stm32 v6 matric\wheel_init.o"
 "stm32 v6 matric\stm32f4xx_hal_spi.o"
 "stm32 v6 matric\stm32f4xx_hal_tim.o"
 "stm32 v6 matric\stm32f4xx_hal_tim_ex.o"

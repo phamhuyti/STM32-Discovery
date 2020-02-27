@@ -60,7 +60,8 @@
       "mfrc522_1.h": "c",
       "port_init.h": "c",
       "wheel_init.h": "c",
-      "rc522.h": "c"
+      "rc522.h": "c",
+      "cmsis_os.h": "c"
     },
     "editor.formatOnSave": true
   }

@@ -29,5 +29,3 @@ stm32 v6 matric\stm32f4xx_hal_msp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4
 stm32 v6 matric\stm32f4xx_hal_msp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 stm32 v6 matric\stm32f4xx_hal_msp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 stm32 v6 matric\stm32f4xx_hal_msp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
-stm32 v6 matric\stm32f4xx_hal_msp.o: ../Inc/Matric.h
-stm32 v6 matric\stm32f4xx_hal_msp.o: ../Inc/main.h

@@ -1,13 +1,17 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
 /* Private includes ----------------------------------------------------------*/
+#include "Matric.h"
+#include "rc522.h"
+#include "Wheel_Init.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi1;
-uint8_t a[100];
+uint8_t a[25] = {0};
+uint8_t IDCard[5];
+uint64_t ID;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_SPI1_Init(void);
@@ -25,13 +29,50 @@ int main(void)
   SystemClock_Config();
   /* Initialize all configured peripherals */
   MX_SPI1_Init();
+  Wheel_GPIO_Init();
+  MFRC522_Init();
   /* Infinite loop */
+  uint8_t i = 0;
+  calculator(3, 1, a);
   while (1)
   {
-    calculator(1, 2);
-    Output(&a);
-    while (1)
-      ;
+    switch (a[i])
+    {
+    case 1:
+      moveForward(1);
+      if (MFRC522_Check(IDCard) == MI_OK)
+      {
+        ID = 0;
+        ID = IDCard[0];
+        for (int i = 1; i < 5; i++)
+        {
+          ID <<= 8;
+          ID += IDCard[i];
+        }
+      }
+      else
+        for (int i = 0; i < 5; i++)
+          IDCard[i] = 0;
+      if (ID == 0x896f0dc52e)
+        i++;
+      /* code */
+      break;
+    case 2:
+      moveSidewaysRight();
+      /* code */
+      break;
+    case 3:
+      moveBackward(1);
+      /* code */
+      break;
+    case 4:
+      moveSidewaysLeft();
+      /* code */
+      break;
+
+    default:
+      break;
+    }
   }
 }
 /**
