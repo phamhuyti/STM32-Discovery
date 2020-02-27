@@ -1,6 +1,5 @@
 #include "Matric.h"
 int Len = 0;
-int dx[5] = {0, 0, 1, 0, -1}, dy[5] = {0, -1, 0, 1, 0};
 int m = 5, n = 5, inx = 1, iny = 1, outx, outy, Result;
 int temb[10][10];
 int input[10][10] = {0};
@@ -33,6 +32,7 @@ void DFS(int i, int j)
     else
     {
         int k;
+        int dx[5] = {0, 0, 1, 0, -1}, dy[5] = {0, -1, 0, 1, 0};
         for (k = 1; k <= 4; ++k)
             if (ok(i + dx[k], j + dy[k]))
             {
@@ -53,6 +53,7 @@ void tim(void)
 {
     x[0] = outx - 1;
     y[0] = outy - 1;
+    int dx[5] = {0, 0, 1, 0, -1}, dy[5] = {0, -1, 0, 1, 0};
     int i = outx - 1;
     int j = outy - 1;
     int k;
@@ -66,13 +67,27 @@ void tim(void)
         y[Len] = j;
     }
 }
-void Output(void)
+void Output(uint8_t a[100])
 {
     if (Result == 1)
     {
         // printf("\nDay CAC TOA DO CAC DIEM TREN DUONG DI THOAT KHOI ME CUNG \n\n");
-        // for (int i = Len; i >= 0; i--)
-        //     printf("a[%d][%d]-->", x[i], y[i]);
+        uint8_t j = 0;
+        for (int i = Len - 1; i >= 0; i--)
+        {
+            // printf("a[%d][%d]-->", x[i], y[i]);
+            if (x[i] == x[i + 1] && y[i] == y[i + 1])
+                a[j] = 0;
+            if (x[i] == x[i + 1] && y[i] > y[i + 1])
+                a[j] = 1;
+            if (x[i] > x[i + 1] && y[i] == y[i + 1])
+                a[j] = 2;
+            if (x[i] == x[i + 1] && y[i] < y[i + 1])
+                a[j] = 3;
+            if (x[i] < x[i + 1] && y[i] == y[i + 1])
+                a[j] = 4;
+            j++;
+        }
         // printf("\n DUONG DI TRONG ME CUNG LA: \n\n\n");
         // for (int i = 0; i <= 2 * (m - 1); i++)
         // {

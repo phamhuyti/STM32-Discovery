@@ -7,6 +7,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi1;
+uint8_t a[100];
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_SPI1_Init(void);
@@ -27,8 +28,10 @@ int main(void)
   /* Infinite loop */
   while (1)
   {
-    calculator(1,2);
-    while (1);
+    calculator(1, 2);
+    Output(&a);
+    while (1)
+      ;
   }
 }
 /**
