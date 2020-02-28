@@ -9,9 +9,10 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi1;
-uint8_t a[25] = {0};
+uint8_t move[25] = {0};
 uint8_t IDCard[5];
-uint64_t ID;
+uint64_t ID, moveID[25];
+
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_SPI1_Init(void);
@@ -22,7 +23,6 @@ static void MX_SPI1_Init(void);
   */
 int main(void)
 { /* MCU Configuration--------------------------------------------------------*/
-
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
   /* Configure the system clock */
@@ -32,11 +32,11 @@ int main(void)
   Wheel_GPIO_Init();
   MFRC522_Init();
   /* Infinite loop */
-  uint8_t i = 0;
-  calculator(3, 1, a);
+  uint8_t L = 0;
+  calculator(1, 3, move, moveID);
   while (1)
   {
-    switch (a[i])
+    switch (move[L])
     {
     case 1:
       moveForward(1);
@@ -53,8 +53,13 @@ int main(void)
       else
         for (int i = 0; i < 5; i++)
           IDCard[i] = 0;
-      if (ID == 0x199fdc82d8)
-        i++;
+      if (ID == moveID[L])
+      {
+        L++;
+        for (uint8_t i = 0; i < 10; i++)
+          moveForward(1);
+        HAL_Delay(200);
+      }
       /* code */
       break;
     case 2:
@@ -72,8 +77,13 @@ int main(void)
       else
         for (int i = 0; i < 5; i++)
           IDCard[i] = 0;
-      if (ID == 0xc95e678272)
-        i++;
+      if (ID == moveID[L])
+      {
+        L++;
+        for (uint8_t i = 0; i < 10; i++)
+          moveSidewaysRight();
+        HAL_Delay(200);
+      }
       /* code */
       break;
     case 3:
@@ -91,8 +101,13 @@ int main(void)
       else
         for (int i = 0; i < 5; i++)
           IDCard[i] = 0;
-      if (ID == 0x192f6c82d8)
-        i++;
+      if (ID == moveID[L])
+      {
+        L++;
+        for (uint8_t i = 0; i < 10; i++)
+          moveBackward(1);
+        HAL_Delay(200);
+      }
       /* code */
       break;
     case 4:
@@ -110,8 +125,13 @@ int main(void)
       else
         for (int i = 0; i < 5; i++)
           IDCard[i] = 0;
-      if (ID == 0x796ebb812d)
-        i++;
+      if (ID == moveID[L])
+      {
+        L++;
+        for (uint8_t i = 0; i < 10; i++)
+          moveSidewaysLeft();
+        HAL_Delay(200);
+      }
       /* code */
       break;
 

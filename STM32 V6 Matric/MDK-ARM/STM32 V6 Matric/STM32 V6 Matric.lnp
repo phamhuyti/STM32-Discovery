@@ -1,4 +1,4 @@
---cpu=Cortex-M4.fp.sp
+--cpu=Cortex-M4.fp
 "stm32 v6 matric\startup_stm32f411xe.o"
 "stm32 v6 matric\main.o"
 "stm32 v6 matric\stm32f4xx_it.o"

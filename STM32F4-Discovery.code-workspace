@@ -61,7 +61,9 @@
       "port_init.h": "c",
       "wheel_init.h": "c",
       "rc522.h": "c",
-      "cmsis_os.h": "c"
+      "cmsis_os.h": "c",
+      "matric.h": "c",
+      "xstddef": "c"
     },
     "editor.formatOnSave": true
   }

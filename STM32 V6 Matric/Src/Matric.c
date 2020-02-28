@@ -3,19 +3,13 @@
 uint8_t Len = 0;
 uint8_t m = 5, n = 5, inx = 1, iny = 1, outx, outy, Result;
 uint8_t temb[5][5];
-static uint64_t input[5][5] = {
-    {1, 1, 1, 0, 0},
-    {0, 0, 1, 0, 0},
-    {1, 1, 1, 0, 0},
-    {0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0},
-};
+
 uint8_t x[25], y[25];
 /**
   * @brief Calculator
   * @retval None
   */
-void calculator(uint8_t x, uint8_t y, uint8_t output[])
+void calculator(uint8_t x, uint8_t y, uint8_t move[], uint64_t moveID[])
 {
     outx = x;
     outy = y;
@@ -23,7 +17,7 @@ void calculator(uint8_t x, uint8_t y, uint8_t output[])
     DFS(inx - 1, iny - 1);
     if (Result == 1)
         tim();
-    Output(output);
+    Output(move, moveID);
 }
 void Prepare()
 {
@@ -75,7 +69,7 @@ void tim(void)
         y[Len] = j;
     }
 }
-void Output(uint8_t a[])
+void Output(uint8_t move[], uint64_t moveID[])
 {
     if (Result == 1)
     {
@@ -85,15 +79,16 @@ void Output(uint8_t a[])
         {
             // printf("a[%d][%d]-->", x[i], y[i]);
             if (x[i] == x[i + 1] && y[i] == y[i + 1])
-                a[j] = 0;
+                move[j] = 0;
             if (x[i] == x[i + 1] && y[i] > y[i + 1])
-                a[j] = 1;
+                move[j] = 1;
             if (x[i] > x[i + 1] && y[i] == y[i + 1])
-                a[j] = 2;
+                move[j] = 2;
             if (x[i] == x[i + 1] && y[i] < y[i + 1])
-                a[j] = 3;
+                move[j] = 3;
             if (x[i] < x[i + 1] && y[i] == y[i + 1])
-                a[j] = 4;
+                move[j] = 4;
+            moveID[j] = input[x[i]][y[i]];
             j++;
         }
         // printf("\n DUONG DI TRONG ME CUNG LA: \n\n\n");
