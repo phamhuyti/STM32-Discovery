@@ -4,6 +4,7 @@
 #include "Matric.h"
 #include "rc522.h"
 #include "Wheel_Init.h"
+#include "math.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -27,6 +28,7 @@ int main(void)
   HAL_Init();
   /* Configure the system clock */
   SystemClock_Config();
+  atan(2);
   /* Initialize all configured peripherals */
   MX_SPI1_Init();
   Wheel_GPIO_Init();

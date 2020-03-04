@@ -32,3 +32,4 @@ stm32 v6 matric\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 stm32 v6 matric\main.o: ../Inc/Matric.h
 stm32 v6 matric\main.o: ../Inc/rc522.h
 stm32 v6 matric\main.o: ../Inc/Wheel_Init.h
+stm32 v6 matric\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
