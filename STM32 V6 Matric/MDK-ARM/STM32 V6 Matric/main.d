@@ -33,3 +33,10 @@ stm32 v6 matric\main.o: ../Inc/Matric.h
 stm32 v6 matric\main.o: ../Inc/rc522.h
 stm32 v6 matric\main.o: ../Inc/Wheel_Init.h
 stm32 v6 matric\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+stm32 v6 matric\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\iostream
+stm32 v6 matric\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\iosfwd
+stm32 v6 matric\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\rw/_defs.h
+stm32 v6 matric\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\rw/_config.h
+stm32 v6 matric\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\rw/config.h
+stm32 v6 matric\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\cwchar
+stm32 v6 matric\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\wchar.h

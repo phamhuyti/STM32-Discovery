@@ -761,14 +761,14 @@ ARM Macro Assembler    Page 12
   391 0000001C                 END
               00000000 
               00000000 
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
-erwork --depend="stm32 v6 matric\startup_stm32f411xe.d" -o"stm32 v6 matric\star
-tup_stm32f411xe.o" -I.\RTE\_STM32_V6_Matric -IC:\Users\Admin\AppData\Local\Arm\
-Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include -IC:\Users\Admin\AppData\Local\Arm\Pac
-ks\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include --predef
-ine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERS
-ION SETA 528" --predefine="_RTE_ SETA 1" --predefine="STM32F411xE SETA 1" --lis
-t=startup_stm32f411xe.lst startup_stm32f411xe.s
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
+interwork --depend="stm32 v6 matric\startup_stm32f411xe.d" -o"stm32 v6 matric\s
+tartup_stm32f411xe.o" -I.\RTE\_STM32_V6_Matric -I"C:\Users\Cao Huy\AppData\Loca
+l\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include" -I"C:\Users\Cao Huy\AppData\Loc
+al\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Includ
+e" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 529" --p
+redefine="_RTE_ SETA 1" --predefine="STM32F411xE SETA 1" --list=startup_stm32f4
+11xe.lst startup_stm32f411xe.s
 
 
 
@@ -1613,4 +1613,4 @@ Symbol: __main
       At line 193 in file startup_stm32f411xe.s
 Comment: __main used once
 2 symbols
-422 symbols in table
+421 symbols in table
