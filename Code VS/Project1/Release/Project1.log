@@ -1,0 +1,11 @@
+﻿  Source.cpp
+Source.cpp(24): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+Source.cpp(25): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+Source.cpp(31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Generating code
+  1 of 6 functions (16.7%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Project1.vcxproj -> C:\Users\phann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Release\Project1.exe
+  Project1.vcxproj -> C:\Users\phann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Release\Project1.pdb (Full PDB)
