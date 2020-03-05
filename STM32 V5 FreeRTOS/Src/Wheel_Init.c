@@ -90,7 +90,7 @@ void moveSidewaysRight(void)
   * @brief move Forward
   * @retval None
   */
-void moveForward(int i)
+void moveForward(void)
 {
   HAL_GPIO_WritePin(Wheel_Dir_Port, Wheel_Dir_1, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Dir_Port, Wheel_Dir_2, Clockwise);
@@ -109,13 +109,13 @@ void moveForward(int i)
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, AntiClockwise);
-  osDelay(i);
+  osDelay(1);
 }
 /**
   * @brief move Backward
   * @retval None
   */
-void moveBackward(int i)
+void moveBackward(void)
 {
   HAL_GPIO_WritePin(LD_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
   HAL_GPIO_WritePin(LD_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
@@ -135,7 +135,7 @@ void moveBackward(int i)
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, AntiClockwise);
-  osDelay(i);
+  osDelay(1);
 }
 /**
   * @brief move Right Forward

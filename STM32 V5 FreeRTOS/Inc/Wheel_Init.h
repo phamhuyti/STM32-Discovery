@@ -18,8 +18,8 @@
 void Wheel_GPIO_Init(void);
 void moveSidewaysLeft(void);
 void moveSidewaysRight(void);
-void moveForward(int i);
-void moveBackward(int i);
+void moveForward(void);
+void moveBackward(void);
 void moveRightForward(void);
 void moveLeftForward(void);
 void moveRightBackward(void);

@@ -180,67 +180,73 @@ void StartTask01(void const *argument)
 /* USER CODE END Header_StartTask02 */
 void StartTask02(void const *argument)
 {
+  uint8_t Status = 0;
   /* Infinite loop */
-  for (uint8_t i = 0; i < 25; i++)
-  {
-    Move[i] = 0;
-    x[i] = 0;
-    y[i] = 0;
-  }
-  Dijkstra(0, 7, Move, x, y, &Length_way);
   for (;;)
   {
-    switch (Move[Length_way])
+    if (!ID)
     {
-    case 1:
-      moveForward(1);
-      if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
+      for (uint8_t i = 0; i < 5; i++)
+        for (uint8_t j = 0; j < 5; j++)
+          if (ID == ID_Matrix[i][j])
+          {
+            Dijkstra(i * 5 + j, 7, Move, x, y, &Length_way);
+          }
+    }
+    while (Status)
+    {
+      switch (Move[Length_way])
       {
-        Length_way--;
-        for (uint8_t i = 0; i < 10; i++)
-          moveForward(1);
-        osDelay(100);
-      }
-      /* code */
-      break;
-    case 2:
-      moveSidewaysRight();
-      if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
-      {
-        Length_way--;
-        for (uint8_t i = 0; i < 10; i++)
-          moveSidewaysRight();
-        osDelay(100);
-      }
-      /* code */
-      break;
-    case 3:
-      moveBackward(1);
-      if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
-      {
-        Length_way--;
-        for (uint8_t i = 0; i < 10; i++)
-          moveBackward(1);
-        osDelay(100);
-      }
-      /* code */
-      break;
-    case 4:
-      moveSidewaysLeft();
-      if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
-      {
-        Length_way--;
-        for (uint8_t i = 0; i < 10; i++)
-          moveSidewaysLeft();
-        osDelay(100);
-      }
-      /* code */
-      break;
+      case 1:
+        moveForward();
+        if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
+        {
+          Length_way--;
+          for (uint8_t i = 0; i < 100; i++)
+            moveForward();
+          osDelay(50);
+        }
+        /* code */
+        break;
+      case 2:
+        moveSidewaysRight();
+        if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
+        {
+          Length_way--;
+          for (uint8_t i = 0; i < 100; i++)
+            moveSidewaysRight();
+          osDelay(50);
+        }
+        /* code */
+        break;
+      case 3:
+        moveBackward();
+        if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
+        {
+          Length_way--;
+          for (uint8_t i = 0; i < 100; i++)
+            moveBackward();
+          osDelay(50);
+        }
+        /* code */
+        break;
+      case 4:
+        moveSidewaysLeft();
+        if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
+        {
+          Length_way--;
+          for (uint8_t i = 0; i < 100; i++)
+            moveSidewaysLeft();
+          osDelay(50);
+        }
+        /* code */
+        break;
 
-    default:
-      led_DIR_circle(7, 20);
-      Length_way--;
-      break;
+      default:
+        led_DIR_circle(7, 20);
+        Length_way--;
+        break;
+      }
     }
   }
   /* USER CODE END StartTask02 */
