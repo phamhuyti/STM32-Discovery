@@ -1,10 +1,1 @@
-﻿  Source.cpp
-Source.cpp(27): warning C4101: 'moveID': unreferenced local variable
-Source.cpp(28): warning C4101: 'move': unreferenced local variable
-  Generating code
-  2 of 12 functions (16.7%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  ConsoleApplication1.vcxproj -> C:\Users\phann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Release\ConsoleApplication1.exe
-  ConsoleApplication1.vcxproj -> C:\Users\phann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Release\ConsoleApplication1.pdb (Full PDB)
+﻿
