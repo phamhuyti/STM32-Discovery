@@ -4,6 +4,7 @@
 /* Private includes ----------------------------------------------------------*/
 #include "rc522.h"
 #include "Wheel_Init.h"
+#include "Matric.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -11,13 +12,22 @@
 SPI_HandleTypeDef hspi1;
 osThreadId myTask01Handle;
 osThreadId myTask02Handle;
-uint64_t ID = 0;
-int a;
+uint8_t IDCard[5];
+uint64_t ID;
+uint8_t Move[25], x[25], y[25], Length_way = 0;
+static uint64_t ID_Matrix[5][5] = {
+    {0xd9c86f81ff, 0x39a5ae82b0, 0x39d39481ff, 0xb9326a8263, 0x298f6d814a},
+    {0x796ebb812d, 0x192f6c82d8, 0xc95e678272, 0x199fdc82d8, 0xd7440b3ea6},
+    {0x99c7dd3bb8, 0x77f488353e, 0x9725083d87, 0xb98d6e4319, 0x69236f88ad},
+    {0x2952ab8151, 0x49d8948184, 0xe92d628224, 0x59dfc683c3, 0x6969818100},
+    {0x9fdca82bc, 0x998cca825d, 0xa91e6d8258, 0x17c10e3ee6, 0x896f0dc52e},
+};
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_SPI1_Init(void);
 void StartTask01(void const *argument);
 void StartTask02(void const *argument);
+void led_DIR_circle(uint8_t n, uint8_t delay);
 /* Private user code ---------------------------------------------------------*/
 /**
   * @brief  The application entry point.
@@ -151,7 +161,6 @@ void StartTask01(void const *argument)
       {
         ID <<= 8;
         ID += IDCard[i];
-        a = 30;
       }
     }
     else
@@ -172,27 +181,91 @@ void StartTask01(void const *argument)
 void StartTask02(void const *argument)
 {
   /* Infinite loop */
+  for (uint8_t i = 0; i < 25; i++)
+  {
+    Move[i] = 0;
+    x[i] = 0;
+    y[i] = 0;
+  }
+  Dijkstra(0, 7, Move, x, y, &Length_way);
   for (;;)
   {
-    switch (ID)
+    switch (Move[Length_way])
     {
-    case 0x896f0dc52e:
-      moveForward(a--);
-      if (a < 2)
-        a = 2;
+    case 1:
+      moveForward(1);
+      if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
+      {
+        Length_way--;
+        for (uint8_t i = 0; i < 10; i++)
+          moveForward(1);
+        osDelay(100);
+      }
+      /* code */
       break;
-    case 0xb9a9337d5e:
-      moveBackward(a--);
-      if (a < 2)
-        a = 2;
+    case 2:
+      moveSidewaysRight();
+      if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
+      {
+        Length_way--;
+        for (uint8_t i = 0; i < 10; i++)
+          moveSidewaysRight();
+        osDelay(100);
+      }
+      /* code */
+      break;
+    case 3:
+      moveBackward(1);
+      if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
+      {
+        Length_way--;
+        for (uint8_t i = 0; i < 10; i++)
+          moveBackward(1);
+        osDelay(100);
+      }
+      /* code */
+      break;
+    case 4:
+      moveSidewaysLeft();
+      if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
+      {
+        Length_way--;
+        for (uint8_t i = 0; i < 10; i++)
+          moveSidewaysLeft();
+        osDelay(100);
+      }
+      /* code */
       break;
 
     default:
-      vTaskDelay(1);
+      led_DIR_circle(7, 20);
+      Length_way--;
       break;
     }
   }
   /* USER CODE END StartTask02 */
+}
+void led_DIR_circle(uint8_t n, uint8_t delay)
+{
+  for (uint8_t i = 0; i < n; i++)
+  {
+    set(led_R_GPIO_Port, led_R_Pin);
+    osDelay(delay);
+    reset(led_R_GPIO_Port, led_R_Pin);
+    osDelay(delay);
+    set(led_B_GPIO_Port, led_B_Pin);
+    osDelay(delay);
+    reset(led_B_GPIO_Port, led_B_Pin);
+    osDelay(delay);
+    set(led_G_GPIO_Port, led_G_Pin);
+    osDelay(delay);
+    reset(led_G_GPIO_Port, led_G_Pin);
+    osDelay(delay);
+    set(led_O_GPIO_Port, led_O_Pin);
+    osDelay(delay);
+    reset(led_O_GPIO_Port, led_O_Pin);
+    osDelay(delay);
+  }
 }
 
 /**

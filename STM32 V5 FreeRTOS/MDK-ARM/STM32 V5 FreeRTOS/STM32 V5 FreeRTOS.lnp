@@ -7,6 +7,7 @@
 "stm32 v5 freertos\stm32f4xx_it.o"
 "stm32 v5 freertos\stm32f4xx_hal_msp.o"
 "stm32 v5 freertos\stm32f4xx_hal_timebase_tim.o"
+"stm32 v5 freertos\matric.o"
 "stm32 v5 freertos\stm32f4xx_hal_spi.o"
 "stm32 v5 freertos\stm32f4xx_hal_tim.o"
 "stm32 v5 freertos\stm32f4xx_hal_tim_ex.o"

@@ -48,3 +48,4 @@ stm32 v5 freertos\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/eve
 stm32 v5 freertos\main.o: ../Inc/rc522.h
 stm32 v5 freertos\main.o: ../Inc/Wheel_Init.h
 stm32 v5 freertos\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
+stm32 v5 freertos\main.o: ../Inc/Matric.h

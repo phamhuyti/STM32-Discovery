@@ -10,10 +10,16 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi1;
-uint8_t move[25] = {0};
 uint8_t IDCard[5];
-uint64_t ID, moveID[25];
-
+uint64_t ID;
+uint8_t Move[25], x[25], y[25], Length_way = 0;
+static uint64_t ID_Matrix[5][5] = {
+    {0xd9c86f81ff, 0x39a5ae82b0, 0x39d39481ff, 0xb9326a8263, 0x298f6d814a},
+    {0x796ebb812d, 0x192f6c82d8, 0xc95e678272, 0x199fdc82d8, 0xd7440b3ea6},
+    {0x99c7dd3bb8, 0x77f488353e, 0x9725083d87, 0xb98d6e4319, 0x69236f88ad},
+    {0x2952ab8151, 0x49d8948184, 0xe92d628224, 0x59dfc683c3, 0x6969818100},
+    {0x9fdca82bc, 0x998cca825d, 0xa91e6d8258, 0x17c10e3ee6, 0x896f0dc52e},
+};
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_SPI1_Init(void);
@@ -28,17 +34,21 @@ int main(void)
   HAL_Init();
   /* Configure the system clock */
   SystemClock_Config();
-  atan(2);
   /* Initialize all configured peripherals */
   MX_SPI1_Init();
   Wheel_GPIO_Init();
   MFRC522_Init();
   /* Infinite loop */
-  uint8_t L = 0;
-  calculator(1, 3, move, moveID);
+  for (uint8_t i = 0; i < 25; i++)
+  {
+    Move[i] = 0;
+    x[i] = 0;
+    y[i] = 0;
+  }
+  Dijkstra(0, 12, Move, x, y, &Length_way);
   while (1)
   {
-    switch (move[L])
+    switch (Move[Length_way])
     {
     case 1:
       moveForward(1);
@@ -55,9 +65,9 @@ int main(void)
       else
         for (int i = 0; i < 5; i++)
           IDCard[i] = 0;
-      if (ID == moveID[L])
+      if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
       {
-        L++;
+        Length_way--;
         for (uint8_t i = 0; i < 10; i++)
           moveForward(1);
         HAL_Delay(200);
@@ -79,9 +89,9 @@ int main(void)
       else
         for (int i = 0; i < 5; i++)
           IDCard[i] = 0;
-      if (ID == moveID[L])
+      if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
       {
-        L++;
+        Length_way--;
         for (uint8_t i = 0; i < 10; i++)
           moveSidewaysRight();
         HAL_Delay(200);
@@ -103,9 +113,9 @@ int main(void)
       else
         for (int i = 0; i < 5; i++)
           IDCard[i] = 0;
-      if (ID == moveID[L])
+      if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
       {
-        L++;
+        Length_way--;
         for (uint8_t i = 0; i < 10; i++)
           moveBackward(1);
         HAL_Delay(200);
@@ -127,9 +137,9 @@ int main(void)
       else
         for (int i = 0; i < 5; i++)
           IDCard[i] = 0;
-      if (ID == moveID[L])
+      if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
       {
-        L++;
+        Length_way--;
         for (uint8_t i = 0; i < 10; i++)
           moveSidewaysLeft();
         HAL_Delay(200);
@@ -139,9 +149,15 @@ int main(void)
 
     default:
       HAL_GPIO_WritePin(LD_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
-      HAL_GPIO_WritePin(LD_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
-      HAL_GPIO_WritePin(LD_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
-      HAL_GPIO_WritePin(LD_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
+      for (size_t i = 0; i < 10; i++)
+      {
+        HAL_GPIO_TogglePin(LD_GPIO_Port, LD3_Pin);
+        HAL_GPIO_TogglePin(LD_GPIO_Port, LD4_Pin);
+        HAL_GPIO_TogglePin(LD_GPIO_Port, LD5_Pin);
+        HAL_GPIO_TogglePin(LD_GPIO_Port, LD6_Pin);
+        HAL_Delay(100);
+      }
+      Length_way--;
       break;
     }
   }
