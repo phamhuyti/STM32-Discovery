@@ -138,7 +138,7 @@ uint8_t FindCards(uint8_t *sendData)
 	MFRC522_WriteRegister(MFRC522_REG_COMMAND, PCD_TRANSCEIVE);
 	MFRC522_SetBitMask(MFRC522_REG_BIT_FRAMING, 0x80); // StartSend=1,transmission of data starts
 	// Waiting to receive data to complete
-	i = 10; // i according to the clock frequency adjustment, the operator M1 card maximum waiting time 25ms
+	i = 100; // i according to the clock frequency adjustment, the operator M1 card maximum waiting time 25ms
 	do
 	{
 		// CommIrqReg[7..0]
@@ -434,6 +434,6 @@ void MFRC522_Halt(void)
 		MFRC522_WriteRegister(MFRC522_REG_FIFO_DATA, buff[i]);
 	// Execute the command
 	MFRC522_WriteRegister(MFRC522_REG_COMMAND, PCD_TRANSCEIVE);
-	MFRC522_SetBitMask(MFRC522_REG_BIT_FRAMING, 0x80); // StartSend=1,transmission of data starts
+	MFRC522_SetBitMask(MFRC522_REG_BIT_FRAMING, 0x80);   // StartSend=1,transmission of data starts
 	MFRC522_ClearBitMask(MFRC522_REG_BIT_FRAMING, 0x80); // StartSend=0
 }

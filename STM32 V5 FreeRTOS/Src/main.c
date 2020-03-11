@@ -225,6 +225,7 @@ void calculator_Dijkstra(void const *argument)
           vTaskResume(Taskmove_Handle);
           vTaskSuspend(calculator_Dijkstra_Handle);
         }
+    osDelay(100);
   }
 }
 /* USER CODE BEGIN Header_Taskmove*/
@@ -253,7 +254,7 @@ void Taskmove(void const *argument)
       /* code */
       break;
     case 2:
-    vTaskResume(TaskmoveSidewaysRight_Handle);
+      vTaskResume(TaskmoveSidewaysRight_Handle);
       vTaskSuspend(TaskmoveBackward_Handle);
       vTaskSuspend(TaskmoveSidewaysLeft_Handle);
       vTaskSuspend(TaskmoveForward_Handle);
@@ -265,7 +266,7 @@ void Taskmove(void const *argument)
       /* code */
       break;
     case 3:
-    vTaskResume(TaskmoveBackward_Handle);
+      vTaskResume(TaskmoveBackward_Handle);
       vTaskSuspend(TaskmoveForward_Handle);
       vTaskSuspend(TaskmoveSidewaysLeft_Handle);
       vTaskSuspend(TaskmoveSidewaysRight_Handle);
@@ -277,7 +278,7 @@ void Taskmove(void const *argument)
       /* code */
       break;
     case 4:
-    vTaskResume(TaskmoveSidewaysLeft_Handle);
+      vTaskResume(TaskmoveSidewaysLeft_Handle);
       vTaskSuspend(TaskmoveBackward_Handle);
       vTaskSuspend(TaskmoveForward_Handle);
       vTaskSuspend(TaskmoveSidewaysRight_Handle);

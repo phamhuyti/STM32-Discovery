@@ -152,23 +152,7 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>191</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134224284</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>../Src/main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\STM32_V5_FreeRTOS\../Src/main.c\191</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>241</LineNumber>
+          <LineNumber>242</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>134224356</Address>
           <ByteObject>0</ByteObject>
@@ -179,39 +163,87 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>../Src/main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\STM32_V5_FreeRTOS\../Src/main.c\241</Expression>
+          <Expression>\\STM32_V5_FreeRTOS\../Src/main.c\242</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>225</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134224924</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>../Src/main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\STM32_V5_FreeRTOS\../Src/main.c\225</Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>92</LineNumber>
+          <LineNumber>224</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134222858</Address>
+          <Address>134224900</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Src\rc522.c</Filename>
+          <Filename>../Src/main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\STM32_V5_FreeRTOS\../Src/rc522.c\92</Expression>
+          <Expression>\\STM32_V5_FreeRTOS\../Src/main.c\224</Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>90</LineNumber>
+          <LineNumber>727</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134222846</Address>
+          <Address>134218916</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Src\rc522.c</Filename>
+          <Filename>..\Src\Matric.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\STM32_V5_FreeRTOS\../Src/rc522.c\90</Expression>
+          <Expression>\\STM32_V5_FreeRTOS\../Src/Matric.c\727</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>758</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134219128</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Src\Matric.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\STM32_V5_FreeRTOS\../Src/Matric.c\758</Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
+          <Type>0</Type>
+          <LineNumber>755</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134219112</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Src\Matric.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\STM32_V5_FreeRTOS\../Src/Matric.c\755</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
