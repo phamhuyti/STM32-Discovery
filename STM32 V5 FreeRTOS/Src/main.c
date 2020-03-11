@@ -221,7 +221,7 @@ void calculator_Dijkstra(void const *argument)
       for (uint8_t j = 0; j < 5; j++)
         if (ID == ID_Matrix[i][j])
         {
-          List_Move = Dijkstra(i * 5 + j, 7);
+          List_Move = Dijkstra(i * 5 + j, 12);
           vTaskResume(Taskmove_Handle);
           vTaskSuspend(calculator_Dijkstra_Handle);
         }
@@ -249,7 +249,6 @@ void Taskmove(void const *argument)
       if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
       {
         List_Move.Length_way--;
-        osDelay(50);
       }
       /* code */
       break;
@@ -261,7 +260,6 @@ void Taskmove(void const *argument)
       if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
       {
         List_Move.Length_way--;
-        osDelay(50);
       }
       /* code */
       break;
@@ -273,7 +271,6 @@ void Taskmove(void const *argument)
       if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
       {
         List_Move.Length_way--;
-        osDelay(50);
       }
       /* code */
       break;
@@ -285,20 +282,21 @@ void Taskmove(void const *argument)
       if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
       {
         List_Move.Length_way--;
-        osDelay(50);
       }
       /* code */
       break;
 
     default:
-      led_DIR_circle(7, 20);
-      List_Move.Length_way--;
+      if (List_Move.Length_way != 0xFF)
+        List_Move.Length_way--;
       vTaskSuspend(TaskmoveBackward_Handle);
       vTaskSuspend(TaskmoveSidewaysLeft_Handle);
       vTaskSuspend(TaskmoveSidewaysRight_Handle);
       vTaskSuspend(TaskmoveForward_Handle);
+      led_DIR_circle(7, 20);
       break;
     }
+    osDelay(50);
   }
 }
 /* USER CODE BEGIN Header_TaskmoveForward*/

@@ -724,9 +724,7 @@ List_move_type Dijkstra(uint8_t a, uint8_t b)
 		{15, 16, 17, 18, 19},
 		{20, 21, 22, 23, 24}};
 	uint8_t temb = b;
-	if (!P[temb])
-		goto Endregion;
-	while (temb != a)
+	do
 	{
 		for (uint8_t i = 0; i < 5; i++)
 			for (uint8_t j = 0; j < 5; j++)
@@ -738,9 +736,21 @@ List_move_type Dijkstra(uint8_t a, uint8_t b)
 					break;
 				}
 			}
+		if (List_Move.Length_way > 25)
+			goto Endregion;
 		temb = P[temb];
 		List_Move.Length_way++;
-	}
+	} while (temb != a);
+	for (uint8_t i = 0; i < 5; i++)
+		for (uint8_t j = 0; j < 5; j++)
+		{
+			if (temb == stt[i][j])
+			{
+				List_Move.x[List_Move.Length_way] = i;
+				List_Move.y[List_Move.Length_way] = j;
+				break;
+			}
+		}
 	for (uint8_t i = 0; i < List_Move.Length_way; i++)
 	{
 		if (List_Move.x[i] == List_Move.x[i + 1] && List_Move.y[i] == List_Move.y[i + 1])
@@ -754,6 +764,6 @@ List_move_type Dijkstra(uint8_t a, uint8_t b)
 		if (List_Move.x[i] < List_Move.x[i + 1] && List_Move.y[i] == List_Move.y[i + 1])
 			List_Move.Move[i] = 4;
 	}
-	Endregion:
+Endregion:
 	return List_Move;
 }
