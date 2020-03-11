@@ -135,6 +135,13 @@ extern "C"
 #define led_B_GPIO_Port GPIOD
 #define set(GPIOx, GPIO_Pin) HAL_GPIO_WritePin(GPIOx, GPIO_Pin, GPIO_PIN_SET);
 #define reset(GPIOx, GPIO_Pin) HAL_GPIO_WritePin(GPIOx, GPIO_Pin, GPIO_PIN_RESET);
+  typedef struct
+  {
+    uint8_t Move[25]; //List Step Move
+    uint8_t x[25];    //Descartes X
+    uint8_t y[25];    //Descartes Y
+    uint8_t Length_way;
+  } List_move_type;
   /* USER CODE END Private defines */
 
 #ifdef __cplusplus

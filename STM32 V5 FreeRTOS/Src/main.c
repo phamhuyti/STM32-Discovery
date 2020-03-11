@@ -9,12 +9,17 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+
 SPI_HandleTypeDef hspi1;
-osThreadId myTask01Handle;
-osThreadId myTask02Handle;
+osThreadId Task_Check_RFID_Handle;
+osThreadId calculator_Dijkstra_Handle;
+osThreadId TaskmoveForward_Handle;
+osThreadId TaskmoveBackward_Handle;
+osThreadId TaskmoveSidewaysLeft_Handle;
+osThreadId TaskmoveSidewaysRight_Handle;
+osThreadId Taskmove_Handle;
 uint8_t IDCard[5];
 uint64_t ID;
-uint8_t Move[25], x[25], y[25], Length_way = 0;
 static uint64_t ID_Matrix[5][5] = {
     {0xd9c86f81ff, 0x39a5ae82b0, 0x39d39481ff, 0xb9326a8263, 0x298f6d814a},
     {0x796ebb812d, 0x192f6c82d8, 0xc95e678272, 0x199fdc82d8, 0xd7440b3ea6},
@@ -22,11 +27,17 @@ static uint64_t ID_Matrix[5][5] = {
     {0x2952ab8151, 0x49d8948184, 0xe92d628224, 0x59dfc683c3, 0x6969818100},
     {0x9fdca82bc, 0x998cca825d, 0xa91e6d8258, 0x17c10e3ee6, 0x896f0dc52e},
 };
+List_move_type List_Move;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_SPI1_Init(void);
-void StartTask01(void const *argument);
-void StartTask02(void const *argument);
+void Task_Check_RFID(void const *argument);
+void calculator_Dijkstra(void const *argument);
+void TaskmoveForward(void const *argument);
+void TaskmoveBackward(void const *argument);
+void TaskmoveSidewaysLeft(void const *argument);
+void TaskmoveSidewaysRight(void const *argument);
+void Taskmove(void const *argument);
 void led_DIR_circle(uint8_t n, uint8_t delay);
 /* Private user code ---------------------------------------------------------*/
 /**
@@ -45,13 +56,38 @@ int main(void)
   MFRC522_Init();
   Wheel_GPIO_Init();
   /* definition and creation of myTask01 */
-  osThreadDef(myTask01, StartTask01, osPriorityNormal, 0, 500);
-  myTask01Handle = osThreadCreate(osThread(myTask01), NULL);
+  osThreadDef(Task_Check_RFID_name, Task_Check_RFID, osPriorityNormal, 0, 500);
+  Task_Check_RFID_Handle = osThreadCreate(osThread(Task_Check_RFID_name), NULL);
 
   /* definition and creation of myTask02 */
-  osThreadDef(myTask02, StartTask02, osPriorityHigh, 0, 128);
-  myTask02Handle = osThreadCreate(osThread(myTask02), NULL);
+  osThreadDef(calculator_Dijkstra_name, calculator_Dijkstra, osPriorityNormal, 0, 128);
+  calculator_Dijkstra_Handle = osThreadCreate(osThread(calculator_Dijkstra_name), NULL);
 
+  /* definition and creation of TaskmoveForward */
+  osThreadDef(TaskmoveForward_name, TaskmoveForward, osPriorityRealtime, 0, 128);
+  TaskmoveForward_Handle = osThreadCreate(osThread(TaskmoveForward_name), NULL);
+
+  /* definition and creation of TaskmoveBackward */
+  osThreadDef(TaskmoveBackward_name, TaskmoveBackward, osPriorityRealtime, 0, 128);
+  TaskmoveBackward_Handle = osThreadCreate(osThread(TaskmoveBackward_name), NULL);
+
+  /* definition and creation of TaskmoveSidewaysLeft */
+  osThreadDef(TaskmoveSidewaysLeft_name, TaskmoveSidewaysLeft, osPriorityRealtime, 0, 128);
+  TaskmoveSidewaysLeft_Handle = osThreadCreate(osThread(TaskmoveSidewaysLeft_name), NULL);
+
+  /* definition and creation of TaskmoveSidewaysRight */
+  osThreadDef(TaskmoveSidewaysRight_name, TaskmoveSidewaysRight, osPriorityRealtime, 0, 128);
+  TaskmoveSidewaysRight_Handle = osThreadCreate(osThread(TaskmoveSidewaysRight_name), NULL);
+
+  /* definition and creation of Taskmove */
+  osThreadDef(Taskmove_name, Taskmove, osPriorityHigh, 0, 128);
+  Taskmove_Handle = osThreadCreate(osThread(Taskmove_name), NULL);
+
+  vTaskSuspend(Taskmove_Handle);
+  vTaskSuspend(TaskmoveForward_Handle);
+  vTaskSuspend(TaskmoveBackward_Handle);
+  vTaskSuspend(TaskmoveSidewaysLeft_Handle);
+  vTaskSuspend(TaskmoveSidewaysRight_Handle);
   /* Start scheduler */
   osKernelStart();
 
@@ -146,8 +182,7 @@ static void MX_SPI1_Init(void)
   * @param  argument: Not used 
   * @retval None
   */
-/* USER CODE END Header_StartTask01 */
-void StartTask01(void const *argument)
+void Task_Check_RFID(void const *argument)
 {
   uint8_t IDCard[5];
   /* Infinite loop */
@@ -167,8 +202,8 @@ void StartTask01(void const *argument)
       for (int i = 0; i < 5; i++)
         IDCard[i] = 0;
     vTaskDelay(100);
+    // vTaskResume(calculator_Dijkstra_Handle);
   }
-  /* USER CODE END 5 */
 }
 
 /* USER CODE BEGIN Header_StartTask02 */
@@ -177,80 +212,151 @@ void StartTask01(void const *argument)
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_StartTask02 */
-void StartTask02(void const *argument)
+void calculator_Dijkstra(void const *argument)
 {
-  uint8_t Status = 0;
   /* Infinite loop */
   for (;;)
   {
-    if (!ID)
+    for (uint8_t i = 0; i < 5; i++)
+      for (uint8_t j = 0; j < 5; j++)
+        if (ID == ID_Matrix[i][j])
+        {
+          List_Move = Dijkstra(i * 5 + j, 7);
+          vTaskResume(Taskmove_Handle);
+          vTaskSuspend(calculator_Dijkstra_Handle);
+        }
+  }
+}
+/* USER CODE BEGIN Header_Taskmove*/
+/**
+* @brief Function implementing the Taskmove thread.
+* @param argument: Not used
+* @retval None
+*/
+void Taskmove(void const *argument)
+{
+  /* Infinite loop */
+  while (1)
+  {
+    switch (List_Move.Move[List_Move.Length_way])
     {
-      for (uint8_t i = 0; i < 5; i++)
-        for (uint8_t j = 0; j < 5; j++)
-          if (ID == ID_Matrix[i][j])
-          {
-            Dijkstra(i * 5 + j, 7, Move, x, y, &Length_way);
-          }
-    }
-    while (Status)
-    {
-      switch (Move[Length_way])
+    case 1:
+      vTaskResume(TaskmoveForward_Handle);
+      vTaskSuspend(TaskmoveBackward_Handle);
+      vTaskSuspend(TaskmoveSidewaysLeft_Handle);
+      vTaskSuspend(TaskmoveSidewaysRight_Handle);
+      if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
       {
-      case 1:
-        moveForward();
-        if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
-        {
-          Length_way--;
-          for (uint8_t i = 0; i < 100; i++)
-            moveForward();
-          osDelay(50);
-        }
-        /* code */
-        break;
-      case 2:
-        moveSidewaysRight();
-        if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
-        {
-          Length_way--;
-          for (uint8_t i = 0; i < 100; i++)
-            moveSidewaysRight();
-          osDelay(50);
-        }
-        /* code */
-        break;
-      case 3:
-        moveBackward();
-        if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
-        {
-          Length_way--;
-          for (uint8_t i = 0; i < 100; i++)
-            moveBackward();
-          osDelay(50);
-        }
-        /* code */
-        break;
-      case 4:
-        moveSidewaysLeft();
-        if (ID == ID_Matrix[x[Length_way]][y[Length_way]])
-        {
-          Length_way--;
-          for (uint8_t i = 0; i < 100; i++)
-            moveSidewaysLeft();
-          osDelay(50);
-        }
-        /* code */
-        break;
-
-      default:
-        led_DIR_circle(7, 20);
-        Length_way--;
-        break;
+        List_Move.Length_way--;
+        osDelay(50);
       }
+      /* code */
+      break;
+    case 2:
+    vTaskResume(TaskmoveSidewaysRight_Handle);
+      vTaskSuspend(TaskmoveBackward_Handle);
+      vTaskSuspend(TaskmoveSidewaysLeft_Handle);
+      vTaskSuspend(TaskmoveForward_Handle);
+      if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
+      {
+        List_Move.Length_way--;
+        osDelay(50);
+      }
+      /* code */
+      break;
+    case 3:
+    vTaskResume(TaskmoveBackward_Handle);
+      vTaskSuspend(TaskmoveForward_Handle);
+      vTaskSuspend(TaskmoveSidewaysLeft_Handle);
+      vTaskSuspend(TaskmoveSidewaysRight_Handle);
+      if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
+      {
+        List_Move.Length_way--;
+        osDelay(50);
+      }
+      /* code */
+      break;
+    case 4:
+    vTaskResume(TaskmoveSidewaysLeft_Handle);
+      vTaskSuspend(TaskmoveBackward_Handle);
+      vTaskSuspend(TaskmoveForward_Handle);
+      vTaskSuspend(TaskmoveSidewaysRight_Handle);
+      if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
+      {
+        List_Move.Length_way--;
+        osDelay(50);
+      }
+      /* code */
+      break;
+
+    default:
+      led_DIR_circle(7, 20);
+      List_Move.Length_way--;
+      vTaskSuspend(TaskmoveBackward_Handle);
+      vTaskSuspend(TaskmoveSidewaysLeft_Handle);
+      vTaskSuspend(TaskmoveSidewaysRight_Handle);
+      vTaskSuspend(TaskmoveForward_Handle);
+      break;
     }
   }
-  /* USER CODE END StartTask02 */
 }
+/* USER CODE BEGIN Header_TaskmoveForward*/
+/**
+* @brief Function implementing the TaskmoveForward thread.
+* @param argument: Not used
+* @retval None
+*/
+void TaskmoveForward(void const *argument)
+{
+  /* Infinite loop */
+  for (;;)
+  {
+    moveForward();
+  }
+}
+/* USER CODE BEGIN Header_TaskmoveBackward*/
+/**
+* @brief Function implementing the TaskmoveBackward thread.
+* @param argument: Not used
+* @retval None
+*/
+void TaskmoveBackward(void const *argument)
+{
+  /* Infinite loop */
+  for (;;)
+  {
+    moveBackward();
+  }
+}
+/* USER CODE BEGIN Header_TaskmoveSidewaysLeft*/
+/**
+* @brief Function implementing the TaskmoveSidewaysLeft thread.
+* @param argument: Not used
+* @retval None
+*/
+void TaskmoveSidewaysLeft(void const *argument)
+{
+  /* Infinite loop */
+  for (;;)
+  {
+    moveSidewaysLeft();
+  }
+}
+/* USER CODE BEGIN Header_TaskmoveSidewaysRight*/
+/**
+* @brief Function implementing the TaskmoveSidewaysRight thread.
+* @param argument: Not used
+* @retval None
+*/
+void TaskmoveSidewaysRight(void const *argument)
+{
+  /* Infinite loop */
+  for (;;)
+  {
+    moveSidewaysRight();
+  }
+}
+
 void led_DIR_circle(uint8_t n, uint8_t delay)
 {
   for (uint8_t i = 0; i < n; i++)

@@ -1,5 +1,4 @@
 #include "Matric.h"
-
 int G[25][25] =
 	{
 		{
@@ -678,10 +677,11 @@ int G[25][25] =
 			0,
 		}};
 
-void Dijkstra(uint8_t a, uint8_t b, uint8_t(*Move), uint8_t x[], uint8_t y[], uint8_t *Length_way)
+List_move_type Dijkstra(uint8_t a, uint8_t b)
 {
 	// Len[i] - Gia tri nho nhat tu a -> i. Len1 danh dau do dai.
 	uint8_t Length_a_to_[25];
+	List_move_type List_Move;
 	uint8_t Checked[25]; //Danh dau dinh thuoc danh sach dac biet
 	uint8_t P[25];		 //truy vet
 	for (uint8_t i = 0; i < 25; i++)
@@ -723,9 +723,9 @@ void Dijkstra(uint8_t a, uint8_t b, uint8_t(*Move), uint8_t x[], uint8_t y[], ui
 		{10, 11, 12, 13, 14},
 		{15, 16, 17, 18, 19},
 		{20, 21, 22, 23, 24}};
-	uint8_t temb = b, Length_Way = *Length_way;
+	uint8_t temb = b;
 	if (!P[temb])
-		return;
+		goto Endregion;
 	while (temb != a)
 	{
 		for (uint8_t i = 0; i < 5; i++)
@@ -733,26 +733,27 @@ void Dijkstra(uint8_t a, uint8_t b, uint8_t(*Move), uint8_t x[], uint8_t y[], ui
 			{
 				if (temb == stt[i][j])
 				{
-					x[Length_Way] = i;
-					y[Length_Way] = j;
+					List_Move.x[List_Move.Length_way] = i;
+					List_Move.y[List_Move.Length_way] = j;
 					break;
 				}
 			}
 		temb = P[temb];
-		Length_Way++;
+		List_Move.Length_way++;
 	}
-	for (uint8_t i = 0; i < Length_Way; i++)
+	for (uint8_t i = 0; i < List_Move.Length_way; i++)
 	{
-		if (x[i] == x[i + 1] && y[i] == y[i + 1])
-			Move[i] = 0;
-		if (x[i] == x[i + 1] && y[i] > y[i + 1])
-			Move[i] = 1;
-		if (x[i] > x[i + 1] && y[i] == y[i + 1])
-			Move[i] = 2;
-		if (x[i] == x[i + 1] && y[i] < y[i + 1])
-			Move[i] = 3;
-		if (x[i] < x[i + 1] && y[i] == y[i + 1])
-			Move[i] = 4;
+		if (List_Move.x[i] == List_Move.x[i + 1] && List_Move.y[i] == List_Move.y[i + 1])
+			List_Move.Move[i] = 0;
+		if (List_Move.x[i] == List_Move.x[i + 1] && List_Move.y[i] > List_Move.y[i + 1])
+			List_Move.Move[i] = 1;
+		if (List_Move.x[i] > List_Move.x[i + 1] && List_Move.y[i] == List_Move.y[i + 1])
+			List_Move.Move[i] = 2;
+		if (List_Move.x[i] == List_Move.x[i + 1] && List_Move.y[i] < List_Move.y[i + 1])
+			List_Move.Move[i] = 3;
+		if (List_Move.x[i] < List_Move.x[i + 1] && List_Move.y[i] == List_Move.y[i + 1])
+			List_Move.Move[i] = 4;
 	}
-	*Length_way = Length_Way + 1;
+	Endregion:
+	return List_Move;
 }
