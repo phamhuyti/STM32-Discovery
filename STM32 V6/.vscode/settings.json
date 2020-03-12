@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "matric.h": "c",
+        "wheel_init.h": "c",
+        "main.h": "c",
+        "stdio.h": "c"
+    }
+}
