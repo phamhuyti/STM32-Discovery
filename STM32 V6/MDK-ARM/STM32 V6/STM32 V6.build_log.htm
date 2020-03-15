@@ -30,29 +30,27 @@ Build target 'STM32 V6'
 compiling main.c...
 ../Src/main.c(107): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
     sprintf(bufTX, "HELLO!!!");
-../Src/main.c(235): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
-        sprintf(bufTX, "1");
+../Src/main.c(236): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+            sprintf(bufTX, "1");
+../Src/main.c(290): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+            sprintf(bufTX, "%d:%d", i, j);
 ../Src/main.c(319): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
-            sprintf(bufTX, "%X", ID);
-../Src/main.c(319): warning:  #181-D: argument is incompatible with corresponding format string conversion
-            sprintf(bufTX, "%X", ID);
+            sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
 ../Src/main.c(332): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
-            sprintf(bufTX, "%X", ID);
-../Src/main.c(332): warning:  #181-D: argument is incompatible with corresponding format string conversion
-            sprintf(bufTX, "%X", ID);
+            sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
 ../Src/main.c(345): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
-            sprintf(bufTX, "%X", ID);
-../Src/main.c(345): warning:  #181-D: argument is incompatible with corresponding format string conversion
-            sprintf(bufTX, "%X", ID);
+            sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
 ../Src/main.c(358): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
-            sprintf(bufTX, "%X", ID);
-../Src/main.c(358): warning:  #181-D: argument is incompatible with corresponding format string conversion
-            sprintf(bufTX, "%X", ID);
-../Src/main.c: 10 warnings, 0 errors
+            sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
+../Src/main.c(378): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+            sprintf(bufTX, "0");
+../Src/main.c(395): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+        sprintf(bufTX, "0");
+../Src/main.c: 9 warnings, 0 errors
 linking...
-Program Size: Code=13912 RO-data=920 RW-data=2860 ZI-data=17532  
+Program Size: Code=13540 RO-data=892 RW-data=2860 ZI-data=17532  
 FromELF: creating hex file...
-"STM32 V6\STM32 V6.axf" - 0 Error(s), 10 Warning(s).
+"STM32 V6\STM32 V6.axf" - 0 Error(s), 9 Warning(s).
 
 <h2>Software Packages used:</h2>
 

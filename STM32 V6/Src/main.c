@@ -196,7 +196,7 @@ static void MX_SPI1_Init(void)
 static void MX_USART2_UART_Init(void)
 {
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 38400;
+  huart2.Init.BaudRate = 9600;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
@@ -232,14 +232,13 @@ void Task_Uart(void const *argument)
     }
     else
     {
-      sprintf(bufTX, "1");
-      HAL_UART_Transmit(&huart2, bufTX, 1, 1);
       ID = 0;
+          sprintf(bufTX, "1");
+          HAL_UART_Transmit(&huart2, bufTX, 1, 1);
       vTaskResume(Task_Check_RFID_Handle);
       vTaskResume(calculator_Dijkstra_Handle);
       vTaskSuspend(Task_Uart_Handle);
     }
-    osDelay(1);
   }
   /* USER CODE END 5 */
 }
@@ -288,11 +287,12 @@ void calculator_Dijkstra(void const *argument)
       for (uint8_t j = 0; j < 5; j++)
         if (ID == ID_Matrix[i][j])
         {
+          sprintf(bufTX, "%d:%d", i, j);
+          HAL_UART_Transmit(&huart2, bufTX, 3, 1);
           List_Move = Dijkstra(i * 5 + j, (bufRX[0] - 48) * 5 + (bufRX[1] - 48));
           vTaskResume(Taskmove_Handle);
           vTaskSuspend(calculator_Dijkstra_Handle);
         }
-    osDelay(100);
   }
 }
 /* USER CODE BEGIN Header_Taskmove*/
@@ -316,8 +316,8 @@ void Taskmove(void const *argument)
         vTaskSuspend(TaskmoveSidewaysRight_Handle);
         if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
         {
-          sprintf(bufTX, "%X", ID);
-          HAL_UART_Transmit(&huart2, bufTX, 10, 1);
+          sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
+          HAL_UART_Transmit(&huart2, bufTX, 3, 1);
           List_Move.Length_way--;
         }
         /* code */
@@ -329,8 +329,8 @@ void Taskmove(void const *argument)
         vTaskSuspend(TaskmoveForward_Handle);
         if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
         {
-          sprintf(bufTX, "%X", ID);
-          HAL_UART_Transmit(&huart2, bufTX, 10, 1);
+          sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
+          HAL_UART_Transmit(&huart2, bufTX, 3, 1);
           List_Move.Length_way--;
         }
         /* code */
@@ -342,21 +342,21 @@ void Taskmove(void const *argument)
         vTaskSuspend(TaskmoveSidewaysRight_Handle);
         if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
         {
-          sprintf(bufTX, "%X", ID);
-          HAL_UART_Transmit(&huart2, bufTX, 10, 1);
+          sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
+          HAL_UART_Transmit(&huart2, bufTX, 3, 1);
           List_Move.Length_way--;
         }
         /* code */
         break;
       case 4:
-        vTaskResume(TaskmoveSidewaysLeft_Handle); 
+        vTaskResume(TaskmoveSidewaysLeft_Handle);
         vTaskSuspend(TaskmoveBackward_Handle);
         vTaskSuspend(TaskmoveForward_Handle);
         vTaskSuspend(TaskmoveSidewaysRight_Handle);
         if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
         {
-          sprintf(bufTX, "%X", ID);
-          HAL_UART_Transmit(&huart2, bufTX, 10, 1);
+          sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
+          HAL_UART_Transmit(&huart2, bufTX, 3, 1);
           List_Move.Length_way--;
         }
         /* code */
@@ -368,12 +368,6 @@ void Taskmove(void const *argument)
         else
         {
           bufRX[2] = 0;
-          List_Move.Length_way = 0;
-          for (uint8_t i = 0; i < 25; i++)
-          {
-            List_Move.Move[i] = 0;
-          }
-          vTaskResume(Task_Uart_Handle);
           vTaskSuspend(Task_Check_RFID_Handle);
           vTaskSuspend(calculator_Dijkstra_Handle);
           vTaskSuspend(TaskmoveForward_Handle);
@@ -381,6 +375,9 @@ void Taskmove(void const *argument)
           vTaskSuspend(TaskmoveSidewaysLeft_Handle);
           vTaskSuspend(TaskmoveSidewaysRight_Handle);
           led_DIR_circle(15, 20);
+          sprintf(bufTX, "0");
+          HAL_UART_Transmit(&huart2, bufTX, 1, 1);
+          vTaskResume(Task_Uart_Handle);
           vTaskSuspend(Taskmove_Handle);
         }
         break;
@@ -388,12 +385,6 @@ void Taskmove(void const *argument)
     else
     {
       bufRX[2] = 0;
-      List_Move.Length_way = 0;
-      for (uint8_t i = 0; i < 25; i++)
-      {
-        List_Move.Move[i] = 0;
-      }
-      vTaskResume(Task_Uart_Handle);
       vTaskSuspend(Task_Check_RFID_Handle);
       vTaskSuspend(calculator_Dijkstra_Handle);
       vTaskSuspend(TaskmoveForward_Handle);
@@ -401,9 +392,12 @@ void Taskmove(void const *argument)
       vTaskSuspend(TaskmoveSidewaysLeft_Handle);
       vTaskSuspend(TaskmoveSidewaysRight_Handle);
       led_DIR_circle(7, 200);
+      sprintf(bufTX, "0");
+      HAL_UART_Transmit(&huart2, bufTX, 1, 1);
+      vTaskResume(Task_Uart_Handle);
       vTaskSuspend(Taskmove_Handle);
     }
-    osDelay(50);
+    osDelay(100);
   }
 }
 /* USER CODE BEGIN Header_TaskmoveForward*/
