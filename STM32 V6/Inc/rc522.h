@@ -108,6 +108,8 @@
 
 #define MFRC522_DUMMY 0x00 // Dummy byte
 #define MFRC522_MAX_LEN 16 // Buf len byte
+//SPI
+void MX_SPI1_Init(void);
 // RC522
 uint8_t MFRC522_Check(uint8_t *id);
 uint8_t MFRC522_Compare(uint8_t *CardID, uint8_t *CompareID);

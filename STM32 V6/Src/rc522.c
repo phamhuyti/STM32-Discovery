@@ -26,7 +26,33 @@
 // VCC			3.3V			3.3V power
 
 #include "rc522.h"
-extern SPI_HandleTypeDef hspi1;
+SPI_HandleTypeDef hspi1;
+
+/**
+  * @brief SPI1 Initialization Function
+  * @param None
+  * @retval None
+  */
+void MX_SPI1_Init(void)
+{
+  /* SPI1 parameter configuration*/
+  hspi1.Instance = SPI1;
+  hspi1.Init.Mode = SPI_MODE_MASTER;
+  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi1.Init.NSS = SPI_NSS_SOFT;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi1.Init.CRCPolynomial = 10;
+  if (HAL_SPI_Init(&hspi1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
 
 uint8_t SPI1SendByte(uint8_t data)
 {
@@ -386,6 +412,7 @@ void PORTRC522_Init(void)
 }
 void MFRC522_Init(void)
 {
+	MX_SPI1_Init();
 	PORTRC522_Init();
 	MFRC522_Reset();
 	MFRC522_WriteRegister(MFRC522_REG_T_MODE, 0x8D);

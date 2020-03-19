@@ -32,6 +32,7 @@ extern "C"
 #include "stm32f4xx_hal.h"
 #include "stdio.h"
   /* Private includes ----------------------------------------------------------*/
+#include "string.h"
   /* USER CODE BEGIN Includes */
 
   /* USER CODE END Includes */
@@ -124,9 +125,13 @@ extern "C"
 #define Audio_SDA_GPIO_Port GPIOB
 #define MEMS_INT2_Pin GPIO_PIN_1
 #define MEMS_INT2_GPIO_Port GPIOE
+#define M0_Pin GPIO_PIN_1
+#define M1_Pin GPIO_PIN_2
+#define M_GPIO_Port GPIOD
 /* USER CODE BEGIN Private defines */
 #define set(GPIOx, GPIO_Pin) HAL_GPIO_WritePin(GPIOx, GPIO_Pin, GPIO_PIN_SET);
 #define reset(GPIOx, GPIO_Pin) HAL_GPIO_WritePin(GPIOx, GPIO_Pin, GPIO_PIN_RESET);
+  void led_DIR_circle(uint8_t n, uint8_t delay);
   typedef struct
   {
     uint8_t Move[25]; //List Step Move

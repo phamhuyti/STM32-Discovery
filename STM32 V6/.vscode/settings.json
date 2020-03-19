@@ -3,6 +3,8 @@
         "matric.h": "c",
         "wheel_init.h": "c",
         "main.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "rc522.h": "c",
+        "cmsis_os.h": "c"
     }
 }

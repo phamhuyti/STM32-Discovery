@@ -9,10 +9,7 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-SPI_HandleTypeDef hspi1;
-
 UART_HandleTypeDef huart2;
-
 osThreadId Task_Uart_Handle;
 osMessageQId myQueue01Handle;
 osThreadId Task_Check_RFID_Handle;
@@ -32,11 +29,10 @@ static uint64_t ID_Matrix[5][5] = {
     {0x9fdca82bc, 0x998cca825d, 0xa91e6d8258, 0x17c10e3ee6, 0x896f0dc52e},
 };
 List_move_type List_Move;
-uint8_t bufRX[3] = {1}, bufTX[15];
+char bufRX[6], bufTX[15];
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MX_SPI1_Init(void);
-static void MX_USART2_UART_Init(void);
+void MX_USART2_UART_Init(void);
 void Task_Uart(void const *argument);
 void Task_Check_RFID(void const *argument);
 void calculator_Dijkstra(void const *argument);
@@ -45,7 +41,7 @@ void TaskmoveBackward(void const *argument);
 void TaskmoveSidewaysLeft(void const *argument);
 void TaskmoveSidewaysRight(void const *argument);
 void Taskmove(void const *argument);
-void led_DIR_circle(uint8_t n, uint8_t delay);
+void Lora_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /**
   * @brief  The application entry point.
@@ -60,12 +56,11 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
   /* Initialize all configured peripherals */
-
-  MX_SPI1_Init();
   MX_USART2_UART_Init();
   MFRC522_Init();
-  Led_GPIO_Init();
+  GPIO_Init();
   Wheel_GPIO_Init();
+  Lora_Init();
   /* Create the queue(s) */
   /* definition and creation of myQueue01 */
   osMessageQDef(myQueue01, 10, uint8_t);
@@ -104,8 +99,9 @@ int main(void)
   /* definition and creation of Taskmove */
   osThreadDef(Taskmove_name, Taskmove, osPriorityHigh, 0, 128);
   Taskmove_Handle = osThreadCreate(osThread(Taskmove_name), NULL);
-  sprintf(bufTX, "HELLO!!!");
-  HAL_UART_Transmit(&huart2, bufTX, 8, 1);
+
+  // sprintf(bufTX, "HELLO!!!");
+  // HAL_UART_Transmit(&huart2, bufTX, 8, 1);
   vTaskSuspend(Task_Check_RFID_Handle);
   vTaskSuspend(calculator_Dijkstra_Handle);
   vTaskSuspend(Taskmove_Handle);
@@ -113,81 +109,24 @@ int main(void)
   vTaskSuspend(TaskmoveBackward_Handle);
   vTaskSuspend(TaskmoveSidewaysLeft_Handle);
   vTaskSuspend(TaskmoveSidewaysRight_Handle);
+  // vTaskSuspend(Task_Uart_Handle);
 
   /* Start scheduler */
   osKernelStart();
+  while (1)
+  {
+  }
 }
-
-/**
-  * @brief System Clock Configuration
-  * @retval None
-  */
-void SystemClock_Config(void)
+void Lora_Init(void)
 {
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-
-  /** Configure the main internal regulator output voltage 
-  */
-  __HAL_RCC_PWR_CLK_ENABLE();
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-  /** Initializes the CPU, AHB and APB busses clocks 
-  */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 4;
-  RCC_OscInitStruct.PLL.PLLN = 192;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
-  RCC_OscInitStruct.PLL.PLLQ = 8;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Initializes the CPU, AHB and APB busses clocks 
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
-
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
-  {
-    Error_Handler();
-  }
+  bufTX[0] = 0xC0;
+  bufTX[1] = 0x00;
+  bufTX[2] = 0x00;
+  bufTX[3] = 0x01;
+  bufTX[4] = 0x01;
+  bufTX[5] = 0x47;
+  HAL_UART_Transmit(&huart2, bufTX, 6, 1);
 }
-
-/**
-  * @brief SPI1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_SPI1_Init(void)
-{
-  /* SPI1 parameter configuration*/
-  hspi1.Instance = SPI1;
-  hspi1.Init.Mode = SPI_MODE_MASTER;
-  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
-  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
-  hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
-  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
-  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
-  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi1.Init.CRCPolynomial = 10;
-  if (HAL_SPI_Init(&hspi1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN SPI1_Init 2 */
-
-  /* USER CODE END SPI1_Init 2 */
-}
-
 /**
   * @brief USART2 Initialization Function
   * @param None
@@ -223,18 +162,28 @@ static void MX_USART2_UART_Init(void)
 
 void Task_Uart(void const *argument)
 {
-  /* Infinite loop */
+  osDelay(1000);
+  bufTX[0] = 0xC1;
+  bufTX[1] = 0xC1;
+  bufTX[2] = 0xC1;
+  HAL_UART_Transmit(&huart2, bufTX, 3, 1);
+  for (uint8_t i = 0; i < 6; i++)
+  {
+    HAL_UART_Receive(&huart2, bufRX, 6, 1);
+  }
+  char a[6] = { 0xC0, 0x00, 0x00, 0x01, 0x01, 0x47, };
+  do
+  {
+    led_DIR_circle(1, 200);
+  } while (strcmp(bufRX, a));
   for (;;)
   {
-    if (bufRX[2] != '.')
-    {
-      HAL_UART_Receive(&huart2, bufRX, 3, 1);
-    }
-    else
+    HAL_UART_Receive(&huart2, bufRX, 3, 1);
+    if (bufRX[2] == '.')
     {
       ID = 0;
-          sprintf(bufTX, "1");
-          HAL_UART_Transmit(&huart2, bufTX, 1, 1);
+      sprintf(bufTX, "Start");
+      HAL_UART_Transmit(&huart2, bufTX, 5, 1);
       vTaskResume(Task_Check_RFID_Handle);
       vTaskResume(calculator_Dijkstra_Handle);
       vTaskSuspend(Task_Uart_Handle);
@@ -375,8 +324,8 @@ void Taskmove(void const *argument)
           vTaskSuspend(TaskmoveSidewaysLeft_Handle);
           vTaskSuspend(TaskmoveSidewaysRight_Handle);
           led_DIR_circle(15, 20);
-          sprintf(bufTX, "0");
-          HAL_UART_Transmit(&huart2, bufTX, 1, 1);
+          sprintf(bufTX, "Stop");
+          HAL_UART_Transmit(&huart2, bufTX, 4, 1);
           vTaskResume(Task_Uart_Handle);
           vTaskSuspend(Taskmove_Handle);
         }
@@ -392,8 +341,8 @@ void Taskmove(void const *argument)
       vTaskSuspend(TaskmoveSidewaysLeft_Handle);
       vTaskSuspend(TaskmoveSidewaysRight_Handle);
       led_DIR_circle(7, 200);
-      sprintf(bufTX, "0");
-      HAL_UART_Transmit(&huart2, bufTX, 1, 1);
+      sprintf(bufTX, "Stop");
+      HAL_UART_Transmit(&huart2, bufTX, 4, 1);
       vTaskResume(Task_Uart_Handle);
       vTaskSuspend(Taskmove_Handle);
     }
@@ -469,13 +418,13 @@ void led_DIR_circle(uint8_t n, uint8_t delay)
     osDelay(delay);
     reset(LD_GPIO_Port, LD4_Pin);
     osDelay(delay);
-    set(LD_GPIO_Port, LD5_Pin);
-    osDelay(delay);
-    reset(LD_GPIO_Port, LD5_Pin);
-    osDelay(delay);
     set(LD_GPIO_Port, LD6_Pin);
     osDelay(delay);
     reset(LD_GPIO_Port, LD6_Pin);
+    osDelay(delay);
+    set(LD_GPIO_Port, LD5_Pin);
+    osDelay(delay);
+    reset(LD_GPIO_Port, LD5_Pin);
     osDelay(delay);
   }
 }
@@ -502,6 +451,46 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   /* USER CODE END Callback 1 */
 }
 
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  /** Configure the main internal regulator output voltage 
+  */
+  __HAL_RCC_PWR_CLK_ENABLE();
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+  /** Initializes the CPU, AHB and APB busses clocks 
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLM = 4;
+  RCC_OscInitStruct.PLL.PLLN = 192;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
+  RCC_OscInitStruct.PLL.PLLQ = 8;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Initializes the CPU, AHB and APB busses clocks 
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
 /**
   * @brief  This function is executed in case of error occurrence.
   * @retval None

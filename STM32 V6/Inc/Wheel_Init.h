@@ -15,7 +15,7 @@
 #define Clockwise GPIO_PIN_SET
 #define AntiClockwise GPIO_PIN_RESET
 
-void Led_GPIO_Init(void);
+void GPIO_Init(void);
 void Wheel_GPIO_Init(void);
 void moveSidewaysLeft(void);
 void moveSidewaysRight(void);

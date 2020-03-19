@@ -171,11 +171,11 @@ namespace Omnidirectional_mobile_robot
             if (serialPort1.IsOpen)
                 switch (InputData)
                 {
-                    case "1":
+                    case "Start":
                         flowLayoutPanel.Enabled = false;
                         Connect.Enabled = false;
                         break;
-                    case "0":
+                    case "Stop":
                         enabel_button();
                         break;
                     case "HELLO!!!":
