@@ -10,6 +10,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef huart2;
+osThreadId Task_Check_Ready_Handle;
 osThreadId Task_Uart_Handle;
 osMessageQId myQueue01Handle;
 osThreadId Task_Check_RFID_Handle;
@@ -33,8 +34,9 @@ char bufRX[6], bufTX[15];
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void MX_USART2_UART_Init(void);
+void Task_Check_Ready(void const *argument);
 void Task_Uart(void const *argument);
-void Task_Check_RFID(void const *argument);
+void Task_Check_ID(void const *argument);
 void calculator_Dijkstra(void const *argument);
 void TaskmoveForward(void const *argument);
 void TaskmoveBackward(void const *argument);
@@ -67,13 +69,16 @@ int main(void)
   myQueue01Handle = osMessageCreate(osMessageQ(myQueue01), NULL);
 
   /* Create the thread(s) */
+  /* definition and creation of Task_Check_Ready */
+  osThreadDef(Task_Check_Ready_name, Task_Check_Ready, osPriorityNormal, 0, 128);
+  Task_Check_Ready_Handle = osThreadCreate(osThread(Task_Check_Ready_name), NULL);
 
-  /* definition and creation of Task_Check */
+  /* definition and creation of Task_Uart */
   osThreadDef(Task_Uart_name, Task_Uart, osPriorityNormal, 0, 128);
   Task_Uart_Handle = osThreadCreate(osThread(Task_Uart_name), NULL);
 
   /* definition and creation of Task_Uart */
-  osThreadDef(Task_Check_RFID_name, Task_Check_RFID, osPriorityHigh, 0, 500);
+  osThreadDef(Task_Check_RFID_name, Task_Check_ID, osPriorityHigh, 0, 500);
   Task_Check_RFID_Handle = osThreadCreate(osThread(Task_Check_RFID_name), NULL);
 
   /* definition and creation of calculator_Dijkstra */
@@ -100,8 +105,6 @@ int main(void)
   osThreadDef(Taskmove_name, Taskmove, osPriorityHigh, 0, 128);
   Taskmove_Handle = osThreadCreate(osThread(Taskmove_name), NULL);
 
-  // sprintf(bufTX, "HELLO!!!");
-  // HAL_UART_Transmit(&huart2, bufTX, 8, 1);
   vTaskSuspend(Task_Check_RFID_Handle);
   vTaskSuspend(calculator_Dijkstra_Handle);
   vTaskSuspend(Taskmove_Handle);
@@ -109,22 +112,72 @@ int main(void)
   vTaskSuspend(TaskmoveBackward_Handle);
   vTaskSuspend(TaskmoveSidewaysLeft_Handle);
   vTaskSuspend(TaskmoveSidewaysRight_Handle);
-  // vTaskSuspend(Task_Uart_Handle);
+  vTaskSuspend(Task_Uart_Handle);
 
   /* Start scheduler */
   osKernelStart();
-  while (1)
-  {
-  }
 }
 void Lora_Init(void)
 {
+  // Save the parameters when power-down
   bufTX[0] = 0xC0;
+  //High address byte of module
   bufTX[1] = 0x00;
+  //Low address byte of module
   bufTX[2] = 0x00;
-  bufTX[3] = 0x01;
-  bufTX[4] = 0x01;
-  bufTX[5] = 0x47;
+  /*Rate parameter，including UART baud rate and air date rate
+        7，6 UART parity bit
+              00：8N1（default）
+              01：8O1
+              10：8E1
+              11：8N1（equal to 00）
+        5，4，3 TTL UART baud rate（bps）
+              000：1200bps
+              001：2400bps
+              010：4800bps
+              011：9600bps（Default）
+              100：19200bps
+              101：38400bps
+              110：57600bps
+              111：115200bps
+        2，1，0 Air date rate（bps）
+              000：0.3kbps
+              001：1.2kbps
+              010：2.4kbps（Default）
+              011：4.8kbps
+              100：9.6kbps
+              101：19.2kbps
+              110：19.2kbps(equal to 101)
+              111：19.2kbps(equal to 101)
+  */
+  bufTX[3] = 0x1A; //0001-1010: 8N1-9600bps-2.4kbps
+  // Communication frequency（410M + CHAN * 1M）Default 17H（433MHz)
+  bufTX[4] = 0x00;
+  /*7， Fixed transmission（similar to MODBUS）
+        0： Transparent transmission mode（default）
+        1： Fixed transmission mode
+    6 IO drive mode(the default 1)
+        1：TXD and AUX push-pull outputs, RXD pull-up inputs
+        0：TXD、AUX open-collector outputs, RXD open-collector inputs
+    5，4，3 wireless wake-up time（for the receiver, it means the monitor interval time, 
+    while for the transmitter it means continuously sending preamble code time.）
+        000：250ms（default）
+        001：500ms
+        010：750ms
+        011：1000ms
+        100：1250ms
+        101：1500ms
+        110：1750ms
+        111：2000ms 
+    2， FEC switch
+        0：Turn off FEC
+        1：Turn on FEC（Default） 
+    1, 0 transmission power (approximation)
+        00： 20dBm（Default）
+        01： 17dBm
+        10： 14dBm
+        11： 10dBm */
+  bufTX[5] = 0x44; //0100-0100: Transparent transmission mode-pull up 250ms-FEC-20dBm
   HAL_UART_Transmit(&huart2, bufTX, 6, 1);
 }
 /**
@@ -147,20 +200,12 @@ static void MX_USART2_UART_Init(void)
     Error_Handler();
   }
 }
-
-/* USER CODE BEGIN 4 */
-
-/* USER CODE END 4 */
-
-/* USER CODE BEGIN Header_Task_Uart */
 /**
-  * @brief  Function implementing the Task_Uart thread.
+  * @brief  Function implementing the Task_Check_Ready thread.
   * @param  argument: Not used 
   * @retval None
   */
-/* USER CODE END Header_Task_Uart */
-
-void Task_Uart(void const *argument)
+void Task_Check_Ready(void const *argument)
 {
   osDelay(1000);
   bufTX[0] = 0xC1;
@@ -171,11 +216,21 @@ void Task_Uart(void const *argument)
   {
     HAL_UART_Receive(&huart2, bufRX, 6, 1);
   }
-  char a[6] = { 0xC0, 0x00, 0x00, 0x01, 0x01, 0x47, };
+  char a[6] = {0xC0, 0x00, 0x00, 0x1A, 0x00, 0x44};
   do
   {
     led_DIR_circle(1, 200);
   } while (strcmp(bufRX, a));
+  vTaskResume(Task_Uart_Handle);
+  vTaskSuspend(Task_Check_Ready_Handle);
+}
+/**
+  * @brief  Function implementing the Task_Uart thread.
+  * @param  argument: Not used 
+  * @retval None
+  */
+void Task_Uart(void const *argument)
+{
   for (;;)
   {
     HAL_UART_Receive(&huart2, bufRX, 3, 1);
@@ -189,19 +244,15 @@ void Task_Uart(void const *argument)
       vTaskSuspend(Task_Uart_Handle);
     }
   }
-  /* USER CODE END 5 */
 }
-
-/* USER CODE BEGIN Header_StartTask01 */
 /**
   * @brief  Function implementing the myTask01 thread.
   * @param  argument: Not used 
   * @retval None
   */
-void Task_Check_RFID(void const *argument)
+void Task_Check_ID(void const *argument)
 {
   uint8_t IDCard[5];
-  /* Infinite loop */
   for (;;)
   {
     if (MFRC522_Check(IDCard) == MI_OK)
@@ -220,8 +271,6 @@ void Task_Check_RFID(void const *argument)
     vTaskDelay(100);
   }
 }
-
-/* USER CODE BEGIN Header_StartTask02 */
 /**
 * @brief Function implementing the myTask02 thread.
 * @param argument: Not used
@@ -229,7 +278,6 @@ void Task_Check_RFID(void const *argument)
 */
 void calculator_Dijkstra(void const *argument)
 {
-  /* Infinite loop */
   for (;;)
   {
     for (uint8_t i = 0; i < 5; i++)
@@ -244,7 +292,6 @@ void calculator_Dijkstra(void const *argument)
         }
   }
 }
-/* USER CODE BEGIN Header_Taskmove*/
 /**
 * @brief Function implementing the Taskmove thread.
 * @param argument: Not used
@@ -252,7 +299,6 @@ void calculator_Dijkstra(void const *argument)
 */
 void Taskmove(void const *argument)
 {
-  /* Infinite loop */
   while (1)
   {
     if (List_Move.Length_way < 25 || List_Move.Length_way == 0xFF)
@@ -349,7 +395,6 @@ void Taskmove(void const *argument)
     osDelay(100);
   }
 }
-/* USER CODE BEGIN Header_TaskmoveForward*/
 /**
 * @brief Function implementing the TaskmoveForward thread.
 * @param argument: Not used
@@ -357,13 +402,11 @@ void Taskmove(void const *argument)
 */
 void TaskmoveForward(void const *argument)
 {
-  /* Infinite loop */
   for (;;)
   {
     moveForward();
   }
 }
-/* USER CODE BEGIN Header_TaskmoveBackward*/
 /**
 * @brief Function implementing the TaskmoveBackward thread.
 * @param argument: Not used
@@ -371,13 +414,11 @@ void TaskmoveForward(void const *argument)
 */
 void TaskmoveBackward(void const *argument)
 {
-  /* Infinite loop */
   for (;;)
   {
     moveBackward();
   }
 }
-/* USER CODE BEGIN Header_TaskmoveSidewaysLeft*/
 /**
 * @brief Function implementing the TaskmoveSidewaysLeft thread.
 * @param argument: Not used
@@ -385,13 +426,11 @@ void TaskmoveBackward(void const *argument)
 */
 void TaskmoveSidewaysLeft(void const *argument)
 {
-  /* Infinite loop */
   for (;;)
   {
     moveSidewaysLeft();
   }
 }
-/* USER CODE BEGIN Header_TaskmoveSidewaysRight*/
 /**
 * @brief Function implementing the TaskmoveSidewaysRight thread.
 * @param argument: Not used
@@ -399,7 +438,6 @@ void TaskmoveSidewaysLeft(void const *argument)
 */
 void TaskmoveSidewaysRight(void const *argument)
 {
-  /* Infinite loop */
   for (;;)
   {
     moveSidewaysRight();
@@ -439,16 +477,10 @@ void led_DIR_circle(uint8_t n, uint8_t delay)
   */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-  /* USER CODE BEGIN Callback 0 */
-
-  /* USER CODE END Callback 0 */
   if (htim->Instance == TIM10)
   {
     HAL_IncTick();
   }
-  /* USER CODE BEGIN Callback 1 */
-
-  /* USER CODE END Callback 1 */
 }
 
 /**
@@ -497,10 +529,22 @@ void SystemClock_Config(void)
   */
 void Error_Handler(void)
 {
-  /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-
-  /* USER CODE END Error_Handler_Debug */
+  set(LD_GPIO_Port, LD3_Pin);
+  HAL_Delay(100);
+  reset(LD_GPIO_Port, LD3_Pin);
+  HAL_Delay(100);
+  set(LD_GPIO_Port, LD4_Pin);
+  HAL_Delay(100);
+  reset(LD_GPIO_Port, LD4_Pin);
+  HAL_Delay(100);
+  set(LD_GPIO_Port, LD6_Pin);
+  HAL_Delay(100);
+  reset(LD_GPIO_Port, LD6_Pin);
+  HAL_Delay(100);
+  set(LD_GPIO_Port, LD5_Pin);
+  HAL_Delay(100);
+  reset(LD_GPIO_Port, LD5_Pin);
+  HAL_Delay(100);
 }
 
 #ifdef USE_FULL_ASSERT
