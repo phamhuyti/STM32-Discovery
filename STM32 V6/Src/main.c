@@ -243,6 +243,7 @@ void Task_Uart(void const *argument)
       vTaskResume(calculator_Dijkstra_Handle);
       vTaskSuspend(Task_Uart_Handle);
     }
+    osDelay(1);
   }
 }
 /**
