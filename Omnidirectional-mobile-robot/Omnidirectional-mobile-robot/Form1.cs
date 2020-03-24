@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.IO.Ports;
 using System.Xml;
+using System.Threading;
 namespace Omnidirectional_mobile_robot
 {
     public partial class Form1 : Form
@@ -70,6 +71,7 @@ namespace Omnidirectional_mobile_robot
         }
         public void DataReceive(object obj, SerialDataReceivedEventArgs e)
         {
+            Thread.Sleep(100);
             InputData = serialPort1.ReadExisting();
             return;
         }
@@ -178,7 +180,7 @@ namespace Omnidirectional_mobile_robot
                     case "Stop":
                         enabel_button();
                         break;
-                    case "HELLO!!!":
+                    case "OK!":
                         Status.Text = ("Xe Đã Kết Nối");
                         Status.ForeColor = Color.Green;
                         enabel_button();
