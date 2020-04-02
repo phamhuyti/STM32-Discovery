@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32 V6\STM32 V6.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32 V6\STM32 V6.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Mar 22 20:13:17 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Apr 01 14:46:31 2020
 <BR><P>
 <H3>Maximum Stack Usage =        452 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -986,19 +986,20 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.constdata)
 </UL>
-<P><STRONG><a name="[4a]"></a>Task_Uart</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, main.o(i.Task_Uart))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = Task_Uart &rArr; osDelay &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<P><STRONG><a name="[4a]"></a>Task_Uart</STRONG> (Thumb, 152 bytes, Stack size 0 bytes, main.o(i.Task_Uart))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = Task_Uart &rArr; led_DIR_circle &rArr; osDelay &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_DIR_circle
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.constdata)
 </UL>
-<P><STRONG><a name="[51]"></a>Taskmove</STRONG> (Thumb, 358 bytes, Stack size 0 bytes, main.o(i.Taskmove))
+<P><STRONG><a name="[51]"></a>Taskmove</STRONG> (Thumb, 398 bytes, Stack size 0 bytes, main.o(i.Taskmove))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = Taskmove &rArr; led_DIR_circle &rArr; osDelay &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
@@ -1093,11 +1094,10 @@ Global Symbols
 
 <P><STRONG><a name="[e2]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[4c]"></a>calculator_Dijkstra</STRONG> (Thumb, 144 bytes, Stack size 80 bytes, main.o(i.calculator_Dijkstra))
+<P><STRONG><a name="[4c]"></a>calculator_Dijkstra</STRONG> (Thumb, 158 bytes, Stack size 80 bytes, main.o(i.calculator_Dijkstra))
 <BR><BR>[Stack]<UL><LI>Max Depth = 288<LI>Call Chain = calculator_Dijkstra &rArr; Dijkstra
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
+<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
 <LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dijkstra
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
@@ -1112,6 +1112,7 @@ Global Symbols
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Taskmove
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_Uart
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_Check_Ready
 </UL>
 
@@ -1332,7 +1333,6 @@ Global Symbols
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvResetNextTaskUnblockTime
 </UL>
 <BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calculator_Dijkstra
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Taskmove
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_Uart
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_Check_Ready

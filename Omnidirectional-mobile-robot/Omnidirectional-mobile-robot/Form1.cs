@@ -18,6 +18,7 @@ namespace Omnidirectional_mobile_robot
     {
         public
         string InputData = String.Empty; // Khai báo string buff dùng cho hiển thị dữ liệu sau này.
+        //byte[] addr = new byte[10] { 0x00, 0x00, 0x17, 0, 0, 0, 0, 0, 0, 0 };
         public Form1()
         {
             InitializeComponent();
@@ -93,13 +94,11 @@ namespace Omnidirectional_mobile_robot
                     serialPort1.PortName = comboBox1.Text;
                     serialPort1.BaudRate = Convert.ToInt32(comboBox2.Text);
                     serialPort1.Open();
-                    Connect.Text = "Ngắt Kết Nối";
                     checkOpen();
                 }
                 else
                 {
                     serialPort1.Close();
-                    Connect.Text = "Kết Nối";
                     checkOpen();
                 }
             }
@@ -114,18 +113,20 @@ namespace Omnidirectional_mobile_robot
         {
             if (!serialPort1.IsOpen)
             {
-                Status.Text = ("Chưa Kết Nối");
+                Connect.Text = "Kết Nối";
+                Status.Text = ("Chưa Kết Nối Lora");
                 Status.ForeColor = Color.Red;
                 this.refresh.Enabled = true;
                 this.flowLayoutPanel.Enabled = false;
                 this.comboBox1.Enabled = true;
                 this.comboBox2.Enabled = true;
-                Connect.Text = "Kết Nối";
+                Connect.Enabled = true;
+                Data.Text = string.Empty;
             }
             else if (serialPort1.IsOpen)
             {
-                Status.Text = ("Xe Chưa Kết Nối");
                 Connect.Text = "Ngắt Kết Nối";
+                Status.Text = ("Xe Chưa Kết Nối");
                 this.refresh.Enabled = false;
                 this.comboBox1.Enabled = false;
                 this.comboBox2.Enabled = false;
@@ -171,6 +172,10 @@ namespace Omnidirectional_mobile_robot
         {
             if (InputData != string.Empty) Data.Text = InputData;
             if (serialPort1.IsOpen)
+            {
+                //byte[] bytestosend = { 0x11,0x12 };
+                //bytestosend.CopyTo(addr, 3);
+                //serialPort1.Write(addr,0,10);
                 switch (InputData)
                 {
                     case "Start":
@@ -271,6 +276,7 @@ namespace Omnidirectional_mobile_robot
                     default:
                         break;
                 }
+            }
             else checkOpen();
             InputData = string.Empty;
         }

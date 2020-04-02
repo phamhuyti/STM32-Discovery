@@ -21,7 +21,7 @@ osThreadId TaskmoveSidewaysLeft_Handle;
 osThreadId TaskmoveSidewaysRight_Handle;
 osThreadId Taskmove_Handle;
 uint8_t IDCard[5];
-uint64_t ID;
+uint64_t ID, temb;
 static uint64_t ID_Matrix[5][5] = {
     {0xd9c86f81ff, 0x39a5ae82b0, 0x39d39481ff, 0xb9326a8263, 0x298f6d814a},
     {0x796ebb812d, 0x192f6c82d8, 0xc95e678272, 0x199fdc82d8, 0xd7440b3ea6},
@@ -198,7 +198,7 @@ void Task_Check_Ready(void const *argument)
   char a[6] = {0xC0, 0x00, 0x00, 0x1A, 0x17, 0x44};
   do
   {
-    led_DIR_circle(1, 200);
+    led_DIR_circle(5, 50);
   } while (strcmp(bufRX, a));
   osDelay(1000);
   reset(M_GPIO_Port, M0_Pin | M1_Pin);
@@ -213,15 +213,22 @@ void Task_Check_Ready(void const *argument)
 void Task_Uart(void const *argument)
 {
   sprintf(bufTX, "OK!");
-  HAL_UART_Transmit(&huart2, bufTX, 3, 1);
+  HAL_UART_Transmit(&huart2, bufTX, 3, 100);
+  HAL_UART_Receive(&huart2, bufRX, 2, 100);
+  while (bufRX[0] != 'O' || bufRX[1] != 'K')
+  {
+    led_DIR_circle(1, 200);
+  }
   for (;;)
   {
-    HAL_UART_Receive(&huart2, bufRX, 3, 1);
+    HAL_UART_Receive(&huart2, bufRX, 3, 100);
     if (bufRX[2] == '.')
     {
       ID = 0;
+      temb = 0;
       sprintf(bufTX, "Start");
       HAL_UART_Transmit(&huart2, bufTX, 5, 100);
+      osDelay(100);
       vTaskResume(Task_Check_RFID_Handle);
       vTaskResume(calculator_Dijkstra_Handle);
       vTaskSuspend(Task_Uart_Handle);
@@ -252,7 +259,7 @@ void Task_Check_ID(void const *argument)
     else
       for (int i = 0; i < 5; i++)
         IDCard[i] = 0;
-    vTaskDelay(100);
+    vTaskDelay(10);
   }
 }
 /**
@@ -266,13 +273,14 @@ void calculator_Dijkstra(void const *argument)
   {
     for (uint8_t i = 0; i < 5; i++)
       for (uint8_t j = 0; j < 5; j++)
-        if (ID == ID_Matrix[i][j])
+        if (ID == ID_Matrix[i][j] && temb != ID)
         {
           sprintf(bufTX, "%d:%d", i, j);
           HAL_UART_Transmit(&huart2, bufTX, 3, 100);
           List_Move = Dijkstra(i * 5 + j, (bufRX[0] - 48) * 5 + (bufRX[1] - 48));
           vTaskResume(Taskmove_Handle);
-          vTaskSuspend(calculator_Dijkstra_Handle);
+          // vTaskSuspend(calculator_Dijkstra_Handle);
+          temb = ID;
         }
   }
 }
@@ -289,10 +297,11 @@ void Taskmove(void const *argument)
       switch (List_Move.Move[List_Move.Length_way])
       {
       case 1:
-        vTaskResume(TaskmoveForward_Handle);
         vTaskSuspend(TaskmoveBackward_Handle);
         vTaskSuspend(TaskmoveSidewaysLeft_Handle);
         vTaskSuspend(TaskmoveSidewaysRight_Handle);
+        osDelay(200);
+        vTaskResume(TaskmoveForward_Handle);
         if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
         {
           sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
@@ -302,10 +311,11 @@ void Taskmove(void const *argument)
         /* code */
         break;
       case 2:
-        vTaskResume(TaskmoveSidewaysRight_Handle);
         vTaskSuspend(TaskmoveBackward_Handle);
         vTaskSuspend(TaskmoveSidewaysLeft_Handle);
         vTaskSuspend(TaskmoveForward_Handle);
+        osDelay(200);
+        vTaskResume(TaskmoveSidewaysRight_Handle);
         if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
         {
           sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
@@ -315,10 +325,11 @@ void Taskmove(void const *argument)
         /* code */
         break;
       case 3:
-        vTaskResume(TaskmoveBackward_Handle);
         vTaskSuspend(TaskmoveForward_Handle);
         vTaskSuspend(TaskmoveSidewaysLeft_Handle);
         vTaskSuspend(TaskmoveSidewaysRight_Handle);
+        osDelay(200);
+        vTaskResume(TaskmoveBackward_Handle);
         if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
         {
           sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
@@ -328,10 +339,11 @@ void Taskmove(void const *argument)
         /* code */
         break;
       case 4:
-        vTaskResume(TaskmoveSidewaysLeft_Handle);
         vTaskSuspend(TaskmoveBackward_Handle);
         vTaskSuspend(TaskmoveForward_Handle);
         vTaskSuspend(TaskmoveSidewaysRight_Handle);
+        osDelay(200);
+        vTaskResume(TaskmoveSidewaysLeft_Handle);
         if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
         {
           sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
@@ -353,7 +365,7 @@ void Taskmove(void const *argument)
           vTaskSuspend(TaskmoveBackward_Handle);
           vTaskSuspend(TaskmoveSidewaysLeft_Handle);
           vTaskSuspend(TaskmoveSidewaysRight_Handle);
-          led_DIR_circle(15, 20);
+          led_DIR_circle(2, 100);
           sprintf(bufTX, "Stop");
           HAL_UART_Transmit(&huart2, bufTX, 4, 100);
           vTaskResume(Task_Uart_Handle);
@@ -370,13 +382,13 @@ void Taskmove(void const *argument)
       vTaskSuspend(TaskmoveBackward_Handle);
       vTaskSuspend(TaskmoveSidewaysLeft_Handle);
       vTaskSuspend(TaskmoveSidewaysRight_Handle);
-      led_DIR_circle(7, 200);
+      led_DIR_circle(22, 500);
       sprintf(bufTX, "Stop");
       HAL_UART_Transmit(&huart2, bufTX, 4, 100);
       vTaskResume(Task_Uart_Handle);
       vTaskSuspend(Taskmove_Handle);
     }
-    osDelay(100);
+    osDelay(10);
   }
 }
 /**
