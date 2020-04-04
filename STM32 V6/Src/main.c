@@ -15,12 +15,9 @@ osThreadId Task_Check_Ready_Handle;
 osThreadId Task_Uart_Handle;
 osThreadId Task_Check_RFID_Handle;
 osThreadId calculator_Dijkstra_Handle;
-osThreadId TaskmoveForward_Handle;
-osThreadId TaskmoveBackward_Handle;
-osThreadId TaskmoveSidewaysLeft_Handle;
-osThreadId TaskmoveSidewaysRight_Handle;
+osThreadId TaskmoveDir_Handle;
 osThreadId Taskmove_Handle;
-uint8_t IDCard[5];
+uint8_t IDCard[5], move = 0;
 uint64_t ID, temb;
 static uint64_t ID_Matrix[5][5] = {
     {0xd9c86f81ff, 0x39a5ae82b0, 0x39d39481ff, 0xb9326a8263, 0x298f6d814a},
@@ -39,12 +36,10 @@ void Task_Check_Ready(void const *argument);
 void Task_Uart(void const *argument);
 void Task_Check_ID(void const *argument);
 void calculator_Dijkstra(void const *argument);
-void TaskmoveForward(void const *argument);
-void TaskmoveBackward(void const *argument);
-void TaskmoveSidewaysLeft(void const *argument);
-void TaskmoveSidewaysRight(void const *argument);
+void TaskmoveDir(void const *argument);
 void Taskmove(void const *argument);
 void Lora_Init(void);
+void SendLocatiom();
 
 /* Private user code ---------------------------------------------------------*/
 /**
@@ -75,7 +70,7 @@ int main(void)
   osThreadDef(Task_Uart_name, Task_Uart, osPriorityNormal, 0, 128);
   Task_Uart_Handle = osThreadCreate(osThread(Task_Uart_name), NULL);
 
-  /* definition and creation of Task_Uart */
+  /* definition and creation of Task_Check_ID */
   osThreadDef(Task_Check_RFID_name, Task_Check_ID, osPriorityHigh, 0, 500);
   Task_Check_RFID_Handle = osThreadCreate(osThread(Task_Check_RFID_name), NULL);
 
@@ -83,21 +78,9 @@ int main(void)
   osThreadDef(calculator_Dijkstra_name, calculator_Dijkstra, osPriorityNormal, 0, 128);
   calculator_Dijkstra_Handle = osThreadCreate(osThread(calculator_Dijkstra_name), NULL);
 
-  /* definition and creation of TaskmoveForward */
-  osThreadDef(TaskmoveForward_name, TaskmoveForward, osPriorityRealtime, 0, 128);
-  TaskmoveForward_Handle = osThreadCreate(osThread(TaskmoveForward_name), NULL);
-
-  /* definition and creation of TaskmoveBackward */
-  osThreadDef(TaskmoveBackward_name, TaskmoveBackward, osPriorityRealtime, 0, 128);
-  TaskmoveBackward_Handle = osThreadCreate(osThread(TaskmoveBackward_name), NULL);
-
-  /* definition and creation of TaskmoveSidewaysLeft */
-  osThreadDef(TaskmoveSidewaysLeft_name, TaskmoveSidewaysLeft, osPriorityRealtime, 0, 128);
-  TaskmoveSidewaysLeft_Handle = osThreadCreate(osThread(TaskmoveSidewaysLeft_name), NULL);
-
-  /* definition and creation of TaskmoveSidewaysRight */
-  osThreadDef(TaskmoveSidewaysRight_name, TaskmoveSidewaysRight, osPriorityRealtime, 0, 128);
-  TaskmoveSidewaysRight_Handle = osThreadCreate(osThread(TaskmoveSidewaysRight_name), NULL);
+  /* definition and creation of TaskmoveDir */
+  osThreadDef(TaskmoveDir_name, TaskmoveDir, osPriorityRealtime, 0, 128);
+  TaskmoveDir_Handle = osThreadCreate(osThread(TaskmoveDir_name), NULL);
 
   /* definition and creation of Taskmove */
   osThreadDef(Taskmove_name, Taskmove, osPriorityHigh, 0, 128);
@@ -106,10 +89,7 @@ int main(void)
   vTaskSuspend(Task_Check_RFID_Handle);
   vTaskSuspend(calculator_Dijkstra_Handle);
   vTaskSuspend(Taskmove_Handle);
-  vTaskSuspend(TaskmoveForward_Handle);
-  vTaskSuspend(TaskmoveBackward_Handle);
-  vTaskSuspend(TaskmoveSidewaysLeft_Handle);
-  vTaskSuspend(TaskmoveSidewaysRight_Handle);
+  vTaskSuspend(TaskmoveDir_Handle);
   vTaskSuspend(Task_Uart_Handle);
 
   /* Start scheduler */
@@ -188,8 +168,11 @@ void Lora_Init(void)
   */
 void Task_Check_Ready(void const *argument)
 {
+  if (MFRC522_Check(IDCard) == MI_ERR)
+    while (1)
+      led_DIR_circle(1, 100);
   sprintf(bufRX, "      ");
-  osDelay(1000);
+  // osDelay(100);
   bufTX[0] = 0xC1;
   bufTX[1] = 0xC1;
   bufTX[2] = 0xC1;
@@ -198,9 +181,9 @@ void Task_Check_Ready(void const *argument)
   char a[6] = {0xC0, 0x00, 0x00, 0x1A, 0x17, 0x44};
   do
   {
-    led_DIR_circle(5, 50);
+    led_DIR_circle(3, 50);
   } while (strcmp(bufRX, a));
-  osDelay(1000);
+  osDelay(100);
   reset(M_GPIO_Port, M0_Pin | M1_Pin);
   vTaskResume(Task_Uart_Handle);
   vTaskSuspend(Task_Check_Ready_Handle);
@@ -214,11 +197,15 @@ void Task_Uart(void const *argument)
 {
   sprintf(bufTX, "OK!");
   HAL_UART_Transmit(&huart2, bufTX, 3, 100);
-  HAL_UART_Receive(&huart2, bufRX, 2, 100);
-  while (bufRX[0] != 'O' || bufRX[1] != 'K')
+  HAL_UART_Receive(&huart2, bufRX, 3, 100);
+  while (bufRX[0] != 'O' || bufRX[1] != 'K' || bufRX[2] != '!')
   {
-    led_DIR_circle(1, 200);
+    led_DIR_circle(1, 300);
+    sprintf(bufTX, "OK!");
+    HAL_UART_Transmit(&huart2, bufTX, 3, 100);
+    HAL_UART_Receive(&huart2, bufRX, 3, 100);
   }
+  bufRX[2] = ' ';
   for (;;)
   {
     HAL_UART_Receive(&huart2, bufRX, 3, 100);
@@ -232,6 +219,72 @@ void Task_Uart(void const *argument)
       vTaskResume(Task_Check_RFID_Handle);
       vTaskResume(calculator_Dijkstra_Handle);
       vTaskSuspend(Task_Uart_Handle);
+    }
+    if (bufRX[2] == '!')
+    {
+      vTaskResume(TaskmoveDir_Handle);
+      switch (bufRX[1])
+      {
+      case '1':
+        bufRX[2] = 0;
+        move = 1;
+        break;
+      case '2':
+        bufRX[2] = 0;
+        move = 2;
+        break;
+      case '3':
+        bufRX[2] = 0;
+        move = 3;
+        break;
+      case '4':
+        bufRX[2] = 0;
+        move = 4;
+        break;
+      case '5':
+        bufRX[2] = 0;
+        move = 5;
+        break;
+      case '6':
+        bufRX[2] = 0;
+        move = 6;
+        break;
+      case '7':
+        bufRX[2] = 0;
+        move = 7;
+        break;
+      case '8':
+        bufRX[2] = 0;
+        move = 8;
+        break;
+      case '9':
+        bufRX[2] = 0;
+        move = 9;
+        break;
+      case '0':
+        if (bufRX[0] == '1')
+        {
+          bufRX[2] = 0;
+          move = 10;
+          break;
+        }
+      default:
+        if (bufRX[0] == 'O' && bufRX[1] == 'K')
+        {
+          sprintf(bufTX, "OK!");
+          HAL_UART_Transmit(&huart2, bufTX, 3, 100);
+          HAL_UART_Receive(&huart2, bufRX, 3, 100);
+          vTaskSuspend(Task_Check_RFID_Handle);
+          vTaskSuspend(calculator_Dijkstra_Handle);
+          vTaskSuspend(Taskmove_Handle);
+          vTaskSuspend(TaskmoveDir_Handle);
+        }
+        bufRX[2] = 0;
+        move = 0;
+        vTaskSuspend(TaskmoveDir_Handle);
+        led_DIR_circle(1, 50);
+        break;
+      }
     }
     osDelay(1);
   }
@@ -256,10 +309,10 @@ void Task_Check_ID(void const *argument)
         ID += IDCard[i];
       }
     }
-    else
+    if (MFRC522_Check(IDCard) == MI_NOTAGERR)
       for (int i = 0; i < 5; i++)
         IDCard[i] = 0;
-    vTaskDelay(10);
+    vTaskDelay(1);
   }
 }
 /**
@@ -279,9 +332,11 @@ void calculator_Dijkstra(void const *argument)
           HAL_UART_Transmit(&huart2, bufTX, 3, 100);
           List_Move = Dijkstra(i * 5 + j, (bufRX[0] - 48) * 5 + (bufRX[1] - 48));
           vTaskResume(Taskmove_Handle);
+          vTaskResume(TaskmoveDir_Handle);
           // vTaskSuspend(calculator_Dijkstra_Handle);
           temb = ID;
         }
+    osDelay(1);
   }
 }
 /**
@@ -297,60 +352,20 @@ void Taskmove(void const *argument)
       switch (List_Move.Move[List_Move.Length_way])
       {
       case 1:
-        vTaskSuspend(TaskmoveBackward_Handle);
-        vTaskSuspend(TaskmoveSidewaysLeft_Handle);
-        vTaskSuspend(TaskmoveSidewaysRight_Handle);
-        osDelay(200);
-        vTaskResume(TaskmoveForward_Handle);
-        if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
-        {
-          sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
-          HAL_UART_Transmit(&huart2, bufTX, 3, 100);
-          List_Move.Length_way--;
-        }
-        /* code */
+        move = 1;
+        void SendLocatiom();
         break;
       case 2:
-        vTaskSuspend(TaskmoveBackward_Handle);
-        vTaskSuspend(TaskmoveSidewaysLeft_Handle);
-        vTaskSuspend(TaskmoveForward_Handle);
-        osDelay(200);
-        vTaskResume(TaskmoveSidewaysRight_Handle);
-        if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
-        {
-          sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
-          HAL_UART_Transmit(&huart2, bufTX, 3, 100);
-          List_Move.Length_way--;
-        }
-        /* code */
+        move = 4;
+        void SendLocatiom();
         break;
       case 3:
-        vTaskSuspend(TaskmoveForward_Handle);
-        vTaskSuspend(TaskmoveSidewaysLeft_Handle);
-        vTaskSuspend(TaskmoveSidewaysRight_Handle);
-        osDelay(200);
-        vTaskResume(TaskmoveBackward_Handle);
-        if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
-        {
-          sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
-          HAL_UART_Transmit(&huart2, bufTX, 3, 100);
-          List_Move.Length_way--;
-        }
-        /* code */
+        move = 2;
+        void SendLocatiom();
         break;
       case 4:
-        vTaskSuspend(TaskmoveBackward_Handle);
-        vTaskSuspend(TaskmoveForward_Handle);
-        vTaskSuspend(TaskmoveSidewaysRight_Handle);
-        osDelay(200);
-        vTaskResume(TaskmoveSidewaysLeft_Handle);
-        if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
-        {
-          sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
-          HAL_UART_Transmit(&huart2, bufTX, 3, 100);
-          List_Move.Length_way--;
-        }
-        /* code */
+        move = 3;
+        void SendLocatiom();
         break;
 
       default:
@@ -359,15 +374,13 @@ void Taskmove(void const *argument)
         else
         {
           bufRX[2] = 0;
-          vTaskSuspend(Task_Check_RFID_Handle);
-          vTaskSuspend(calculator_Dijkstra_Handle);
-          vTaskSuspend(TaskmoveForward_Handle);
-          vTaskSuspend(TaskmoveBackward_Handle);
-          vTaskSuspend(TaskmoveSidewaysLeft_Handle);
-          vTaskSuspend(TaskmoveSidewaysRight_Handle);
+          move = 0;
+          vTaskSuspend(TaskmoveDir_Handle);
           led_DIR_circle(2, 100);
           sprintf(bufTX, "Stop");
           HAL_UART_Transmit(&huart2, bufTX, 4, 100);
+          vTaskSuspend(Task_Check_RFID_Handle);
+          vTaskSuspend(calculator_Dijkstra_Handle);
           vTaskResume(Task_Uart_Handle);
           vTaskSuspend(Taskmove_Handle);
         }
@@ -378,17 +391,15 @@ void Taskmove(void const *argument)
       bufRX[2] = 0;
       vTaskSuspend(Task_Check_RFID_Handle);
       vTaskSuspend(calculator_Dijkstra_Handle);
-      vTaskSuspend(TaskmoveForward_Handle);
-      vTaskSuspend(TaskmoveBackward_Handle);
-      vTaskSuspend(TaskmoveSidewaysLeft_Handle);
-      vTaskSuspend(TaskmoveSidewaysRight_Handle);
+      move = 0;
+      vTaskSuspend(TaskmoveDir_Handle);
       led_DIR_circle(22, 500);
       sprintf(bufTX, "Stop");
       HAL_UART_Transmit(&huart2, bufTX, 4, 100);
       vTaskResume(Task_Uart_Handle);
       vTaskSuspend(Taskmove_Handle);
     }
-    osDelay(10);
+    osDelay(1);
   }
 }
 /**
@@ -396,51 +407,63 @@ void Taskmove(void const *argument)
 * @param argument: Not used
 * @retval None
 */
-void TaskmoveForward(void const *argument)
+void TaskmoveDir(void const *argument)
 {
   for (;;)
   {
-    moveForward();
-  }
-}
-/**
-* @brief Function implementing the TaskmoveBackward thread.
-* @param argument: Not used
-* @retval None
-*/
-void TaskmoveBackward(void const *argument)
-{
-  for (;;)
-  {
-    moveBackward();
-  }
-}
-/**
-* @brief Function implementing the TaskmoveSidewaysLeft thread.
-* @param argument: Not used
-* @retval None
-*/
-void TaskmoveSidewaysLeft(void const *argument)
-{
-  for (;;)
-  {
-    moveSidewaysLeft();
-  }
-}
-/**
-* @brief Function implementing the TaskmoveSidewaysRight thread.
-* @param argument: Not used
-* @retval None
-*/
-void TaskmoveSidewaysRight(void const *argument)
-{
-  for (;;)
-  {
-    moveSidewaysRight();
-  }
-}
+    switch (move)
+    {
+    case 1:
+      moveForward();
+      break;
+    case 2:
+      moveBackward();
+      break;
+    case 3:
+      moveSidewaysLeft();
+      break;
+    case 4:
+      moveSidewaysRight();
+      break;
+    case 5:
+      moveLeftForward();
+      break;
+    case 6:
+      moveLeftBackward();
+      break;
+    case 7:
+      moveRightForward();
+      break;
+    case 8:
+      moveRightBackward();
+      break;
+    case 9:
+      moveclockwise();
+      break;
+    case 10:
+      moveAnticlockwise();
+      break;
 
-void led_DIR_circle(uint8_t n, uint8_t delay)
+    default:
+      reset(LD_GPIO_Port, LD3_Pin);
+      reset(LD_GPIO_Port, LD4_Pin);
+      reset(LD_GPIO_Port, LD5_Pin);
+      reset(LD_GPIO_Port, LD6_Pin);
+      osDelay(1);
+      break;
+    }
+  }
+}
+void SendLocatiom()
+{
+  if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
+  {
+    sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
+    HAL_UART_Transmit(&huart2, bufTX, 3, 100);
+    List_Move.Length_way--;
+  }
+}
+void led_DIR_circle(uint8_t n, uint16_t delay)
 {
   for (uint8_t i = 0; i < n; i++)
   {
@@ -462,7 +485,15 @@ void led_DIR_circle(uint8_t n, uint8_t delay)
     osDelay(delay);
   }
 }
-
+void SendLocaltion()
+{
+  if (ID == ID_Matrix[List_Move.x[List_Move.Length_way]][List_Move.y[List_Move.Length_way]])
+  {
+    sprintf(bufTX, "%d:%d", List_Move.x[List_Move.Length_way], List_Move.y[List_Move.Length_way]);
+    HAL_UART_Transmit(&huart2, bufTX, 3, 100);
+    List_Move.Length_way--;
+  }
+}
 /**
   * @brief System Clock Configuration
   * @retval None

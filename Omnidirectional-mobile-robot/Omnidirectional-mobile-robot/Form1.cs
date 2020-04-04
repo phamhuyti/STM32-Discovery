@@ -72,7 +72,7 @@ namespace Omnidirectional_mobile_robot
         }
         public void DataReceive(object obj, SerialDataReceivedEventArgs e)
         {
-            Thread.Sleep(100);
+            Thread.Sleep(200);
             InputData = serialPort1.ReadExisting();
             return;
         }
@@ -80,8 +80,6 @@ namespace Omnidirectional_mobile_robot
         {
             comboBox2.SelectedIndex = 3;
             comboBox1.DataSource = SerialPort.GetPortNames();
-            serialPort1.ReadTimeout = 500;
-            serialPort1.WriteTimeout = 500;
             checkOpen();
         }
 
@@ -118,6 +116,7 @@ namespace Omnidirectional_mobile_robot
                 Status.ForeColor = Color.Red;
                 this.refresh.Enabled = true;
                 this.flowLayoutPanel.Enabled = false;
+                this.groupBox.Enabled = false;
                 this.comboBox1.Enabled = true;
                 this.comboBox2.Enabled = true;
                 Connect.Enabled = true;
@@ -141,6 +140,7 @@ namespace Omnidirectional_mobile_robot
         private void enabel_button()
         {
             flowLayoutPanel.Enabled = true;
+            this.groupBox.Enabled = true;
             Connect.Enabled = true;
             button3.BackColor = SystemColors.Control;
             button4.BackColor = SystemColors.Control;
@@ -180,6 +180,7 @@ namespace Omnidirectional_mobile_robot
                 {
                     case "Start":
                         flowLayoutPanel.Enabled = false;
+                        this.groupBox.Enabled = false;
                         Connect.Enabled = false;
                         break;
                     case "Stop":
@@ -191,7 +192,7 @@ namespace Omnidirectional_mobile_robot
                         enabel_button();
                         try
                         {
-                            serialPort1.Write("OK");
+                            serialPort1.Write("OK!");
                         }
                         catch (Exception)
                         {
@@ -430,6 +431,65 @@ namespace Omnidirectional_mobile_robot
             serialPort1.Write("44.");
             button27.BackColor = Color.Red;
         }
-        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("01!");
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("02!");
+        }
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("03!");
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("04!");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("00!");
+        }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("05!");
+        }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("07!");
+        }
+
+        private void button33_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("06!");
+        }
+
+        private void button34_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("08!");
+        }
+
+        private void button35_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("09!");
+        }
+
+        private void button36_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("10!");
+        }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("OK!");
+        }
     }
 }
