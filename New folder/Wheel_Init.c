@@ -58,12 +58,12 @@ void moveSidewaysLeft(void)
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, Clockwise);
-  // osDelay(1);
+  // osDelay(2);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_1, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, AntiClockwise);
-  osDelay(1);
+  osDelay(2);
 }
 /**
   * @brief move Sideways Right
@@ -83,12 +83,12 @@ void moveSidewaysRight(void)
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, Clockwise);
-  // osDelay(1);
+  // osDelay(2);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_1, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, AntiClockwise);
-  osDelay(1);
+  osDelay(2);
 }
 /**
   * @brief move Forward
@@ -104,7 +104,7 @@ void moveForward(void)
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, Clockwise);
-  // osDelay(1);
+  // osDelay(2);
   HAL_GPIO_WritePin(LD_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(LD_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
   HAL_GPIO_WritePin(LD_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
@@ -113,7 +113,7 @@ void moveForward(void)
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, AntiClockwise);
-  osDelay(1);
+  osDelay(2);
 }
 /**
   * @brief move Backward
@@ -133,12 +133,12 @@ void moveBackward(void)
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, Clockwise);
-  // osDelay(1);
+  // osDelay(2);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_1, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, AntiClockwise);
-  osDelay(1);
+  osDelay(2);
 }
 /**
   * @brief move Right Forward
@@ -156,10 +156,10 @@ void moveRightForward(void)
   HAL_GPIO_WritePin(Wheel_Dir_Port, Wheel_Dir_4, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_1, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, Clockwise);
-  // osDelay(1);
+  // osDelay(2);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_1, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, AntiClockwise);
-  osDelay(1);
+  osDelay(2);
 }
 /**
   * @brief move Left Forward
@@ -177,10 +177,10 @@ void moveLeftForward(void)
   HAL_GPIO_WritePin(Wheel_Dir_Port, Wheel_Dir_4, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, Clockwise);
-  // osDelay(1);
+  // osDelay(2);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, AntiClockwise);
-  osDelay(1);
+  osDelay(2);
 }
 /**
   * @brief move Right Backward
@@ -198,10 +198,10 @@ void moveRightBackward(void)
   HAL_GPIO_WritePin(Wheel_Dir_Port, Wheel_Dir_4, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, Clockwise);
-  // osDelay(1);
+  // osDelay(2);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, AntiClockwise);
-  osDelay(1);
+  osDelay(2);
 }
 /**
   * @brief move Left Backward
@@ -219,10 +219,10 @@ void moveLeftBackward(void)
   HAL_GPIO_WritePin(Wheel_Dir_Port, Wheel_Dir_4, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_1, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, Clockwise);
-  // osDelay(1);
+  // osDelay(2);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_1, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, AntiClockwise);
-  osDelay(1);
+  osDelay(2);
 }
 /**
   * @brief move clockwise
@@ -242,12 +242,12 @@ void moveclockwise(void)
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, Clockwise);
-  // osDelay(1);
+  // osDelay(2);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_1, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, AntiClockwise);
-  osDelay(1);
+  osDelay(2);
 }
 /**
   * @brief move anticlockwise
@@ -267,10 +267,10 @@ void moveAnticlockwise(void)
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, Clockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, Clockwise);
-  // osDelay(1);
+  // osDelay(2);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_1, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_2, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_3, AntiClockwise);
   HAL_GPIO_WritePin(Wheel_Pulse_Port, Wheel_Pulse_4, AntiClockwise);
-  osDelay(1);
+  osDelay(2);
 }

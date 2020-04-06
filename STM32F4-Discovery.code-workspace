@@ -1,31 +1,10 @@
 {
   "folders": [
     {
-      "path": "STM32 V1"
-    },
-    {
-      "path": "STM32 V1.1"
-    },
-    {
-      "path": "STM32 V2"
-    },
-    {
-      "path": "STM32F4 RFID RC522"
-    },
-    {
-      "path": "STM32 V3 Finish Gyro _ RFID"
-    },
-    {
-      "path": "STM32 V4"
-    },
-    {
-      "path": "STM32 V5 FreeRTOS"
-    },
-    {
-      "path": "Code VS"
-    },
-    {
       "path": "STM32 V6"
+    },
+    {
+      "path": "STM32 DMA"
     }
   ],
   "settings": {
