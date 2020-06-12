@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "matric.h": "c",
+        "main.h": "c",
+        "bsp_dht11.h": "c"
+    }
+}

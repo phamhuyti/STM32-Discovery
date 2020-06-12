@@ -126,7 +126,7 @@ void Task_Check_Ready(void const *argument)
   reset(M_GPIO_Port, M0_Pin | M1_Pin);
   vTaskDelay(10);
   while (MFRC522_Check(0) == MI_ERR)
-    led_DIR_circle(1, 500);
+    led_DIR_Toggle(100);
   vTaskResume(Task_Uart_Handle);
   vTaskSuspend(Task_Check_Ready_Handle);
 }
@@ -139,11 +139,12 @@ void Task_Check_Ready(void const *argument)
 void Task_Uart(void const *argument)
 {
   sprintf(bufferTX, "OK!");
-  HAL_UART_Receive_DMA(&huart2, bufferRX, 3);
-  vTaskDelay(100);
-  HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
   while (bufferRX[0] != 'O' || bufferRX[1] != 'K' || bufferRX[2] != '!')
+  {
+    HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
+    HAL_UART_Receive_DMA(&huart2, bufferRX, 3);
     led_DIR_circle(1, 300);
+  }
   bufferRX[2] = ' ';
   for (;;)
   {

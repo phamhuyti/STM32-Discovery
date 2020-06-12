@@ -107,3 +107,14 @@ void led_DIR_circle(uint8_t n, uint16_t delay)
         osDelay(delay);
     }
 }
+void led_DIR_Toggle(uint16_t delay)
+{
+    toggle(LD_GPIO_Port, LD3_Pin);
+    osDelay(delay);
+    toggle(LD_GPIO_Port, LD4_Pin);
+    osDelay(delay);
+    toggle(LD_GPIO_Port, LD6_Pin);
+    osDelay(delay);
+    toggle(LD_GPIO_Port, LD5_Pin);
+    osDelay(delay);
+}
