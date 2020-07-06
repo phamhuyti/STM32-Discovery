@@ -1,0 +1,23 @@
+C:\Users\rhaeg\source\repos\FormsView\Design Dashboard Modern\Design Dashboard Modern\bin\Debug\Design Dashboard Modern.exe.config
+C:\Users\rhaeg\source\repos\FormsView\Design Dashboard Modern\Design Dashboard Modern\bin\Debug\Design Dashboard Modern.exe
+C:\Users\rhaeg\source\repos\FormsView\Design Dashboard Modern\Design Dashboard Modern\bin\Debug\Design Dashboard Modern.pdb
+C:\Users\rhaeg\source\repos\FormsView\Design Dashboard Modern\Design Dashboard Modern\obj\Debug\Design Dashboard Modern.csprojAssemblyReference.cache
+C:\Users\rhaeg\source\repos\FormsView\Design Dashboard Modern\Design Dashboard Modern\obj\Debug\Design_Dashboard_Modern.Form1.resources
+C:\Users\rhaeg\source\repos\FormsView\Design Dashboard Modern\Design Dashboard Modern\obj\Debug\Design_Dashboard_Modern.Properties.Resources.resources
+C:\Users\rhaeg\source\repos\FormsView\Design Dashboard Modern\Design Dashboard Modern\obj\Debug\Design Dashboard Modern.csproj.GenerateResource.cache
+C:\Users\rhaeg\source\repos\FormsView\Design Dashboard Modern\Design Dashboard Modern\obj\Debug\Design Dashboard Modern.csproj.CoreCompileInputs.cache
+C:\Users\rhaeg\source\repos\FormsView\Design Dashboard Modern\Design Dashboard Modern\obj\Debug\Design Dashboard Modern.exe
+C:\Users\rhaeg\source\repos\FormsView\Design Dashboard Modern\Design Dashboard Modern\obj\Debug\Design Dashboard Modern.pdb
+C:\Users\rhaeg\source\repos\FormsView\Design Dashboard Modern\Design Dashboard Modern\bin\Debug\Bunifu_UI_v1.5.3.dll
+C:\Users\rhaeg\source\repos\FormsView\Design Dashboard Modern\Design Dashboard Modern\obj\Debug\Design Dashboard Modern.csproj.CopyComplete
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\References\PROYECTO DESIGN DASHBOARD\Design Dashboard Modern\bin\Debug\Design Dashboard Modern.exe.config
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\References\PROYECTO DESIGN DASHBOARD\Design Dashboard Modern\bin\Debug\Design Dashboard Modern.exe
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\References\PROYECTO DESIGN DASHBOARD\Design Dashboard Modern\bin\Debug\Design Dashboard Modern.pdb
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\References\PROYECTO DESIGN DASHBOARD\Design Dashboard Modern\obj\Debug\Design Dashboard Modern.csprojAssemblyReference.cache
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\References\PROYECTO DESIGN DASHBOARD\Design Dashboard Modern\obj\Debug\Design_Dashboard_Modern.Form1.resources
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\References\PROYECTO DESIGN DASHBOARD\Design Dashboard Modern\obj\Debug\Design_Dashboard_Modern.Properties.Resources.resources
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\References\PROYECTO DESIGN DASHBOARD\Design Dashboard Modern\obj\Debug\Design Dashboard Modern.csproj.GenerateResource.cache
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\References\PROYECTO DESIGN DASHBOARD\Design Dashboard Modern\obj\Debug\Design Dashboard Modern.csproj.CoreCompileInputs.cache
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\References\PROYECTO DESIGN DASHBOARD\Design Dashboard Modern\obj\Debug\Design Dashboard Modern.csproj.CopyComplete
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\References\PROYECTO DESIGN DASHBOARD\Design Dashboard Modern\obj\Debug\Design Dashboard Modern.exe
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\References\PROYECTO DESIGN DASHBOARD\Design Dashboard Modern\obj\Debug\Design Dashboard Modern.pdb

@@ -1,0 +1,14 @@
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\bin\Debug\Omnidirectional-mobile-robot-V2.exe.config
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\bin\Debug\Omnidirectional-mobile-robot-V2.exe
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\bin\Debug\Omnidirectional-mobile-robot-V2.pdb
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\obj\Debug\Omnidirectional-mobile-robot-V2.csprojAssemblyReference.cache
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\obj\Debug\Omnidirectional_mobile_robot_V2.Form1.resources
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\obj\Debug\Omnidirectional_mobile_robot_V2.Properties.Resources.resources
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\obj\Debug\Omnidirectional-mobile-robot-V2.csproj.GenerateResource.cache
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\obj\Debug\Omnidirectional-mobile-robot-V2.csproj.CoreCompileInputs.cache
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\obj\Debug\Omnidirectional-mobile-robot-V2.csproj.CopyComplete
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\obj\Debug\Omnidirectional-mobile-robot-V2.exe
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\obj\Debug\Omnidirectional-mobile-robot-V2.pdb
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\obj\Debug\Omnidirectional_mobile_robot_V2.Control.resources
+C:\Users\phann\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot-V2\obj\Debug\Omnidirectional_mobile_robot_V2.Connect.resources
