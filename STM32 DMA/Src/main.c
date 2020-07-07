@@ -337,6 +337,7 @@ void TaskmoveDir(void const *argument)
 {
   for (;;)
   {
+
     switch (move)
     {
     case 1:
