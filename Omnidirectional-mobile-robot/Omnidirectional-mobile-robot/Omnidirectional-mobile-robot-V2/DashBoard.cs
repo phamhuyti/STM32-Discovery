@@ -26,7 +26,7 @@ namespace Omnidirectional_mobile_robot_V2
         private void DashBoard_Load(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.Write("RE!");
+            serialPort1.Write("OK!");
         }
         private void Close_Click(object sender, EventArgs e)
         {
@@ -65,7 +65,8 @@ namespace Omnidirectional_mobile_robot_V2
         {
             AutoControl.Visible = true;
             RUN.Visible = true;
-            Reset.Enabled = true;
+            Reset.Visible = true;
+            serialPort1.Write("RE!");
             ManualControl.Visible = false;
             SettingControl.Visible = false;
 
@@ -77,8 +78,9 @@ namespace Omnidirectional_mobile_robot_V2
         private void Manual_Click(object sender, EventArgs e)
         {
             AutoControl.Visible = false;
+            serialPort1.Write("RE!");
             RUN.Visible = false;
-            Reset.Enabled = false;
+            Reset.Visible = false;
             ManualControl.Visible = true;
             SettingControl.Visible = false;
 
@@ -91,7 +93,7 @@ namespace Omnidirectional_mobile_robot_V2
         {
             AutoControl.Visible = false;
             RUN.Visible = false;
-            Reset.Enabled = false;
+            Reset.Visible = false;
             ManualControl.Visible = false;
             SettingControl.Visible = true;
 
@@ -497,6 +499,130 @@ namespace Omnidirectional_mobile_robot_V2
             SttMouse = false;
         }
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("00" + (checkBox00.Checked?1:0));
+        }
+
+        private void checkBox01_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("01" + (checkBox01.Checked ? 1 : 0));
+        }
+
+        private void checkBox02_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("02" + (checkBox02.Checked ? 1 : 0));
+        }
+
+        private void checkBox03_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("03" + (checkBox03.Checked ? 1 : 0));
+        }
+
+        private void checkBox04_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("04" + (checkBox04.Checked ? 1 : 0));
+        }
+
+        private void checkBox10_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("10" + (checkBox10.Checked ? 1 : 0));
+        }
+
+        private void checkBox11_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("11" + (checkBox11.Checked ? 1 : 0));
+        }
+
+        private void checkBox12_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("12" + (checkBox12.Checked ? 1 : 0));
+        }
+
+        private void checkBox13_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("13" + (checkBox13.Checked ? 1 : 0));
+        }
+
+        private void checkBox14_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("14" + (checkBox14.Checked ? 1 : 0));
+        }
+
+        private void checkBox20_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("20" + (checkBox20.Checked ? 1 : 0));
+        }
+
+        private void checkBox21_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("21" + (checkBox21.Checked ? 1 : 0));
+        }
+
+        private void checkBox22_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("22" + (checkBox22.Checked ? 1 : 0));
+        }
+
+        private void checkBox23_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("23" + (checkBox23.Checked ? 1 : 0));
+        }
+
+        private void checkBox24_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("24" + (checkBox24.Checked ? 1 : 0));
+        }
+
+        private void checkBox30_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("30" + (checkBox30.Checked ? 1 : 0));
+        }
+
+        private void checkBox31_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("31" + (checkBox31.Checked ? 1 : 0));
+        }
+
+        private void checkBox32_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("32" + (checkBox32.Checked ? 1 : 0));
+        }
+
+        private void checkBox33_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("33" + (checkBox33.Checked ? 1 : 0));
+        }
+
+        private void checkBox34_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("34" + (checkBox34.Checked ? 1 : 0));
+        }
+
+        private void checkBox40_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("40" + (checkBox40.Checked ? 1 : 0));
+        }
+
+        private void checkBox41_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("41" + (checkBox41.Checked ? 1 : 0));
+        }
+
+        private void checkBox42_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("42" + (checkBox42.Checked ? 1 : 0));
+        }
+
+        private void checkBox43_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("43" + (checkBox43.Checked ? 1 : 0));
+        }
+
+        private void checkBox44_CheckedChanged(object sender, EventArgs e)
+        {
+            serialPort1.Write("44" + (checkBox44.Checked ? 1 : 0));
+        }
 
         private void MenuTop_MouseMove(object sender, MouseEventArgs e)
         {
