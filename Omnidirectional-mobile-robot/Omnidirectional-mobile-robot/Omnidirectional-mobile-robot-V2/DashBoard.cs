@@ -26,7 +26,6 @@ namespace Omnidirectional_mobile_robot_V2
         private void DashBoard_Load(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.Write("OK!");
         }
         private void Close_Click(object sender, EventArgs e)
         {
@@ -66,7 +65,6 @@ namespace Omnidirectional_mobile_robot_V2
             AutoControl.Visible = true;
             RUN.Visible = true;
             Reset.Visible = true;
-            serialPort1.Write("RE!");
             ManualControl.Visible = false;
             SettingControl.Visible = false;
 
@@ -78,7 +76,6 @@ namespace Omnidirectional_mobile_robot_V2
         private void Manual_Click(object sender, EventArgs e)
         {
             AutoControl.Visible = false;
-            serialPort1.Write("RE!");
             RUN.Visible = false;
             Reset.Visible = false;
             ManualControl.Visible = true;
@@ -114,9 +111,13 @@ namespace Omnidirectional_mobile_robot_V2
                         RUN.Enabled = false;
                         break;
                     case "OK!":
-                        serialPort1.Write("OK!");
+                        AutoRun_Click(null, null);
                         enabel_button();
-                        AutoControl.Visible = true;
+                        AutoControl.Enabled = true;
+                        RUN.Enabled = true;
+                        serialPort1.Write("OK!");
+                        break;
+                    case "RE!":
                         break;
                     case "0:0":
                         button3.BackColor = Color.Green;
@@ -196,12 +197,12 @@ namespace Omnidirectional_mobile_robot_V2
                     case "Stop":
                         if (StepMove[++_StemMove]== null)
                         {
-                            enabel_button();
                             _StemMove = 0;
                             for (int i = 0; i < 25; i++)
                             {
                                 StepMove[i] = null;
                             }
+                            enabel_button();
                             AutoControl.Enabled = true;
                             RUN.Enabled = true;
                         }
@@ -230,6 +231,10 @@ namespace Omnidirectional_mobile_robot_V2
         private void Reset_Click(object sender, EventArgs e)
         {
             serialPort1.Write("RE!");
+            AutoRun_Click(null, null);
+            enabel_button();
+            AutoControl.Enabled = true;
+            RUN.Enabled = true;
         }
         private void enabel_button()
         {

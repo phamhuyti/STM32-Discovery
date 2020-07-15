@@ -33,6 +33,8 @@ uint8_t G[25][25] =
 {	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	},
 {	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	},
 {	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	}};
+
+
 void CreateMatricFromRFIDMatric(void) {
 	G[1][0] = (Matric[0][1] == 1 ? ((Matric[0][0] == 1) ? 1 : 0) : 0);
 	G[5][0] = (Matric[0][0] == 1 ? ((Matric[1][0] == 1) ? 1 : 0) : 0);
@@ -107,6 +109,13 @@ void CreateMatricFromRFIDMatric(void) {
 	G[19][24] = (Matric[3][4] == 1 ? ((Matric[4][4] == 1) ? 1 : 0) : 0);
 	G[23][24] = (Matric[4][3] == 1 ? ((Matric[4][4] == 1) ? 1 : 0) : 0);
 }
+
+
+void UpdateMatric(uint8_t x, uint8_t y, uint8_t val)
+{
+	Matric[x-49][y-49]= val-49;
+}
+
 List_move_type Dijkstra(uint8_t a, uint8_t b)
 {
 	CreateMatricFromRFIDMatric();

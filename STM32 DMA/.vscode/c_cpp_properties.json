@@ -4,8 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/Keil_v5/ARM/ARMCLANG/include/**",
-                "C:\\Users\\ASUS CAO HUY\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.1\\**"
+                "C:/Keil_v5/ARM/ARMCLANG/include/**"
             ],
             "defines": [
                 "_DEBUG",

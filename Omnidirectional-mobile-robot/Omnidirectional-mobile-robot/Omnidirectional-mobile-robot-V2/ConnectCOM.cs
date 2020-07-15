@@ -7,6 +7,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,6 +15,7 @@ namespace Omnidirectional_mobile_robot_V2
 {
     public partial class ConnectCOM : Form
     {
+        string InputData;
         public ConnectCOM()
         {
             InitializeComponent();
@@ -26,6 +28,12 @@ namespace Omnidirectional_mobile_robot_V2
             comboBox2.SelectedIndex = 3;
             comboBox1.DataSource = SerialPort.GetPortNames();
         }
+        public void DataReceive(object obj, SerialDataReceivedEventArgs e)
+        {
+            Thread.Sleep(5);
+            InputData = serialPort1.ReadExisting();
+            return;
+        }
         private void ConnectButton_Click(object sender, EventArgs e)
         {
             try
@@ -35,6 +43,11 @@ namespace Omnidirectional_mobile_robot_V2
                     serialPort1.PortName = comboBox1.Text;
                     serialPort1.BaudRate = Convert.ToInt32(comboBox2.Text);
                     serialPort1.Open();
+                    while(InputData != "OK!")
+                    {
+                        Thread.Sleep(100);
+                        serialPort1.Write("OK!");
+                    }
                     serialPort1.Close();
                     timer1.Enabled = true;
                 }

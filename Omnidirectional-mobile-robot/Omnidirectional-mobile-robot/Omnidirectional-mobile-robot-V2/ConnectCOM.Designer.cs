@@ -130,6 +130,10 @@
             this.comboBox1.Size = new System.Drawing.Size(157, 21);
             this.comboBox1.TabIndex = 36;
             // 
+            // serialPort1
+            // 
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.DataReceive);
+            // 
             // timer1
             // 
             this.timer1.Interval = 5;
