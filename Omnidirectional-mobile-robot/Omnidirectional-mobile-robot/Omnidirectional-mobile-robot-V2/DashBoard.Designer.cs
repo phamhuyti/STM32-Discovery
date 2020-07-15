@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            BunifuAnimatorNS.Animation animation6 = new BunifuAnimatorNS.Animation();
-            BunifuAnimatorNS.Animation animation5 = new BunifuAnimatorNS.Animation();
+            BunifuAnimatorNS.Animation animation3 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashBoard));
+            BunifuAnimatorNS.Animation animation4 = new BunifuAnimatorNS.Animation();
             this.MenuTop = new System.Windows.Forms.Panel();
             this.Minimize = new FontAwesome.Sharp.IconPictureBox();
             this.Close_button = new FontAwesome.Sharp.IconPictureBox();
@@ -43,6 +43,8 @@
             this.Manual = new Bunifu.Framework.UI.BunifuFlatButton();
             this.AutoRun = new Bunifu.Framework.UI.BunifuFlatButton();
             this.Wrapper = new System.Windows.Forms.Panel();
+            this.Reset = new System.Windows.Forms.Button();
+            this.RUN = new System.Windows.Forms.Button();
             this.AutoControl = new System.Windows.Forms.FlowLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -82,31 +84,31 @@
             this.button30 = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
             this.SettingControl = new System.Windows.Forms.FlowLayoutPanel();
-            this.button37 = new System.Windows.Forms.Button();
-            this.button38 = new System.Windows.Forms.Button();
-            this.button39 = new System.Windows.Forms.Button();
-            this.button40 = new System.Windows.Forms.Button();
-            this.button41 = new System.Windows.Forms.Button();
-            this.button42 = new System.Windows.Forms.Button();
-            this.button43 = new System.Windows.Forms.Button();
-            this.button44 = new System.Windows.Forms.Button();
-            this.button45 = new System.Windows.Forms.Button();
-            this.button46 = new System.Windows.Forms.Button();
-            this.button47 = new System.Windows.Forms.Button();
-            this.button48 = new System.Windows.Forms.Button();
-            this.button49 = new System.Windows.Forms.Button();
-            this.button50 = new System.Windows.Forms.Button();
-            this.button51 = new System.Windows.Forms.Button();
-            this.button52 = new System.Windows.Forms.Button();
-            this.button53 = new System.Windows.Forms.Button();
-            this.button54 = new System.Windows.Forms.Button();
-            this.button55 = new System.Windows.Forms.Button();
-            this.button56 = new System.Windows.Forms.Button();
-            this.button57 = new System.Windows.Forms.Button();
-            this.button58 = new System.Windows.Forms.Button();
-            this.button59 = new System.Windows.Forms.Button();
-            this.button60 = new System.Windows.Forms.Button();
-            this.button61 = new System.Windows.Forms.Button();
+            this.checkBox00 = new System.Windows.Forms.CheckBox();
+            this.checkBox01 = new System.Windows.Forms.CheckBox();
+            this.checkBox02 = new System.Windows.Forms.CheckBox();
+            this.checkBox03 = new System.Windows.Forms.CheckBox();
+            this.checkBox04 = new System.Windows.Forms.CheckBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.checkBox20 = new System.Windows.Forms.CheckBox();
+            this.checkBox21 = new System.Windows.Forms.CheckBox();
+            this.checkBox22 = new System.Windows.Forms.CheckBox();
+            this.checkBox23 = new System.Windows.Forms.CheckBox();
+            this.checkBox24 = new System.Windows.Forms.CheckBox();
+            this.checkBox30 = new System.Windows.Forms.CheckBox();
+            this.checkBox31 = new System.Windows.Forms.CheckBox();
+            this.checkBox32 = new System.Windows.Forms.CheckBox();
+            this.checkBox33 = new System.Windows.Forms.CheckBox();
+            this.checkBox34 = new System.Windows.Forms.CheckBox();
+            this.checkBox40 = new System.Windows.Forms.CheckBox();
+            this.checkBox41 = new System.Windows.Forms.CheckBox();
+            this.checkBox42 = new System.Windows.Forms.CheckBox();
+            this.checkBox43 = new System.Windows.Forms.CheckBox();
+            this.checkBox44 = new System.Windows.Forms.CheckBox();
             this.CurvaSidebar = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.AnimacionSidebar = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.AnimacionSidebarBack = new BunifuAnimatorNS.BunifuTransition(this.components);
@@ -136,7 +138,7 @@
             this.MenuTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.MenuTop.Location = new System.Drawing.Point(0, 0);
             this.MenuTop.Name = "MenuTop";
-            this.MenuTop.Size = new System.Drawing.Size(462, 42);
+            this.MenuTop.Size = new System.Drawing.Size(468, 42);
             this.MenuTop.TabIndex = 0;
             this.MenuTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuTop_MouseDown);
             this.MenuTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuTop_MouseMove);
@@ -151,7 +153,7 @@
             this.Minimize.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
             this.Minimize.IconColor = System.Drawing.Color.White;
             this.Minimize.IconSize = 22;
-            this.Minimize.Location = new System.Drawing.Point(409, 12);
+            this.Minimize.Location = new System.Drawing.Point(415, 12);
             this.Minimize.Name = "Minimize";
             this.Minimize.Size = new System.Drawing.Size(22, 24);
             this.Minimize.TabIndex = 3;
@@ -167,7 +169,7 @@
             this.Close_button.IconChar = FontAwesome.Sharp.IconChar.WindowClose;
             this.Close_button.IconColor = System.Drawing.Color.White;
             this.Close_button.IconSize = 22;
-            this.Close_button.Location = new System.Drawing.Point(437, 12);
+            this.Close_button.Location = new System.Drawing.Point(443, 12);
             this.Close_button.Name = "Close_button";
             this.Close_button.Size = new System.Drawing.Size(22, 24);
             this.Close_button.TabIndex = 2;
@@ -210,7 +212,7 @@
             this.SidebarWrapper.Dock = System.Windows.Forms.DockStyle.Left;
             this.SidebarWrapper.Location = new System.Drawing.Point(0, 42);
             this.SidebarWrapper.Name = "SidebarWrapper";
-            this.SidebarWrapper.Size = new System.Drawing.Size(150, 228);
+            this.SidebarWrapper.Size = new System.Drawing.Size(150, 264);
             this.SidebarWrapper.TabIndex = 1;
             // 
             // Sidebar
@@ -231,7 +233,7 @@
             this.Sidebar.Location = new System.Drawing.Point(10, 6);
             this.Sidebar.Name = "Sidebar";
             this.Sidebar.Quality = 10;
-            this.Sidebar.Size = new System.Drawing.Size(130, 210);
+            this.Sidebar.Size = new System.Drawing.Size(130, 246);
             this.Sidebar.TabIndex = 1;
             // 
             // Setting
@@ -348,6 +350,8 @@
             // Wrapper
             // 
             this.Wrapper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(46)))));
+            this.Wrapper.Controls.Add(this.Reset);
+            this.Wrapper.Controls.Add(this.RUN);
             this.Wrapper.Controls.Add(this.AutoControl);
             this.Wrapper.Controls.Add(this.ManualControl);
             this.Wrapper.Controls.Add(this.SettingControl);
@@ -356,8 +360,32 @@
             this.Wrapper.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Wrapper.Location = new System.Drawing.Point(150, 42);
             this.Wrapper.Name = "Wrapper";
-            this.Wrapper.Size = new System.Drawing.Size(312, 228);
+            this.Wrapper.Size = new System.Drawing.Size(318, 264);
             this.Wrapper.TabIndex = 2;
+            // 
+            // Reset
+            // 
+            this.AnimacionSidebar.SetDecoration(this.Reset, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.Reset, BunifuAnimatorNS.DecorationType.None);
+            this.Reset.Location = new System.Drawing.Point(69, 211);
+            this.Reset.Name = "Reset";
+            this.Reset.Size = new System.Drawing.Size(86, 23);
+            this.Reset.TabIndex = 43;
+            this.Reset.Text = "Reset";
+            this.Reset.UseVisualStyleBackColor = true;
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
+            // 
+            // RUN
+            // 
+            this.AnimacionSidebar.SetDecoration(this.RUN, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.RUN, BunifuAnimatorNS.DecorationType.None);
+            this.RUN.Location = new System.Drawing.Point(156, 211);
+            this.RUN.Name = "RUN";
+            this.RUN.Size = new System.Drawing.Size(86, 23);
+            this.RUN.TabIndex = 42;
+            this.RUN.Text = "Run";
+            this.RUN.UseVisualStyleBackColor = true;
+            this.RUN.Click += new System.EventHandler(this.RUN_Click);
             // 
             // AutoControl
             // 
@@ -389,7 +417,7 @@
             this.AutoControl.Controls.Add(this.button27);
             this.AnimacionSidebar.SetDecoration(this.AutoControl, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebarBack.SetDecoration(this.AutoControl, BunifuAnimatorNS.DecorationType.None);
-            this.AutoControl.Location = new System.Drawing.Point(63, 24);
+            this.AutoControl.Location = new System.Drawing.Point(293, 27);
             this.AutoControl.Name = "AutoControl";
             this.AutoControl.Size = new System.Drawing.Size(180, 181);
             this.AutoControl.TabIndex = 29;
@@ -710,7 +738,7 @@
             this.AnimacionSidebarBack.SetDecoration(this.ManualControl, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebar.SetDecoration(this.ManualControl, BunifuAnimatorNS.DecorationType.None);
             this.ManualControl.Enabled = false;
-            this.ManualControl.Location = new System.Drawing.Point(61, 42);
+            this.ManualControl.Location = new System.Drawing.Point(265, 233);
             this.ManualControl.Name = "ManualControl";
             this.ManualControl.Size = new System.Drawing.Size(184, 121);
             this.ManualControl.TabIndex = 41;
@@ -852,314 +880,440 @@
             // SettingControl
             // 
             this.SettingControl.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.SettingControl.Controls.Add(this.button37);
-            this.SettingControl.Controls.Add(this.button38);
-            this.SettingControl.Controls.Add(this.button39);
-            this.SettingControl.Controls.Add(this.button40);
-            this.SettingControl.Controls.Add(this.button41);
-            this.SettingControl.Controls.Add(this.button42);
-            this.SettingControl.Controls.Add(this.button43);
-            this.SettingControl.Controls.Add(this.button44);
-            this.SettingControl.Controls.Add(this.button45);
-            this.SettingControl.Controls.Add(this.button46);
-            this.SettingControl.Controls.Add(this.button47);
-            this.SettingControl.Controls.Add(this.button48);
-            this.SettingControl.Controls.Add(this.button49);
-            this.SettingControl.Controls.Add(this.button50);
-            this.SettingControl.Controls.Add(this.button51);
-            this.SettingControl.Controls.Add(this.button52);
-            this.SettingControl.Controls.Add(this.button53);
-            this.SettingControl.Controls.Add(this.button54);
-            this.SettingControl.Controls.Add(this.button55);
-            this.SettingControl.Controls.Add(this.button56);
-            this.SettingControl.Controls.Add(this.button57);
-            this.SettingControl.Controls.Add(this.button58);
-            this.SettingControl.Controls.Add(this.button59);
-            this.SettingControl.Controls.Add(this.button60);
-            this.SettingControl.Controls.Add(this.button61);
+            this.SettingControl.CausesValidation = false;
+            this.SettingControl.Controls.Add(this.checkBox00);
+            this.SettingControl.Controls.Add(this.checkBox01);
+            this.SettingControl.Controls.Add(this.checkBox02);
+            this.SettingControl.Controls.Add(this.checkBox03);
+            this.SettingControl.Controls.Add(this.checkBox04);
+            this.SettingControl.Controls.Add(this.checkBox10);
+            this.SettingControl.Controls.Add(this.checkBox11);
+            this.SettingControl.Controls.Add(this.checkBox12);
+            this.SettingControl.Controls.Add(this.checkBox13);
+            this.SettingControl.Controls.Add(this.checkBox14);
+            this.SettingControl.Controls.Add(this.checkBox20);
+            this.SettingControl.Controls.Add(this.checkBox21);
+            this.SettingControl.Controls.Add(this.checkBox22);
+            this.SettingControl.Controls.Add(this.checkBox23);
+            this.SettingControl.Controls.Add(this.checkBox24);
+            this.SettingControl.Controls.Add(this.checkBox30);
+            this.SettingControl.Controls.Add(this.checkBox31);
+            this.SettingControl.Controls.Add(this.checkBox32);
+            this.SettingControl.Controls.Add(this.checkBox33);
+            this.SettingControl.Controls.Add(this.checkBox34);
+            this.SettingControl.Controls.Add(this.checkBox40);
+            this.SettingControl.Controls.Add(this.checkBox41);
+            this.SettingControl.Controls.Add(this.checkBox42);
+            this.SettingControl.Controls.Add(this.checkBox43);
+            this.SettingControl.Controls.Add(this.checkBox44);
             this.AnimacionSidebar.SetDecoration(this.SettingControl, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebarBack.SetDecoration(this.SettingControl, BunifuAnimatorNS.DecorationType.None);
             this.SettingControl.Enabled = false;
-            this.SettingControl.Location = new System.Drawing.Point(63, 24);
+            this.SettingControl.Location = new System.Drawing.Point(32, 24);
             this.SettingControl.Name = "SettingControl";
-            this.SettingControl.Size = new System.Drawing.Size(180, 181);
+            this.SettingControl.Size = new System.Drawing.Size(240, 181);
             this.SettingControl.TabIndex = 30;
             this.SettingControl.Visible = false;
             // 
-            // button37
+            // checkBox00
             // 
-            this.AnimacionSidebar.SetDecoration(this.button37, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button37, BunifuAnimatorNS.DecorationType.None);
-            this.button37.Location = new System.Drawing.Point(3, 3);
-            this.button37.Name = "button37";
-            this.button37.Size = new System.Drawing.Size(30, 30);
-            this.button37.TabIndex = 0;
-            this.button37.Text = "0:0";
-            this.button37.UseVisualStyleBackColor = true;
+            this.checkBox00.AutoSize = true;
+            this.checkBox00.Checked = true;
+            this.checkBox00.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox00, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox00, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox00.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox00.Location = new System.Drawing.Point(3, 3);
+            this.checkBox00.Name = "checkBox00";
+            this.checkBox00.Size = new System.Drawing.Size(41, 17);
+            this.checkBox00.TabIndex = 0;
+            this.checkBox00.Text = "0:0";
+            this.checkBox00.UseVisualStyleBackColor = true;
+            this.checkBox00.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // button38
+            // checkBox01
             // 
-            this.AnimacionSidebar.SetDecoration(this.button38, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button38, BunifuAnimatorNS.DecorationType.None);
-            this.button38.Location = new System.Drawing.Point(39, 3);
-            this.button38.Name = "button38";
-            this.button38.Size = new System.Drawing.Size(30, 30);
-            this.button38.TabIndex = 0;
-            this.button38.Text = "0:1";
-            this.button38.UseVisualStyleBackColor = true;
+            this.checkBox01.AutoSize = true;
+            this.checkBox01.Checked = true;
+            this.checkBox01.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox01, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox01, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox01.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox01.Location = new System.Drawing.Point(50, 3);
+            this.checkBox01.Name = "checkBox01";
+            this.checkBox01.Size = new System.Drawing.Size(41, 17);
+            this.checkBox01.TabIndex = 1;
+            this.checkBox01.Text = "0:1";
+            this.checkBox01.UseVisualStyleBackColor = true;
+            this.checkBox01.CheckedChanged += new System.EventHandler(this.checkBox01_CheckedChanged);
             // 
-            // button39
+            // checkBox02
             // 
-            this.AnimacionSidebar.SetDecoration(this.button39, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button39, BunifuAnimatorNS.DecorationType.None);
-            this.button39.Location = new System.Drawing.Point(75, 3);
-            this.button39.Name = "button39";
-            this.button39.Size = new System.Drawing.Size(30, 30);
-            this.button39.TabIndex = 0;
-            this.button39.Text = "0:2";
-            this.button39.UseVisualStyleBackColor = true;
+            this.checkBox02.AutoSize = true;
+            this.checkBox02.Checked = true;
+            this.checkBox02.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox02, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox02, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox02.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox02.Location = new System.Drawing.Point(97, 3);
+            this.checkBox02.Name = "checkBox02";
+            this.checkBox02.Size = new System.Drawing.Size(41, 17);
+            this.checkBox02.TabIndex = 2;
+            this.checkBox02.Text = "0:2";
+            this.checkBox02.UseVisualStyleBackColor = true;
+            this.checkBox02.CheckedChanged += new System.EventHandler(this.checkBox02_CheckedChanged);
             // 
-            // button40
+            // checkBox03
             // 
-            this.AnimacionSidebar.SetDecoration(this.button40, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button40, BunifuAnimatorNS.DecorationType.None);
-            this.button40.Location = new System.Drawing.Point(111, 3);
-            this.button40.Name = "button40";
-            this.button40.Size = new System.Drawing.Size(30, 30);
-            this.button40.TabIndex = 0;
-            this.button40.Text = "0:3";
-            this.button40.UseVisualStyleBackColor = true;
+            this.checkBox03.AutoSize = true;
+            this.checkBox03.Checked = true;
+            this.checkBox03.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox03, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox03, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox03.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox03.Location = new System.Drawing.Point(144, 3);
+            this.checkBox03.Name = "checkBox03";
+            this.checkBox03.Size = new System.Drawing.Size(41, 17);
+            this.checkBox03.TabIndex = 3;
+            this.checkBox03.Text = "0:3";
+            this.checkBox03.UseVisualStyleBackColor = true;
+            this.checkBox03.CheckedChanged += new System.EventHandler(this.checkBox03_CheckedChanged);
             // 
-            // button41
+            // checkBox04
             // 
-            this.AnimacionSidebar.SetDecoration(this.button41, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button41, BunifuAnimatorNS.DecorationType.None);
-            this.button41.Location = new System.Drawing.Point(147, 3);
-            this.button41.Name = "button41";
-            this.button41.Size = new System.Drawing.Size(30, 30);
-            this.button41.TabIndex = 0;
-            this.button41.Text = "0:4";
-            this.button41.UseVisualStyleBackColor = true;
+            this.checkBox04.AutoSize = true;
+            this.checkBox04.Checked = true;
+            this.checkBox04.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox04, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox04, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox04.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox04.Location = new System.Drawing.Point(191, 3);
+            this.checkBox04.Name = "checkBox04";
+            this.checkBox04.Size = new System.Drawing.Size(41, 17);
+            this.checkBox04.TabIndex = 4;
+            this.checkBox04.Text = "0:4";
+            this.checkBox04.UseVisualStyleBackColor = true;
+            this.checkBox04.CheckedChanged += new System.EventHandler(this.checkBox04_CheckedChanged);
             // 
-            // button42
+            // checkBox10
             // 
-            this.AnimacionSidebar.SetDecoration(this.button42, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button42, BunifuAnimatorNS.DecorationType.None);
-            this.button42.Location = new System.Drawing.Point(3, 39);
-            this.button42.Name = "button42";
-            this.button42.Size = new System.Drawing.Size(30, 30);
-            this.button42.TabIndex = 0;
-            this.button42.Text = "1:0";
-            this.button42.UseVisualStyleBackColor = true;
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Checked = true;
+            this.checkBox10.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox10, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox10, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox10.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox10.Location = new System.Drawing.Point(3, 26);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(41, 17);
+            this.checkBox10.TabIndex = 5;
+            this.checkBox10.Text = "1:0";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
             // 
-            // button43
+            // checkBox11
             // 
-            this.AnimacionSidebar.SetDecoration(this.button43, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button43, BunifuAnimatorNS.DecorationType.None);
-            this.button43.Location = new System.Drawing.Point(39, 39);
-            this.button43.Name = "button43";
-            this.button43.Size = new System.Drawing.Size(30, 30);
-            this.button43.TabIndex = 0;
-            this.button43.Text = "1:1";
-            this.button43.UseVisualStyleBackColor = true;
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Checked = true;
+            this.checkBox11.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox11, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox11, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox11.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox11.Location = new System.Drawing.Point(50, 26);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(41, 17);
+            this.checkBox11.TabIndex = 6;
+            this.checkBox11.Text = "1:1";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            this.checkBox11.CheckedChanged += new System.EventHandler(this.checkBox11_CheckedChanged);
             // 
-            // button44
+            // checkBox12
             // 
-            this.AnimacionSidebar.SetDecoration(this.button44, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button44, BunifuAnimatorNS.DecorationType.None);
-            this.button44.Location = new System.Drawing.Point(75, 39);
-            this.button44.Name = "button44";
-            this.button44.Size = new System.Drawing.Size(30, 30);
-            this.button44.TabIndex = 0;
-            this.button44.Text = "1:2";
-            this.button44.UseVisualStyleBackColor = true;
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Checked = true;
+            this.checkBox12.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox12, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox12, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox12.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox12.Location = new System.Drawing.Point(97, 26);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(41, 17);
+            this.checkBox12.TabIndex = 7;
+            this.checkBox12.Text = "1:2";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            this.checkBox12.CheckedChanged += new System.EventHandler(this.checkBox12_CheckedChanged);
             // 
-            // button45
+            // checkBox13
             // 
-            this.AnimacionSidebar.SetDecoration(this.button45, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button45, BunifuAnimatorNS.DecorationType.None);
-            this.button45.Location = new System.Drawing.Point(111, 39);
-            this.button45.Name = "button45";
-            this.button45.Size = new System.Drawing.Size(30, 30);
-            this.button45.TabIndex = 0;
-            this.button45.Text = "1:3";
-            this.button45.UseVisualStyleBackColor = true;
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.Checked = true;
+            this.checkBox13.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox13, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox13, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox13.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox13.Location = new System.Drawing.Point(144, 26);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(41, 17);
+            this.checkBox13.TabIndex = 8;
+            this.checkBox13.Text = "1:3";
+            this.checkBox13.UseVisualStyleBackColor = true;
+            this.checkBox13.CheckedChanged += new System.EventHandler(this.checkBox13_CheckedChanged);
             // 
-            // button46
+            // checkBox14
             // 
-            this.AnimacionSidebar.SetDecoration(this.button46, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button46, BunifuAnimatorNS.DecorationType.None);
-            this.button46.Location = new System.Drawing.Point(147, 39);
-            this.button46.Name = "button46";
-            this.button46.Size = new System.Drawing.Size(30, 30);
-            this.button46.TabIndex = 0;
-            this.button46.Text = "1:4";
-            this.button46.UseVisualStyleBackColor = true;
+            this.checkBox14.AutoSize = true;
+            this.checkBox14.Checked = true;
+            this.checkBox14.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox14, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox14, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox14.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox14.Location = new System.Drawing.Point(191, 26);
+            this.checkBox14.Name = "checkBox14";
+            this.checkBox14.Size = new System.Drawing.Size(41, 17);
+            this.checkBox14.TabIndex = 9;
+            this.checkBox14.Text = "1:4";
+            this.checkBox14.UseVisualStyleBackColor = true;
+            this.checkBox14.CheckedChanged += new System.EventHandler(this.checkBox14_CheckedChanged);
             // 
-            // button47
+            // checkBox20
             // 
-            this.AnimacionSidebar.SetDecoration(this.button47, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button47, BunifuAnimatorNS.DecorationType.None);
-            this.button47.Location = new System.Drawing.Point(3, 75);
-            this.button47.Name = "button47";
-            this.button47.Size = new System.Drawing.Size(30, 30);
-            this.button47.TabIndex = 0;
-            this.button47.Text = "2:0";
-            this.button47.UseVisualStyleBackColor = true;
+            this.checkBox20.AutoSize = true;
+            this.checkBox20.Checked = true;
+            this.checkBox20.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox20, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox20, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox20.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox20.Location = new System.Drawing.Point(3, 49);
+            this.checkBox20.Name = "checkBox20";
+            this.checkBox20.Size = new System.Drawing.Size(41, 17);
+            this.checkBox20.TabIndex = 10;
+            this.checkBox20.Text = "2:0";
+            this.checkBox20.UseVisualStyleBackColor = true;
+            this.checkBox20.CheckedChanged += new System.EventHandler(this.checkBox20_CheckedChanged);
             // 
-            // button48
+            // checkBox21
             // 
-            this.AnimacionSidebar.SetDecoration(this.button48, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button48, BunifuAnimatorNS.DecorationType.None);
-            this.button48.Location = new System.Drawing.Point(39, 75);
-            this.button48.Name = "button48";
-            this.button48.Size = new System.Drawing.Size(30, 30);
-            this.button48.TabIndex = 0;
-            this.button48.Text = "2:1";
-            this.button48.UseVisualStyleBackColor = true;
+            this.checkBox21.AutoSize = true;
+            this.checkBox21.Checked = true;
+            this.checkBox21.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox21, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox21, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox21.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox21.Location = new System.Drawing.Point(50, 49);
+            this.checkBox21.Name = "checkBox21";
+            this.checkBox21.Size = new System.Drawing.Size(41, 17);
+            this.checkBox21.TabIndex = 11;
+            this.checkBox21.Text = "2:1";
+            this.checkBox21.UseVisualStyleBackColor = true;
+            this.checkBox21.CheckedChanged += new System.EventHandler(this.checkBox21_CheckedChanged);
             // 
-            // button49
+            // checkBox22
             // 
-            this.AnimacionSidebar.SetDecoration(this.button49, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button49, BunifuAnimatorNS.DecorationType.None);
-            this.button49.Location = new System.Drawing.Point(75, 75);
-            this.button49.Name = "button49";
-            this.button49.Size = new System.Drawing.Size(30, 30);
-            this.button49.TabIndex = 0;
-            this.button49.Text = "2:2";
-            this.button49.UseVisualStyleBackColor = true;
+            this.checkBox22.AutoSize = true;
+            this.checkBox22.Checked = true;
+            this.checkBox22.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox22, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox22, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox22.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox22.Location = new System.Drawing.Point(97, 49);
+            this.checkBox22.Name = "checkBox22";
+            this.checkBox22.Size = new System.Drawing.Size(41, 17);
+            this.checkBox22.TabIndex = 12;
+            this.checkBox22.Text = "2:2";
+            this.checkBox22.UseVisualStyleBackColor = true;
+            this.checkBox22.CheckedChanged += new System.EventHandler(this.checkBox22_CheckedChanged);
             // 
-            // button50
+            // checkBox23
             // 
-            this.AnimacionSidebar.SetDecoration(this.button50, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button50, BunifuAnimatorNS.DecorationType.None);
-            this.button50.Location = new System.Drawing.Point(111, 75);
-            this.button50.Name = "button50";
-            this.button50.Size = new System.Drawing.Size(30, 30);
-            this.button50.TabIndex = 0;
-            this.button50.Text = "2:3";
-            this.button50.UseVisualStyleBackColor = true;
+            this.checkBox23.AutoSize = true;
+            this.checkBox23.Checked = true;
+            this.checkBox23.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox23, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox23, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox23.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox23.Location = new System.Drawing.Point(144, 49);
+            this.checkBox23.Name = "checkBox23";
+            this.checkBox23.Size = new System.Drawing.Size(41, 17);
+            this.checkBox23.TabIndex = 13;
+            this.checkBox23.Text = "2:3";
+            this.checkBox23.UseVisualStyleBackColor = true;
+            this.checkBox23.CheckedChanged += new System.EventHandler(this.checkBox23_CheckedChanged);
             // 
-            // button51
+            // checkBox24
             // 
-            this.AnimacionSidebar.SetDecoration(this.button51, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button51, BunifuAnimatorNS.DecorationType.None);
-            this.button51.Location = new System.Drawing.Point(147, 75);
-            this.button51.Name = "button51";
-            this.button51.Size = new System.Drawing.Size(30, 30);
-            this.button51.TabIndex = 0;
-            this.button51.Text = "2:4";
-            this.button51.UseVisualStyleBackColor = true;
+            this.checkBox24.AutoSize = true;
+            this.checkBox24.Checked = true;
+            this.checkBox24.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox24, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox24, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox24.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox24.Location = new System.Drawing.Point(191, 49);
+            this.checkBox24.Name = "checkBox24";
+            this.checkBox24.Size = new System.Drawing.Size(41, 17);
+            this.checkBox24.TabIndex = 14;
+            this.checkBox24.Text = "2:4";
+            this.checkBox24.UseVisualStyleBackColor = true;
+            this.checkBox24.CheckedChanged += new System.EventHandler(this.checkBox24_CheckedChanged);
             // 
-            // button52
+            // checkBox30
             // 
-            this.AnimacionSidebar.SetDecoration(this.button52, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button52, BunifuAnimatorNS.DecorationType.None);
-            this.button52.Location = new System.Drawing.Point(3, 111);
-            this.button52.Name = "button52";
-            this.button52.Size = new System.Drawing.Size(30, 30);
-            this.button52.TabIndex = 0;
-            this.button52.Text = "3:0";
-            this.button52.UseVisualStyleBackColor = true;
+            this.checkBox30.AutoSize = true;
+            this.checkBox30.Checked = true;
+            this.checkBox30.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox30, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox30, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox30.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox30.Location = new System.Drawing.Point(3, 72);
+            this.checkBox30.Name = "checkBox30";
+            this.checkBox30.Size = new System.Drawing.Size(41, 17);
+            this.checkBox30.TabIndex = 15;
+            this.checkBox30.Text = "3:0";
+            this.checkBox30.UseVisualStyleBackColor = true;
+            this.checkBox30.CheckedChanged += new System.EventHandler(this.checkBox30_CheckedChanged);
             // 
-            // button53
+            // checkBox31
             // 
-            this.AnimacionSidebar.SetDecoration(this.button53, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button53, BunifuAnimatorNS.DecorationType.None);
-            this.button53.Location = new System.Drawing.Point(39, 111);
-            this.button53.Name = "button53";
-            this.button53.Size = new System.Drawing.Size(30, 30);
-            this.button53.TabIndex = 0;
-            this.button53.Text = "3:1";
-            this.button53.UseVisualStyleBackColor = true;
+            this.checkBox31.AutoSize = true;
+            this.checkBox31.Checked = true;
+            this.checkBox31.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox31, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox31, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox31.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox31.Location = new System.Drawing.Point(50, 72);
+            this.checkBox31.Name = "checkBox31";
+            this.checkBox31.Size = new System.Drawing.Size(41, 17);
+            this.checkBox31.TabIndex = 16;
+            this.checkBox31.Text = "3:1";
+            this.checkBox31.UseVisualStyleBackColor = true;
+            this.checkBox31.CheckedChanged += new System.EventHandler(this.checkBox31_CheckedChanged);
             // 
-            // button54
+            // checkBox32
             // 
-            this.AnimacionSidebar.SetDecoration(this.button54, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button54, BunifuAnimatorNS.DecorationType.None);
-            this.button54.Location = new System.Drawing.Point(75, 111);
-            this.button54.Name = "button54";
-            this.button54.Size = new System.Drawing.Size(30, 30);
-            this.button54.TabIndex = 0;
-            this.button54.Text = "3:2";
-            this.button54.UseVisualStyleBackColor = true;
+            this.checkBox32.AutoSize = true;
+            this.checkBox32.Checked = true;
+            this.checkBox32.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox32, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox32, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox32.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox32.Location = new System.Drawing.Point(97, 72);
+            this.checkBox32.Name = "checkBox32";
+            this.checkBox32.Size = new System.Drawing.Size(41, 17);
+            this.checkBox32.TabIndex = 17;
+            this.checkBox32.Text = "3:2";
+            this.checkBox32.UseVisualStyleBackColor = true;
+            this.checkBox32.CheckedChanged += new System.EventHandler(this.checkBox32_CheckedChanged);
             // 
-            // button55
+            // checkBox33
             // 
-            this.AnimacionSidebar.SetDecoration(this.button55, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button55, BunifuAnimatorNS.DecorationType.None);
-            this.button55.Location = new System.Drawing.Point(111, 111);
-            this.button55.Name = "button55";
-            this.button55.Size = new System.Drawing.Size(30, 30);
-            this.button55.TabIndex = 0;
-            this.button55.Text = "3:3";
-            this.button55.UseVisualStyleBackColor = true;
+            this.checkBox33.AutoSize = true;
+            this.checkBox33.Checked = true;
+            this.checkBox33.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox33, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox33, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox33.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox33.Location = new System.Drawing.Point(144, 72);
+            this.checkBox33.Name = "checkBox33";
+            this.checkBox33.Size = new System.Drawing.Size(41, 17);
+            this.checkBox33.TabIndex = 18;
+            this.checkBox33.Text = "3:3";
+            this.checkBox33.UseVisualStyleBackColor = true;
+            this.checkBox33.CheckedChanged += new System.EventHandler(this.checkBox33_CheckedChanged);
             // 
-            // button56
+            // checkBox34
             // 
-            this.AnimacionSidebar.SetDecoration(this.button56, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button56, BunifuAnimatorNS.DecorationType.None);
-            this.button56.Location = new System.Drawing.Point(147, 111);
-            this.button56.Name = "button56";
-            this.button56.Size = new System.Drawing.Size(30, 30);
-            this.button56.TabIndex = 0;
-            this.button56.Text = "3:4";
-            this.button56.UseVisualStyleBackColor = true;
+            this.checkBox34.AutoSize = true;
+            this.checkBox34.Checked = true;
+            this.checkBox34.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox34, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox34, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox34.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox34.Location = new System.Drawing.Point(191, 72);
+            this.checkBox34.Name = "checkBox34";
+            this.checkBox34.Size = new System.Drawing.Size(41, 17);
+            this.checkBox34.TabIndex = 19;
+            this.checkBox34.Text = "3:4";
+            this.checkBox34.UseVisualStyleBackColor = true;
+            this.checkBox34.CheckedChanged += new System.EventHandler(this.checkBox34_CheckedChanged);
             // 
-            // button57
+            // checkBox40
             // 
-            this.AnimacionSidebar.SetDecoration(this.button57, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button57, BunifuAnimatorNS.DecorationType.None);
-            this.button57.Location = new System.Drawing.Point(3, 147);
-            this.button57.Name = "button57";
-            this.button57.Size = new System.Drawing.Size(30, 30);
-            this.button57.TabIndex = 0;
-            this.button57.Text = "4:0";
-            this.button57.UseVisualStyleBackColor = true;
+            this.checkBox40.AutoSize = true;
+            this.checkBox40.Checked = true;
+            this.checkBox40.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox40, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox40, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox40.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox40.Location = new System.Drawing.Point(3, 95);
+            this.checkBox40.Name = "checkBox40";
+            this.checkBox40.Size = new System.Drawing.Size(41, 17);
+            this.checkBox40.TabIndex = 20;
+            this.checkBox40.Text = "4:0";
+            this.checkBox40.UseVisualStyleBackColor = true;
+            this.checkBox40.CheckedChanged += new System.EventHandler(this.checkBox40_CheckedChanged);
             // 
-            // button58
+            // checkBox41
             // 
-            this.AnimacionSidebar.SetDecoration(this.button58, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button58, BunifuAnimatorNS.DecorationType.None);
-            this.button58.Location = new System.Drawing.Point(39, 147);
-            this.button58.Name = "button58";
-            this.button58.Size = new System.Drawing.Size(30, 30);
-            this.button58.TabIndex = 0;
-            this.button58.Text = "4:1";
-            this.button58.UseVisualStyleBackColor = true;
+            this.checkBox41.AutoSize = true;
+            this.checkBox41.Checked = true;
+            this.checkBox41.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox41, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox41, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox41.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox41.Location = new System.Drawing.Point(50, 95);
+            this.checkBox41.Name = "checkBox41";
+            this.checkBox41.Size = new System.Drawing.Size(41, 17);
+            this.checkBox41.TabIndex = 21;
+            this.checkBox41.Text = "4:1";
+            this.checkBox41.UseVisualStyleBackColor = true;
+            this.checkBox41.CheckedChanged += new System.EventHandler(this.checkBox41_CheckedChanged);
             // 
-            // button59
+            // checkBox42
             // 
-            this.AnimacionSidebar.SetDecoration(this.button59, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button59, BunifuAnimatorNS.DecorationType.None);
-            this.button59.Location = new System.Drawing.Point(75, 147);
-            this.button59.Name = "button59";
-            this.button59.Size = new System.Drawing.Size(30, 30);
-            this.button59.TabIndex = 0;
-            this.button59.Text = "4:2";
-            this.button59.UseVisualStyleBackColor = true;
+            this.checkBox42.AutoSize = true;
+            this.checkBox42.Checked = true;
+            this.checkBox42.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox42, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox42, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox42.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox42.Location = new System.Drawing.Point(97, 95);
+            this.checkBox42.Name = "checkBox42";
+            this.checkBox42.Size = new System.Drawing.Size(41, 17);
+            this.checkBox42.TabIndex = 22;
+            this.checkBox42.Text = "4:2";
+            this.checkBox42.UseVisualStyleBackColor = true;
+            this.checkBox42.CheckedChanged += new System.EventHandler(this.checkBox42_CheckedChanged);
             // 
-            // button60
+            // checkBox43
             // 
-            this.AnimacionSidebar.SetDecoration(this.button60, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button60, BunifuAnimatorNS.DecorationType.None);
-            this.button60.Location = new System.Drawing.Point(111, 147);
-            this.button60.Name = "button60";
-            this.button60.Size = new System.Drawing.Size(30, 30);
-            this.button60.TabIndex = 0;
-            this.button60.Text = "4:3";
-            this.button60.UseVisualStyleBackColor = true;
+            this.checkBox43.AutoSize = true;
+            this.checkBox43.Checked = true;
+            this.checkBox43.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox43, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox43, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox43.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox43.Location = new System.Drawing.Point(144, 95);
+            this.checkBox43.Name = "checkBox43";
+            this.checkBox43.Size = new System.Drawing.Size(41, 17);
+            this.checkBox43.TabIndex = 23;
+            this.checkBox43.Text = "4:3";
+            this.checkBox43.UseVisualStyleBackColor = true;
+            this.checkBox43.CheckedChanged += new System.EventHandler(this.checkBox43_CheckedChanged);
             // 
-            // button61
+            // checkBox44
             // 
-            this.AnimacionSidebar.SetDecoration(this.button61, BunifuAnimatorNS.DecorationType.None);
-            this.AnimacionSidebarBack.SetDecoration(this.button61, BunifuAnimatorNS.DecorationType.None);
-            this.button61.Location = new System.Drawing.Point(147, 147);
-            this.button61.Name = "button61";
-            this.button61.Size = new System.Drawing.Size(30, 30);
-            this.button61.TabIndex = 0;
-            this.button61.Text = "4:4";
-            this.button61.UseVisualStyleBackColor = true;
+            this.checkBox44.AutoSize = true;
+            this.checkBox44.Checked = true;
+            this.checkBox44.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AnimacionSidebar.SetDecoration(this.checkBox44, BunifuAnimatorNS.DecorationType.None);
+            this.AnimacionSidebarBack.SetDecoration(this.checkBox44, BunifuAnimatorNS.DecorationType.None);
+            this.checkBox44.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox44.Location = new System.Drawing.Point(191, 95);
+            this.checkBox44.Name = "checkBox44";
+            this.checkBox44.Size = new System.Drawing.Size(41, 17);
+            this.checkBox44.TabIndex = 24;
+            this.checkBox44.Text = "4:4";
+            this.checkBox44.UseVisualStyleBackColor = true;
+            this.checkBox44.CheckedChanged += new System.EventHandler(this.checkBox44_CheckedChanged);
             // 
             // CurvaSidebar
             // 
@@ -1170,43 +1324,43 @@
             // 
             this.AnimacionSidebar.AnimationType = BunifuAnimatorNS.AnimationType.Particles;
             this.AnimacionSidebar.Cursor = null;
-            animation6.AnimateOnlyDifferences = true;
-            animation6.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation6.BlindCoeff")));
-            animation6.LeafCoeff = 0F;
-            animation6.MaxTime = 1F;
-            animation6.MinTime = 0F;
-            animation6.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation6.MosaicCoeff")));
-            animation6.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation6.MosaicShift")));
-            animation6.MosaicSize = 1;
-            animation6.Padding = new System.Windows.Forms.Padding(100, 50, 100, 150);
-            animation6.RotateCoeff = 0F;
-            animation6.RotateLimit = 0F;
-            animation6.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation6.ScaleCoeff")));
-            animation6.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation6.SlideCoeff")));
-            animation6.TimeCoeff = 2F;
-            animation6.TransparencyCoeff = 0F;
-            this.AnimacionSidebar.DefaultAnimation = animation6;
+            animation3.AnimateOnlyDifferences = true;
+            animation3.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.BlindCoeff")));
+            animation3.LeafCoeff = 0F;
+            animation3.MaxTime = 1F;
+            animation3.MinTime = 0F;
+            animation3.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicCoeff")));
+            animation3.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicShift")));
+            animation3.MosaicSize = 1;
+            animation3.Padding = new System.Windows.Forms.Padding(100, 50, 100, 150);
+            animation3.RotateCoeff = 0F;
+            animation3.RotateLimit = 0F;
+            animation3.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.ScaleCoeff")));
+            animation3.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.SlideCoeff")));
+            animation3.TimeCoeff = 2F;
+            animation3.TransparencyCoeff = 0F;
+            this.AnimacionSidebar.DefaultAnimation = animation3;
             // 
             // AnimacionSidebarBack
             // 
             this.AnimacionSidebarBack.AnimationType = BunifuAnimatorNS.AnimationType.HorizSlide;
             this.AnimacionSidebarBack.Cursor = null;
-            animation5.AnimateOnlyDifferences = true;
-            animation5.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.BlindCoeff")));
-            animation5.LeafCoeff = 0F;
-            animation5.MaxTime = 1F;
-            animation5.MinTime = 0F;
-            animation5.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.MosaicCoeff")));
-            animation5.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation5.MosaicShift")));
-            animation5.MosaicSize = 0;
-            animation5.Padding = new System.Windows.Forms.Padding(0);
-            animation5.RotateCoeff = 0F;
-            animation5.RotateLimit = 0F;
-            animation5.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.ScaleCoeff")));
-            animation5.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.SlideCoeff")));
-            animation5.TimeCoeff = 0F;
-            animation5.TransparencyCoeff = 0F;
-            this.AnimacionSidebarBack.DefaultAnimation = animation5;
+            animation4.AnimateOnlyDifferences = true;
+            animation4.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.BlindCoeff")));
+            animation4.LeafCoeff = 0F;
+            animation4.MaxTime = 1F;
+            animation4.MinTime = 0F;
+            animation4.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicCoeff")));
+            animation4.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicShift")));
+            animation4.MosaicSize = 0;
+            animation4.Padding = new System.Windows.Forms.Padding(0);
+            animation4.RotateCoeff = 0F;
+            animation4.RotateLimit = 0F;
+            animation4.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.ScaleCoeff")));
+            animation4.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.SlideCoeff")));
+            animation4.TimeCoeff = 0F;
+            animation4.TransparencyCoeff = 0F;
+            this.AnimacionSidebarBack.DefaultAnimation = animation4;
             // 
             // timer1
             // 
@@ -1221,7 +1375,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 270);
+            this.ClientSize = new System.Drawing.Size(468, 306);
             this.ControlBox = false;
             this.Controls.Add(this.Wrapper);
             this.Controls.Add(this.SidebarWrapper);
@@ -1244,6 +1398,7 @@
             this.AutoControl.ResumeLayout(false);
             this.ManualControl.ResumeLayout(false);
             this.SettingControl.ResumeLayout(false);
+            this.SettingControl.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1302,33 +1457,35 @@
         private System.Windows.Forms.Button button32;
         private System.Windows.Forms.Button button30;
         private System.Windows.Forms.Button button31;
-        private System.Windows.Forms.FlowLayoutPanel SettingControl;
-        private System.Windows.Forms.Button button37;
-        private System.Windows.Forms.Button button38;
-        private System.Windows.Forms.Button button39;
-        private System.Windows.Forms.Button button40;
-        private System.Windows.Forms.Button button41;
-        private System.Windows.Forms.Button button42;
-        private System.Windows.Forms.Button button43;
-        private System.Windows.Forms.Button button44;
-        private System.Windows.Forms.Button button45;
-        private System.Windows.Forms.Button button46;
-        private System.Windows.Forms.Button button47;
-        private System.Windows.Forms.Button button48;
-        private System.Windows.Forms.Button button49;
-        private System.Windows.Forms.Button button50;
-        private System.Windows.Forms.Button button51;
-        private System.Windows.Forms.Button button52;
-        private System.Windows.Forms.Button button53;
-        private System.Windows.Forms.Button button54;
-        private System.Windows.Forms.Button button55;
-        private System.Windows.Forms.Button button56;
-        private System.Windows.Forms.Button button57;
-        private System.Windows.Forms.Button button58;
-        private System.Windows.Forms.Button button59;
-        private System.Windows.Forms.Button button60;
-        private System.Windows.Forms.Button button61;
         private System.Windows.Forms.Timer timer1;
         private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.Button Reset;
+        private System.Windows.Forms.Button RUN;
+        private System.Windows.Forms.CheckBox checkBox00;
+        private System.Windows.Forms.CheckBox checkBox01;
+        private System.Windows.Forms.CheckBox checkBox02;
+        private System.Windows.Forms.CheckBox checkBox03;
+        private System.Windows.Forms.CheckBox checkBox04;
+        private System.Windows.Forms.FlowLayoutPanel SettingControl;
+        private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.CheckBox checkBox13;
+        private System.Windows.Forms.CheckBox checkBox14;
+        private System.Windows.Forms.CheckBox checkBox20;
+        private System.Windows.Forms.CheckBox checkBox21;
+        private System.Windows.Forms.CheckBox checkBox22;
+        private System.Windows.Forms.CheckBox checkBox23;
+        private System.Windows.Forms.CheckBox checkBox24;
+        private System.Windows.Forms.CheckBox checkBox30;
+        private System.Windows.Forms.CheckBox checkBox31;
+        private System.Windows.Forms.CheckBox checkBox32;
+        private System.Windows.Forms.CheckBox checkBox33;
+        private System.Windows.Forms.CheckBox checkBox34;
+        private System.Windows.Forms.CheckBox checkBox40;
+        private System.Windows.Forms.CheckBox checkBox41;
+        private System.Windows.Forms.CheckBox checkBox42;
+        private System.Windows.Forms.CheckBox checkBox43;
+        private System.Windows.Forms.CheckBox checkBox44;
     }
 }

@@ -45,7 +45,7 @@ namespace Omnidirectional_mobile_robot_V2
             }
             catch
             {
-                MessageBox.Show("Kết Nối Bị Lỗi !\n Có Thể Cổng Đã Được Kết Nối Hoặc Không Có Cổng !!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Kết Nối Bị Lỗi !\n Có Thể Cổng COM Đã Được Dùng Hoặc Chưa Kết Nối !!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
