@@ -100,6 +100,7 @@ namespace Omnidirectional_mobile_robot_V2
             AutoControl.Enabled = false;
             ManualControl.Enabled = false;
             SettingControl.Enabled = true;
+            serialPort1.Write("SET");
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -114,6 +115,8 @@ namespace Omnidirectional_mobile_robot_V2
                         break;
                     case "OK!":
                         serialPort1.Write("OK!");
+                        enabel_button();
+                        AutoControl.Visible = true;
                         break;
                     case "0:0":
                         button3.BackColor = Color.Green;

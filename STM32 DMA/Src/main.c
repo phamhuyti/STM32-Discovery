@@ -23,13 +23,13 @@ osThreadId Task_Check_RFID_Handle;
 osThreadId calculator_Dijkstra_Handle;
 osThreadId Taskmove_Handle;
 
-static uint64_t ID_Matrix[5][5] = 
-{
-    {0xd9c86f81ff, 0x39a5ae82b0, 0x39d39481ff, 0xb9326a8263, 0x298f6d814a},
-    {0x796ebb812d, 0x192f6c82d8, 0xc95e678272, 0x199fdc82d8, 0xd7440b3ea6},
-    {0x99c7dd3bb8, 0x77f488353e, 0x9725083d87, 0xb98d6e4319, 0x69236f88ad},
-    {0x2952ab8151, 0x49d8948184, 0xe92d628224, 0x59dfc683c3, 0x6969818100},
-    {0x9fdca82bc, 0x998cca825d, 0xa91e6d8258, 0x17c10e3ee6, 0x896f0dc52e},
+static uint64_t ID_Matrix[5][5] =
+    {
+        {0xd9c86f81ff, 0x39a5ae82b0, 0x39d39481ff, 0xb9326a8263, 0x298f6d814a},
+        {0x796ebb812d, 0x192f6c82d8, 0xc95e678272, 0x199fdc82d8, 0xd7440b3ea6},
+        {0x99c7dd3bb8, 0x77f488353e, 0x9725083d87, 0xb98d6e4319, 0x69236f88ad},
+        {0x2952ab8151, 0x49d8948184, 0xe92d628224, 0x59dfc683c3, 0x6969818100},
+        {0x9fdca82bc, 0x998cca825d, 0xa91e6d8258, 0x17c10e3ee6, 0x896f0dc52e},
 };
 
 uint8_t bufferTX[10], bufferRX[10], move = 0;
@@ -154,7 +154,6 @@ void Task_Uart(void const *argument)
     switch (bufferRX[2])
     {
     case '.':
-      bufferRX[2] = ' ';
       ID = 0;
       sprintf(bufferTX, "Start");
       // HAL_UART_Transmit(&huart2, bufferTX, 5, 100);
@@ -164,7 +163,6 @@ void Task_Uart(void const *argument)
       // vTaskSuspend(Task_Uart_Handle);
       break;
     case '!':
-      bufferRX[2] = ' ';
       vTaskResume(TaskmoveDir_Handle);
       switch (bufferRX[1])
       {
@@ -215,15 +213,14 @@ void Task_Uart(void const *argument)
         }
         move = 0;
         vTaskSuspend(TaskmoveDir_Handle);
-        led_DIR_circle(1, 50);
         break;
       }
       break;
-
     default:
       bufferRX[2] = ' ';
       break;
     }
+    bufferRX[2] = ' ';
     osDelay(1);
   }
 }
@@ -297,34 +294,19 @@ void Taskmove(void const *argument)
         move = 3;
         void SendLocatiom();
         break;
-
       default:
         if (List_Move.Length_way != 0xFF)
           List_Move.Length_way--;
-        else
-        {
-          move = 0;
-          vTaskSuspend(TaskmoveDir_Handle);
-          led_DIR_circle(2, 100);
-          sprintf(bufferTX, "Stop");
-          HAL_UART_Transmit_DMA(&huart2, bufferTX, 4);
-          vTaskSuspend(Task_Check_RFID_Handle);
-          vTaskSuspend(calculator_Dijkstra_Handle);
-          vTaskResume(Task_Uart_Handle);
-          vTaskSuspend(Taskmove_Handle);
-        }
         break;
       }
     else
     {
+      move = 0;
       vTaskSuspend(Task_Check_RFID_Handle);
       vTaskSuspend(calculator_Dijkstra_Handle);
-      move = 0;
       vTaskSuspend(TaskmoveDir_Handle);
-      led_DIR_circle(22, 500);
       sprintf(bufferTX, "Stop");
       HAL_UART_Transmit_DMA(&huart2, bufferTX, 4);
-      vTaskResume(Task_Uart_Handle);
       vTaskSuspend(Taskmove_Handle);
     }
     osDelay(1);
