@@ -31,14 +31,7 @@ static uint64_t ID_Matrix[5][5] =
     {0x2952ab8151, 0x49d8948184, 0xe92d628224, 0x59dfc683c3, 0x6969818100},
     {0x9fdca82bc, 0x998cca825d, 0xa91e6d8258, 0x17c10e3ee6, 0x896f0dc52e},
 };
-uint8_t Matric[5][5] =
-{ 
-    {	1,	1,	1,	1,	1,	},
-    {	1,	1,	1,	1,	1,	},
-    {	1,	1,	1,	1,	1,	},
-    {	1,	1,	1,	1,	1,	},
-    {	1,	1,	1,	1,	1,	} 
-};
+
 uint8_t bufferTX[10], bufferRX[10], move = 0;
 uint64_t ID = 0;
 List_move_type List_Move;

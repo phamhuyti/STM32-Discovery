@@ -1,8 +1,8 @@
 Dependencies for Project 'STM32 DMA', Target 'STM32 DMA': (DO NOT MODIFY !)
 CompilerVersion: 5060750::V5.06 update 6 (build 750)::ARMCC
 F (startup_stm32f411xe.s)(0x5E8DF4CB)(--cpu Cortex-M4.fp.sp -g --apcs=interwork --pd "__MICROLIB SETA 1" -I ..\Inc-I.\RTE\_STM32_DMA-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"--pd "__UVISION_VERSION SETA 529" --pd "_RTE_ SETA 1" --pd "STM32F411xE SETA 1"--list startup_stm32f411xe.lst --xref -o "stm32 dma\startup_stm32f411xe.o" --depend "stm32 dma\startup_stm32f411xe.d")
-F (../Src/main.c)(0x5F044244)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_STM32_DMA-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32F411xE -DUSE_HAL_DRIVER -DSTM32F411xE-o "stm32 dma\main.o" --omf_browse "stm32 dma\main.crf" --depend "stm32 dma\main.d")
-I (../Inc/main.h)(0x5EE09B62)
+F (../Src/main.c)(0x5F0C1BD3)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_STM32_DMA-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32F411xE -DUSE_HAL_DRIVER -DSTM32F411xE-o "stm32 dma\main.o" --omf_browse "stm32 dma\main.crf" --depend "stm32 dma\main.d")
+I (../Inc/main.h)(0x5F0C1C06)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5E8DF4CA)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5E8DF4CA)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5E8DF4CA)
@@ -54,7 +54,7 @@ I (../Inc/UART_DMA.h)(0x5E8DF4CA)
 I (../Inc/INIT.h)(0x5EE09C36)
 I (../Inc/rc522.h)(0x5E8DF4CA)
 I (../Inc/Wheel_Init.h)(0x5E8DF4CA)
-I (../Inc/Matric.h)(0x5E8DF4CA)
+I (../Inc/Matric.h)(0x5F0C1C7A)
 F (../Src/freertos.c)(0x5E8DF4CB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_STM32_DMA-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32F411xE -DUSE_HAL_DRIVER -DSTM32F411xE-o "stm32 dma\freertos.o" --omf_browse "stm32 dma\freertos.crf" --depend "stm32 dma\freertos.d")
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x5E8DF4CB)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5D9AE028)
@@ -67,7 +67,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h)(0x5E8DF4CB)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/task.h)(0x5E8DF4CB)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/list.h)(0x5E8DF4CB)
-I (../Inc/main.h)(0x5EE09B62)
+I (../Inc/main.h)(0x5F0C1C06)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5E8DF4CA)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5E8DF4CA)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5E8DF4CA)
@@ -105,7 +105,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x5E8DF4CB
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9AE028)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9AE02A)
 F (../Src/stm32f4xx_it.c)(0x5E8DF4CB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_STM32_DMA-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32F411xE -DUSE_HAL_DRIVER -DSTM32F411xE-o "stm32 dma\stm32f4xx_it.o" --omf_browse "stm32 dma\stm32f4xx_it.crf" --depend "stm32 dma\stm32f4xx_it.d")
-I (../Inc/main.h)(0x5EE09B62)
+I (../Inc/main.h)(0x5F0C1C06)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5E8DF4CA)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5E8DF4CA)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5E8DF4CA)
@@ -155,7 +155,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9AE028)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9AE02A)
 I (../Inc/stm32f4xx_it.h)(0x5E8DF4CA)
 F (../Src/stm32f4xx_hal_msp.c)(0x5E8DF4CB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_STM32_DMA-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32F411xE -DUSE_HAL_DRIVER -DSTM32F411xE-o "stm32 dma\stm32f4xx_hal_msp.o" --omf_browse "stm32 dma\stm32f4xx_hal_msp.crf" --depend "stm32 dma\stm32f4xx_hal_msp.d")
-I (../Inc/main.h)(0x5EE09B62)
+I (../Inc/main.h)(0x5F0C1C06)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5E8DF4CA)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5E8DF4CA)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5E8DF4CA)
@@ -237,7 +237,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5E8DF4CA)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5E8DF4CA)
 F (..\Src\UART_DMA.c)(0x5E8DF4CB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_STM32_DMA-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32F411xE -DUSE_HAL_DRIVER -DSTM32F411xE-o "stm32 dma\uart_dma.o" --omf_browse "stm32 dma\uart_dma.crf" --depend "stm32 dma\uart_dma.d")
 I (../Inc/UART_DMA.h)(0x5E8DF4CA)
-I (../Inc/main.h)(0x5EE09B62)
+I (../Inc/main.h)(0x5F0C1C06)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5E8DF4CA)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5E8DF4CA)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5E8DF4CA)
@@ -286,7 +286,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x5E8DF4CB
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9AE028)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9AE02A)
 F (..\Src\INIT.c)(0x5EE09C55)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_STM32_DMA-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32F411xE -DUSE_HAL_DRIVER -DSTM32F411xE-o "stm32 dma\init.o" --omf_browse "stm32 dma\init.crf" --depend "stm32 dma\init.d")
-I (../Inc/main.h)(0x5EE09B62)
+I (../Inc/main.h)(0x5F0C1C06)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5E8DF4CA)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5E8DF4CA)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5E8DF4CA)
@@ -336,7 +336,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9AE028)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9AE02A)
 F (..\Src\rc522.c)(0x5E8DF4CB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_STM32_DMA-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32F411xE -DUSE_HAL_DRIVER -DSTM32F411xE-o "stm32 dma\rc522.o" --omf_browse "stm32 dma\rc522.crf" --depend "stm32 dma\rc522.d")
 I (../Inc/rc522.h)(0x5E8DF4CA)
-I (../Inc/main.h)(0x5EE09B62)
+I (../Inc/main.h)(0x5F0C1C06)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5E8DF4CA)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5E8DF4CA)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5E8DF4CA)
@@ -386,7 +386,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9AE028)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9AE02A)
 F (..\Src\Wheel_Init.c)(0x5E8DF4CB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_STM32_DMA-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32F411xE -DUSE_HAL_DRIVER -DSTM32F411xE-o "stm32 dma\wheel_init.o" --omf_browse "stm32 dma\wheel_init.crf" --depend "stm32 dma\wheel_init.d")
 I (../Inc/Wheel_Init.h)(0x5E8DF4CA)
-I (../Inc/main.h)(0x5EE09B62)
+I (../Inc/main.h)(0x5F0C1C06)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5E8DF4CA)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5E8DF4CA)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5E8DF4CA)
@@ -434,9 +434,9 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h)(0x5E8DF4CB)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x5E8DF4CB)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9AE028)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9AE02A)
-F (..\Src\Matric.c)(0x5F044D77)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_STM32_DMA-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32F411xE -DUSE_HAL_DRIVER -DSTM32F411xE-o "stm32 dma\matric.o" --omf_browse "stm32 dma\matric.crf" --depend "stm32 dma\matric.d")
-I (../Inc/Matric.h)(0x5E8DF4CA)
-I (../Inc/main.h)(0x5EE09B62)
+F (..\Src\Matric.c)(0x5F0C1E1E)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_STM32_DMA-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\ASUS CAO HUY\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32F411xE -DUSE_HAL_DRIVER -DSTM32F411xE-o "stm32 dma\matric.o" --omf_browse "stm32 dma\matric.crf" --depend "stm32 dma\matric.d")
+I (../Inc/Matric.h)(0x5F0C1C7A)
+I (../Inc/main.h)(0x5F0C1C06)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5E8DF4CA)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5E8DF4CA)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5E8DF4CA)
