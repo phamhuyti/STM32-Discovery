@@ -37,13 +37,3 @@ C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Omnidirectional-mob
 C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\bin\Debug\Omnidirectional-mobile-robot.exe.config
 C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\obj\Debug\Omnidirectional-mobile-robot.exe
 C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\obj\Debug\Omnidirectional-mobile-robot.pdb
-C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\bin\Debug\Omnidirectional-mobile-robot.exe.config
-C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\bin\Debug\Omnidirectional-mobile-robot.exe
-C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\bin\Debug\Omnidirectional-mobile-robot.pdb
-C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\obj\Debug\Omnidirectional-mobile-robot-V0.csprojAssemblyReference.cache
-C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\obj\Debug\Omnidirectional_mobile_robot.Form1.resources
-C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\obj\Debug\Omnidirectional_mobile_robot.Properties.Resources.resources
-C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\obj\Debug\Omnidirectional-mobile-robot-V0.csproj.GenerateResource.cache
-C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\obj\Debug\Omnidirectional-mobile-robot-V0.csproj.CoreCompileInputs.cache
-C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\obj\Debug\Omnidirectional-mobile-robot.exe
-C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\Omnidirectional-mobile-robot\obj\Debug\Omnidirectional-mobile-robot.pdb

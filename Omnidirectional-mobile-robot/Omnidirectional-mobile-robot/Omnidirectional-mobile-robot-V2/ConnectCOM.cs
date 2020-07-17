@@ -43,13 +43,20 @@ namespace Omnidirectional_mobile_robot_V2
                     serialPort1.PortName = comboBox1.Text;
                     serialPort1.BaudRate = Convert.ToInt32(comboBox2.Text);
                     serialPort1.Open();
-                    while(InputData != "OK!")
+                    serialPort1.Write("OK! ");
+                    while (InputData != "OK!")
                     {
-                        Thread.Sleep(100);
-                        serialPort1.Write("OK!");
                     }
                     serialPort1.Close();
-                    timer1.Enabled = true;
+                    DashBoard control = new DashBoard(serialPort1.PortName, serialPort1.BaudRate);
+                    this.TopMost = false;
+                    this.Hide();
+                    control.TopMost = true;
+                    control.StartPosition = FormStartPosition.CenterScreen;
+                    control.ShowDialog();
+                    this.TopMost = true;
+                    refresh_Click(null, null);
+                    this.Show();
                 }
                 else
                 {
@@ -69,22 +76,8 @@ namespace Omnidirectional_mobile_robot_V2
 
         private void refresh_Click(object sender, EventArgs e)
         {
+            comboBox1.DataSource = null;
             comboBox1.DataSource = SerialPort.GetPortNames();
-        }
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (this.Width > 10) this.Width = this.Width - 10;
-            if (this.Height > 10) this.Height = this.Height - 10;
-            if (this.Width <= 10 && this.Height <= 10)
-            {
-                DashBoard control = new DashBoard(serialPort1.PortName, serialPort1.BaudRate);
-                this.TopMost = false;
-                this.Hide();
-                control.TopMost = true;
-                control.StartPosition = FormStartPosition.CenterScreen;
-                control.Show();
-                timer1.Stop();
-            }
         }
     }
 }

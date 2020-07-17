@@ -113,7 +113,8 @@ void CreateMatricFromRFIDMatric(void) {
 
 void UpdateMatric(uint8_t x, uint8_t y, uint8_t val)
 {
-	Matric[x-49][y-49]= val-49;
+	Matric[x-0x30][y-0x30]= val-0x30;
+	CreateMatricFromRFIDMatric();
 }
 
 List_move_type Dijkstra(uint8_t a, uint8_t b)

@@ -23,15 +23,15 @@ osThreadId calculator_Dijkstra_Handle;
 osThreadId Taskmove_Handle;
 
 static uint64_t ID_Matrix[5][5] =
-{
-  {0xd9c86f81ff, 0x39a5ae82b0, 0x39d39481ff, 0xb9326a8263, 0x298f6d814a},
-  {0x796ebb812d, 0x192f6c82d8, 0xc95e678272, 0x199fdc82d8, 0xd7440b3ea6},
-  {0x99c7dd3bb8, 0x77f488353e, 0x9725083d87, 0xb98d6e4319, 0x69236f88ad},
-  {0x2952ab8151, 0x49d8948184, 0xe92d628224, 0x59dfc683c3, 0x6969818100},
-  {0x9fdca82bc, 0x998cca825d, 0xa91e6d8258, 0x17c10e3ee6, 0x896f0dc52e},
+    {
+        {0xd9c86f81ff, 0x39a5ae82b0, 0x39d39481ff, 0xb9326a8263, 0x298f6d814a},
+        {0x796ebb812d, 0x192f6c82d8, 0xc95e678272, 0x199fdc82d8, 0xd7440b3ea6},
+        {0x99c7dd3bb8, 0x77f488353e, 0x9725083d87, 0xb98d6e4319, 0x69236f88ad},
+        {0x2952ab8151, 0x49d8948184, 0xe92d628224, 0x59dfc683c3, 0x6969818100},
+        {0x9fdca82bc, 0x998cca825d, 0xa91e6d8258, 0x17c10e3ee6, 0x896f0dc52e},
 };
 
-uint8_t bufferTX[10], bufferRX[10], move = 0;
+uint8_t bufferTX[5], bufferRX[5], Finish[2], move = 0;
 uint64_t ID = 0;
 List_move_type List_Move;
 
@@ -94,8 +94,6 @@ int main(void)
 
   vTaskSuspend(Task_Uart_Handle);
   vTaskSuspend(TaskmoveDir_Handle);
-  vTaskSuspend(Task_Check_RFID_Handle);
-  vTaskSuspend(calculator_Dijkstra_Handle);
   vTaskSuspend(Taskmove_Handle);
   /* Start scheduler */
   osKernelStart();
@@ -118,9 +116,7 @@ void Task_Check_Ready(void const *argument)
     bufferTX[0] = 0xC1;
     bufferTX[1] = 0xC1;
     bufferTX[2] = 0xC1;
-    // HAL_UART_Receive(&huart2, bufferRX, 6, 100);
     HAL_UART_Receive_DMA(&huart2, bufferRX, 6);
-    // HAL_UART_Transmit(&huart2, bufferTX, 3, 100);
     HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
     led_DIR_circle(1, 50);
   } while (strcmp(bufferRX, a));
@@ -149,19 +145,20 @@ void Task_Uart(void const *argument)
   bufferRX[2] = ' ';
   for (;;)
   {
-    HAL_UART_Receive_DMA(&huart2, bufferRX, 3);
+    HAL_UART_Receive_DMA(&huart2, bufferRX, 4);
+    osDelay(1);
     switch (bufferRX[2])
     {
     case '.':
       ID = 0;
       sprintf(bufferTX, "Start");
-      // HAL_UART_Transmit(&huart2, bufferTX, 5, 100);
+      Finish[0] = bufferRX[0];
+      Finish[1] = bufferRX[1];
+      vTaskDelay(100);
       HAL_UART_Transmit_DMA(&huart2, bufferTX, 5);
-      vTaskResume(Task_Check_RFID_Handle);
       vTaskResume(calculator_Dijkstra_Handle);
-      // vTaskSuspend(Task_Uart_Handle);
       break;
-    case '!'://Lenh RESET va Manual
+    case '!': //Lenh RESET va Manual
       vTaskResume(TaskmoveDir_Handle);
       switch (bufferRX[1])
       {
@@ -196,45 +193,47 @@ void Task_Uart(void const *argument)
         if (bufferRX[0] == '1')
         {
           move = 10;
+          while (ID == 0)
+            vTaskDelay(1);
+          move = 0;
           break;
         }
       default:
+        move = 0;
         if (bufferRX[0] == 'R' && bufferRX[1] == 'E')
         {
           move = 0;
+          reset(LD_GPIO_Port, LD3_Pin);
+          reset(LD_GPIO_Port, LD4_Pin);
+          reset(LD_GPIO_Port, LD5_Pin);
+          reset(LD_GPIO_Port, LD6_Pin);
+          sprintf(bufferTX, "RE!");
+          vTaskDelay(100);
           HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
-          vTaskSuspend(Task_Check_RFID_Handle);
           vTaskSuspend(calculator_Dijkstra_Handle);
           vTaskSuspend(Taskmove_Handle);
           vTaskSuspend(TaskmoveDir_Handle);
         }
+        if (bufferRX[0] == 'O' && bufferRX[1] == 'K')
+        {
+          sprintf(bufferTX, "OK!");
+          vTaskDelay(1000);
+          HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
+        }
         break;
       }
       break;
-    case 'T'://Lenh Cai dat Matric
-      move = 0;
-      vTaskSuspend(Task_Check_RFID_Handle);
-      vTaskSuspend(calculator_Dijkstra_Handle);
-      vTaskSuspend(Taskmove_Handle);
-      vTaskSuspend(TaskmoveDir_Handle);
-      if (bufferRX[0] != 'S' && bufferRX[1] != 'E' )
-      {
-        while (1)
-        {
-          HAL_UART_Receive_DMA(&huart2, bufferRX, 3);
-          if (bufferRX[0] != 'R' && bufferRX[1] != 'E' && bufferRX[2] != '!') 
-            UpdateMatric(bufferRX[0],bufferRX[1],bufferRX[2]);
-          else break;
-        }
-        
-      }
-      
+    case 'S': //Lenh Cai dat Matric
+      osDelay(10);
+      UpdateMatric(bufferRX[0], bufferRX[1], bufferRX[3]);
       break;
     default:
       bufferRX[2] = ' ';
+      bufferRX[3] = ' ';
       break;
     }
     bufferRX[2] = ' ';
+    bufferRX[3] = ' ';
     osDelay(1);
   }
 }
@@ -248,7 +247,7 @@ void Task_Check_RFID(void const *argument)
 {
   for (;;)
   {
-    if (MFRC522_Check(&ID) == MI_NOTAGERR)
+    if (MFRC522_Check(&ID) == MI_NOTAGERR || ID == 0x93200020d0)
     {
       ID = 0;
     }
@@ -269,12 +268,13 @@ void calculator_Dijkstra(void const *argument)
       for (uint8_t j = 0; j < 5; j++)
         if (ID == ID_Matrix[i][j])
         {
+          move = 0;
           sprintf(bufferTX, "%d:%d", i, j);
+          vTaskDelay(100);
           HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
-          List_Move = Dijkstra(i * 5 + j, (bufferRX[0] - 48) * 5 + (bufferRX[1] - 48));
+          List_Move = Dijkstra(i * 5 + j, (Finish[0] - 48) * 5 + (Finish[1] - 48));
           vTaskResume(Taskmove_Handle);
           vTaskResume(TaskmoveDir_Handle);
-          // vTaskSuspend(calculator_Dijkstra_Handle);
         }
     osDelay(1);
   }
@@ -289,7 +289,7 @@ void Taskmove(void const *argument)
 {
   while (1)
   {
-    if (List_Move.Length_way < 25 || List_Move.Length_way == 0xFF)
+    if (List_Move.Length_way < 25 || List_Move.Length_way != 0xFF)
       switch (List_Move.Move[List_Move.Length_way])
       {
       case 1:
@@ -316,10 +316,14 @@ void Taskmove(void const *argument)
     else
     {
       move = 0;
-      vTaskSuspend(Task_Check_RFID_Handle);
+      reset(LD_GPIO_Port, LD3_Pin);
+      reset(LD_GPIO_Port, LD4_Pin);
+      reset(LD_GPIO_Port, LD5_Pin);
+      reset(LD_GPIO_Port, LD6_Pin);
       vTaskSuspend(calculator_Dijkstra_Handle);
       vTaskSuspend(TaskmoveDir_Handle);
       sprintf(bufferTX, "Stop");
+      vTaskDelay(100);
       HAL_UART_Transmit_DMA(&huart2, bufferTX, 4);
       vTaskSuspend(Taskmove_Handle);
     }
