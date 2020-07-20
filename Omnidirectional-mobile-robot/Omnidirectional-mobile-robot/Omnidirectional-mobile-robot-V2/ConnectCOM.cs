@@ -44,8 +44,17 @@ namespace Omnidirectional_mobile_robot_V2
                     serialPort1.BaudRate = Convert.ToInt32(comboBox2.Text);
                     serialPort1.Open();
                     serialPort1.Write("OK! ");
+                    int T = 0;
                     while (InputData != "OK!")
                     {
+                        T++;
+                        if (T > 2000)
+                        {
+                            serialPort1.Close();
+                            MessageBox.Show("TimeOut!!!");
+                            return;
+                        }
+                        Thread.Sleep(1);
                     }
                     serialPort1.Close();
                     DashBoard control = new DashBoard(serialPort1.PortName, serialPort1.BaudRate);
@@ -78,6 +87,26 @@ namespace Omnidirectional_mobile_robot_V2
         {
             comboBox1.DataSource = null;
             comboBox1.DataSource = SerialPort.GetPortNames();
+        }
+
+        bool SttMouse;
+        int movX, movY;
+
+        private void ConnectCOM_MouseDown(object sender, MouseEventArgs e)
+        {
+            SttMouse = true;
+            movX = e.X;
+            movY = e.Y;
+        }
+
+        private void ConnectCOM_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (SttMouse) this.SetDesktopLocation(MousePosition.X - movX, MousePosition.Y - movY);
+        }
+
+        private void ConnectCOM_MouseUp(object sender, MouseEventArgs e)
+        {
+            SttMouse = false;
         }
     }
 }

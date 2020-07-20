@@ -202,24 +202,26 @@ void Task_Uart(void const *argument)
         move = 0;
         if (bufferRX[0] == 'R' && bufferRX[1] == 'E')
         {
-          move = 0;
-          reset(LD_GPIO_Port, LD3_Pin);
-          reset(LD_GPIO_Port, LD4_Pin);
-          reset(LD_GPIO_Port, LD5_Pin);
-          reset(LD_GPIO_Port, LD6_Pin);
-          sprintf(bufferTX, "RE!");
-          vTaskDelay(100);
-          HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
-          vTaskSuspend(calculator_Dijkstra_Handle);
-          vTaskSuspend(Taskmove_Handle);
-          vTaskSuspend(TaskmoveDir_Handle);
+          // move = 0;
+          // reset(LD_GPIO_Port, LD3_Pin);
+          // reset(LD_GPIO_Port, LD4_Pin);
+          // reset(LD_GPIO_Port, LD5_Pin);
+          // reset(LD_GPIO_Port, LD6_Pin);
+          // sprintf(bufferTX, "RE!");
+          // vTaskDelay(100);
+          // HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
+          // vTaskSuspend(calculator_Dijkstra_Handle);
+          // vTaskSuspend(Taskmove_Handle);
+          // vTaskSuspend(TaskmoveDir_Handle);
+          HAL_NVIC_SystemReset();
         }
-        if (bufferRX[0] == 'O' && bufferRX[1] == 'K')
-        {
-          sprintf(bufferTX, "OK!");
-          vTaskDelay(1000);
-          HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
-        }
+        // if (bufferRX[0] == 'O' && bufferRX[1] == 'K')
+        // {
+        //   sprintf(bufferTX, "OK!");
+        //   vTaskDelay(1000);
+        //   HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
+        //   HAL_NVIC_SystemReset();
+        // }
         break;
       }
       break;

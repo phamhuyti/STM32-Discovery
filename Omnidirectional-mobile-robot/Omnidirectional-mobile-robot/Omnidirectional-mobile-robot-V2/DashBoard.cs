@@ -27,6 +27,7 @@ namespace Omnidirectional_mobile_robot_V2
         {
             timer1.Enabled = true;
             serialPort1.Open();
+            //serialPort1.ReadTimeout = 1;
         }
         private void Close_Click(object sender, EventArgs e)
         {
@@ -34,7 +35,6 @@ namespace Omnidirectional_mobile_robot_V2
         }
         public void DataReceive(object obj, SerialDataReceivedEventArgs e)
         {
-            Thread.Sleep(10);
             InputData = serialPort1.ReadExisting();
             return;
         }
@@ -107,13 +107,8 @@ namespace Omnidirectional_mobile_robot_V2
                 switch (InputData)
                 {
                     case "Start":
-                        AutoControl.Enabled = false;
+                        SidebarWrapper.Enabled = false;
                         RUN.Enabled = false;
-                        break;
-                    case "OK!":
-                        serialPort1.Write("OK! ");
-                        break;
-                    case "RE!":
                         break;
                     case "0:0":
                         button3.BackColor = Color.Green;
@@ -199,7 +194,7 @@ namespace Omnidirectional_mobile_robot_V2
                                 StepMove[i] = null;
                             }
                             enabel_button();
-                            AutoControl.Enabled = true;
+                            SidebarWrapper.Enabled = true;
                             RUN.Enabled = true;
                         }
                         else
@@ -231,6 +226,8 @@ namespace Omnidirectional_mobile_robot_V2
         private void Reset_Click(object sender, EventArgs e)
         {
             serialPort1.Write("RE! ");
+            while (InputData != "OK!") ;
+            serialPort1.Write("OK! ");
             AutoRun_Click(null, null);
             enabel_button();
             AutoControl.Enabled = true;
@@ -238,37 +235,37 @@ namespace Omnidirectional_mobile_robot_V2
         }
         private void enabel_button()
         {
-            button3.BackColor = SystemColors.Control;
-            button4.BackColor = SystemColors.Control;
-            button5.BackColor = SystemColors.Control;
-            button6.BackColor = SystemColors.Control;
-            button7.BackColor = SystemColors.Control;
-            button8.BackColor = SystemColors.Control;
-            button9.BackColor = SystemColors.Control;
-            button10.BackColor = SystemColors.Control;
-            button11.BackColor = SystemColors.Control;
-            button12.BackColor = SystemColors.Control;
-            button13.BackColor = SystemColors.Control;
-            button14.BackColor = SystemColors.Control;
-            button15.BackColor = SystemColors.Control;
-            button16.BackColor = SystemColors.Control;
-            button17.BackColor = SystemColors.Control;
-            button18.BackColor = SystemColors.Control;
-            button19.BackColor = SystemColors.Control;
-            button20.BackColor = SystemColors.Control;
-            button21.BackColor = SystemColors.Control;
-            button22.BackColor = SystemColors.Control;
-            button23.BackColor = SystemColors.Control;
-            button24.BackColor = SystemColors.Control;
-            button25.BackColor = SystemColors.Control;
-            button26.BackColor = SystemColors.Control;
-            button27.BackColor = SystemColors.Control;
+            button3.BackColor = Color.FromArgb(225, 225, 225);
+            button4.BackColor = Color.FromArgb(225, 225, 225);
+            button5.BackColor = Color.FromArgb(225, 225, 225);
+            button6.BackColor = Color.FromArgb(225, 225, 225);
+            button7.BackColor = Color.FromArgb(225, 225, 225);
+            button8.BackColor = Color.FromArgb(225, 225, 225);
+            button9.BackColor = Color.FromArgb(225, 225, 225);
+            button10.BackColor = Color.FromArgb(225, 225, 225);
+            button11.BackColor = Color.FromArgb(225, 225, 225);
+            button12.BackColor = Color.FromArgb(225, 225, 225);
+            button13.BackColor = Color.FromArgb(225, 225, 225);
+            button14.BackColor = Color.FromArgb(225, 225, 225);
+            button15.BackColor = Color.FromArgb(225, 225, 225);
+            button16.BackColor = Color.FromArgb(225, 225, 225);
+            button17.BackColor = Color.FromArgb(225, 225, 225);
+            button18.BackColor = Color.FromArgb(225, 225, 225);
+            button19.BackColor = Color.FromArgb(225, 225, 225);
+            button20.BackColor = Color.FromArgb(225, 225, 225);
+            button21.BackColor = Color.FromArgb(225, 225, 225);
+            button22.BackColor = Color.FromArgb(225, 225, 225);
+            button23.BackColor = Color.FromArgb(225, 225, 225);
+            button24.BackColor = Color.FromArgb(225, 225, 225);
+            button25.BackColor = Color.FromArgb(225, 225, 225);
+            button26.BackColor = Color.FromArgb(225, 225, 225);
+            button27.BackColor = Color.FromArgb(225, 225, 225);
         }
         private void button3_Click(object sender, EventArgs e)
         {
             //serialPort1.Write("00.");
             StepMove[_StemMove++] = "00.";
-            button3.BackColor = Color.Red;
+            button3.ForeColor = Color.Red;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -506,7 +503,10 @@ namespace Omnidirectional_mobile_robot_V2
         {
             SttMouse = false;
         }
-
+        private void MenuTop_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (SttMouse) this.SetDesktopLocation(MousePosition.X - movX, MousePosition.Y - movY);
+        }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("00S" + (checkBox00.Checked?1:0));
@@ -632,9 +632,5 @@ namespace Omnidirectional_mobile_robot_V2
             serialPort1.Write("44S" + (checkBox44.Checked ? 1 : 0));
         }
 
-        private void MenuTop_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (SttMouse) this.SetDesktopLocation(MousePosition.X - movX, MousePosition.Y - movY);
-        }
     }
 }
