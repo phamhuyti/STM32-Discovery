@@ -25,7 +25,7 @@ namespace Omnidirectional_mobile_robot_V2
         }
         private void DashBoard_Load(object sender, EventArgs e)
         {
-            timer1.Enabled = true;
+            //timer1.Enabled = false;
             serialPort1.Open();
             //serialPort1.ReadTimeout = 1;
         }
@@ -35,6 +35,7 @@ namespace Omnidirectional_mobile_robot_V2
         }
         public void DataReceive(object obj, SerialDataReceivedEventArgs e)
         {
+            Thread.Sleep(10);
             InputData = serialPort1.ReadExisting();
             return;
         }
@@ -217,6 +218,7 @@ namespace Omnidirectional_mobile_robot_V2
         private void RUN_Click(object sender, EventArgs e)
         {
             _StemMove = 0;
+            timer1.Enabled = true;
             if (StepMove[_StemMove]!=null)
             {
                 serialPort1.Write(StepMove[_StemMove] + " ");

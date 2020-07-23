@@ -139,9 +139,10 @@ void Task_Uart(void const *argument)
   while (bufferRX[0] != 'O' || bufferRX[1] != 'K' || bufferRX[2] != '!')
   {
     HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
-    HAL_UART_Receive_DMA(&huart2, bufferRX, 3);
-    led_DIR_circle(1, 300);
+    HAL_UART_Receive_DMA(&huart2, bufferRX, 4);
+    led_DIR_circle(1, 100);
   }
+  HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
   bufferRX[2] = ' ';
   for (;;)
   {
@@ -151,10 +152,10 @@ void Task_Uart(void const *argument)
     {
     case '.':
       ID = 0;
-      sprintf(bufferTX, "Start");
       Finish[0] = bufferRX[0];
       Finish[1] = bufferRX[1];
       vTaskDelay(100);
+      sprintf(bufferTX, "Start");
       HAL_UART_Transmit_DMA(&huart2, bufferTX, 5);
       vTaskResume(calculator_Dijkstra_Handle);
       break;
