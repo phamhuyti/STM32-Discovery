@@ -1,7 +1,7 @@
 #include "Source.h"
 
 int Matric[5][5] =
-{ {	1,	1,	1,	1,	1,	},
+{ {	1,	0,	1,	1,	1,	},
 {	1,	0,	1,	0,	1,	},
 {	1,	0,	1,	0,	1,	},
 {	1,	0,	1,	0,	1,	},
@@ -35,7 +35,7 @@ uint8_t G[25][25] =
 
 uint8_t main(void) {
 	List_move_type a;
-	a = Dijkstra(0, 24);
+	a = Dijkstra(0, 5);
 	cout << a.Length_way << endl;
 	_getch();
 }
@@ -115,7 +115,7 @@ void CreateMatricFromRFIDMatric(void) {
 }
 List_move_type Dijkstra(int a, int b)
 {
-	CreateMatricFromRFID();
+	CreateMatricFromRFIDMatric();
 	// Len[i] - Gia tri nho nhat tu a -> i. Len1 danh dau do dai.
 	uint8_t Length_a_to_[25];
 	List_move_type List_Move;
@@ -133,15 +133,13 @@ List_move_type Dijkstra(int a, int b)
 	}
 	Length_a_to_[a] = 0; // khoi tao do dai tu a->a = 0
 	uint8_t addr_cur = a;
-
-	//while S<>V
-	for (uint8_t k = 0; k < 25; k++)
+	while (addr_cur != 24)
 	{
 		//tim do dai ngan nhat trong cac dinh
-		for (addr_cur = 0; addr_cur < 25; addr_cur++) // tim v thuoc (V-S) va Len[v] < vo cung
+		for (addr_cur = 0; addr_cur < 25; addr_cur++) // tim v thuoc (cur-S) va Len[cur] < vo cung
 			if (!Checked[addr_cur] && Length_a_to_[addr_cur] != 80)
 				break;
-		for (uint8_t j = addr_cur + 1; j < 25; j++) // tim dinh co Len min
+		for (uint8_t j = addr_cur + 1; j < 25; j++) // tim dinh ke tiep dinh hien tai co do dai nho nhat
 			if (!Checked[j] && Length_a_to_[j] < Length_a_to_[addr_cur])
 				addr_cur = j;
 		Checked[addr_cur] = 1;

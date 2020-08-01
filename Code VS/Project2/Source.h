@@ -12,3 +12,4 @@ typedef struct
 } List_move_type;
 //thuat toan Dijkstra
 List_move_type Dijkstra(int a, int b);
+void CreateMatricFromRFIDMatric(void);
