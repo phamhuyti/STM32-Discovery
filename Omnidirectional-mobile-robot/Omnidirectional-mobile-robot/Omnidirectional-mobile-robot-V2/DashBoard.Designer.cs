@@ -393,7 +393,7 @@
             this.AutoControl.Controls.Add(this.button27);
             this.AnimacionSidebar.SetDecoration(this.AutoControl, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebarBack.SetDecoration(this.AutoControl, BunifuAnimatorNS.DecorationType.None);
-            this.AutoControl.Location = new System.Drawing.Point(64, 22);
+            this.AutoControl.Location = new System.Drawing.Point(67, 24);
             this.AutoControl.Name = "AutoControl";
             this.AutoControl.Size = new System.Drawing.Size(180, 181);
             this.AutoControl.TabIndex = 29;
@@ -756,7 +756,7 @@
             this.AnimacionSidebar.SetDecoration(this.SettingControl, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebarBack.SetDecoration(this.SettingControl, BunifuAnimatorNS.DecorationType.None);
             this.SettingControl.Enabled = false;
-            this.SettingControl.Location = new System.Drawing.Point(32, 24);
+            this.SettingControl.Location = new System.Drawing.Point(41, 24);
             this.SettingControl.Name = "SettingControl";
             this.SettingControl.Size = new System.Drawing.Size(240, 181);
             this.SettingControl.TabIndex = 30;
@@ -1189,11 +1189,12 @@
             // 
             this.AnimacionSidebar.SetDecoration(this.button34, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebarBack.SetDecoration(this.button34, BunifuAnimatorNS.DecorationType.None);
+            this.button34.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button34.Location = new System.Drawing.Point(115, 85);
             this.button34.Name = "button34";
             this.button34.Size = new System.Drawing.Size(30, 30);
             this.button34.TabIndex = 37;
-            this.button34.Text = "button34";
+            this.button34.Text = "↘";
             this.button34.UseVisualStyleBackColor = true;
             this.button34.Click += new System.EventHandler(this.button34_Click);
             // 
@@ -1201,11 +1202,12 @@
             // 
             this.AnimacionSidebar.SetDecoration(this.button36, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebarBack.SetDecoration(this.button36, BunifuAnimatorNS.DecorationType.None);
+            this.button36.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button36.Location = new System.Drawing.Point(7, 49);
             this.button36.Name = "button36";
             this.button36.Size = new System.Drawing.Size(30, 30);
             this.button36.TabIndex = 39;
-            this.button36.Text = "button36";
+            this.button36.Text = "⟳";
             this.button36.UseVisualStyleBackColor = true;
             this.button36.Click += new System.EventHandler(this.button36_Click);
             // 
@@ -1213,11 +1215,12 @@
             // 
             this.AnimacionSidebar.SetDecoration(this.button1, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebarBack.SetDecoration(this.button1, BunifuAnimatorNS.DecorationType.None);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(79, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(30, 30);
             this.button1.TabIndex = 29;
-            this.button1.Text = "button1";
+            this.button1.Text = "↑";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -1225,11 +1228,12 @@
             // 
             this.AnimacionSidebar.SetDecoration(this.button35, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebarBack.SetDecoration(this.button35, BunifuAnimatorNS.DecorationType.None);
+            this.button35.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button35.Location = new System.Drawing.Point(151, 49);
             this.button35.Name = "button35";
             this.button35.Size = new System.Drawing.Size(30, 30);
             this.button35.TabIndex = 38;
-            this.button35.Text = "button35";
+            this.button35.Text = "⟲";
             this.button35.UseVisualStyleBackColor = true;
             this.button35.Click += new System.EventHandler(this.button35_Click);
             // 
@@ -1241,7 +1245,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(30, 30);
             this.button2.TabIndex = 30;
-            this.button2.Text = "button2";
+            this.button2.Text = "⭘";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -1249,11 +1253,12 @@
             // 
             this.AnimacionSidebar.SetDecoration(this.button28, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebarBack.SetDecoration(this.button28, BunifuAnimatorNS.DecorationType.None);
+            this.button28.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button28.Location = new System.Drawing.Point(115, 49);
             this.button28.Name = "button28";
             this.button28.Size = new System.Drawing.Size(30, 30);
             this.button28.TabIndex = 31;
-            this.button28.Text = "button28";
+            this.button28.Text = "→";
             this.button28.UseVisualStyleBackColor = true;
             this.button28.Click += new System.EventHandler(this.button28_Click);
             // 
@@ -1261,11 +1266,12 @@
             // 
             this.AnimacionSidebar.SetDecoration(this.button33, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebarBack.SetDecoration(this.button33, BunifuAnimatorNS.DecorationType.None);
+            this.button33.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button33.Location = new System.Drawing.Point(43, 85);
             this.button33.Name = "button33";
             this.button33.Size = new System.Drawing.Size(30, 30);
             this.button33.TabIndex = 36;
-            this.button33.Text = "button33";
+            this.button33.Text = "↙\t";
             this.button33.UseVisualStyleBackColor = true;
             this.button33.Click += new System.EventHandler(this.button33_Click);
             // 
@@ -1277,7 +1283,7 @@
             this.button29.Name = "button29";
             this.button29.Size = new System.Drawing.Size(30, 30);
             this.button29.TabIndex = 32;
-            this.button29.Text = "button29";
+            this.button29.Text = "←";
             this.button29.UseVisualStyleBackColor = true;
             this.button29.Click += new System.EventHandler(this.button29_Click);
             // 
@@ -1285,11 +1291,12 @@
             // 
             this.AnimacionSidebar.SetDecoration(this.button32, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebarBack.SetDecoration(this.button32, BunifuAnimatorNS.DecorationType.None);
+            this.button32.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button32.Location = new System.Drawing.Point(115, 13);
             this.button32.Name = "button32";
             this.button32.Size = new System.Drawing.Size(30, 30);
             this.button32.TabIndex = 35;
-            this.button32.Text = "button32";
+            this.button32.Text = "↗";
             this.button32.UseVisualStyleBackColor = true;
             this.button32.Click += new System.EventHandler(this.button32_Click);
             // 
@@ -1297,11 +1304,12 @@
             // 
             this.AnimacionSidebar.SetDecoration(this.button30, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebarBack.SetDecoration(this.button30, BunifuAnimatorNS.DecorationType.None);
+            this.button30.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button30.Location = new System.Drawing.Point(79, 86);
             this.button30.Name = "button30";
             this.button30.Size = new System.Drawing.Size(30, 30);
             this.button30.TabIndex = 33;
-            this.button30.Text = "button30";
+            this.button30.Text = "↓";
             this.button30.UseVisualStyleBackColor = true;
             this.button30.Click += new System.EventHandler(this.button30_Click);
             // 
@@ -1309,11 +1317,12 @@
             // 
             this.AnimacionSidebar.SetDecoration(this.button31, BunifuAnimatorNS.DecorationType.None);
             this.AnimacionSidebarBack.SetDecoration(this.button31, BunifuAnimatorNS.DecorationType.None);
+            this.button31.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button31.Location = new System.Drawing.Point(43, 13);
             this.button31.Name = "button31";
             this.button31.Size = new System.Drawing.Size(30, 30);
             this.button31.TabIndex = 34;
-            this.button31.Text = "button31";
+            this.button31.Text = "↖";
             this.button31.UseVisualStyleBackColor = true;
             this.button31.Click += new System.EventHandler(this.button31_Click);
             // 
