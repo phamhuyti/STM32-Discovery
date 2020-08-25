@@ -31,7 +31,7 @@ static uint64_t ID_Matrix[5][5] =
         {0x9fdca82bc, 0x998cca825d, 0xa91e6d8258, 0x17c10e3ee6, 0x896f0dc52e},
 };
 
-uint8_t Finish[2], move = 0;
+uint8_t bufferTX[5], bufferRX[5], Finish[2], move = 0;
 uint64_t ID = 0;
 List_move_type List_Move;
 
@@ -107,7 +107,6 @@ int main(void)
 void Task_Check_Ready(void const *argument)
 {
   char a[6] = {0xC0, 0x00, 0x00, 0x1A, 0x17, 0x44};
-  uint8_t bufferTX[5], bufferRX[5];
   /*Configuration and Check Configuration*/
   do
   {
@@ -122,16 +121,11 @@ void Task_Check_Ready(void const *argument)
     led_DIR_circle(1, 50);
   } while (strcmp(bufferRX, a));
   reset(M_GPIO_Port, M0_Pin | M1_Pin);
-	bufferTX[0] = 0;
-	while(1){
-		for(int i =48; i<58;i++)
-    {
-			bufferTX[0] = i;
-			bufferTX[1] = '|';
-			osDelay(300);
-			HAL_UART_Transmit_DMA(&huart2, bufferTX, 2);
-		}
-	}
+  vTaskDelay(10);
+  while (MFRC522_Check(0) == MI_ERR)
+    led_DIR_Toggle(100);
+  vTaskResume(Task_Uart_Handle);
+  vTaskSuspend(Task_Check_Ready_Handle);
 }
 
 /**
@@ -141,15 +135,14 @@ void Task_Check_Ready(void const *argument)
   */
 void Task_Uart(void const *argument)
 {
-  // sprintf(bufferTX, "OK!");
-  // while (bufferRX[0] != 'O' || bufferRX[1] != 'K' || bufferRX[2] != '!')
-  // {
-  //   HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
-  //   HAL_UART_Receive_DMA(&huart2, bufferRX, 4);
-  //   led_DIR_circle(1, 100);
-  // }
-  // HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
-  uint8_t bufferTX[5], bufferRX[5];
+  sprintf(bufferTX, "OK!");
+  while (bufferRX[0] != 'O' || bufferRX[1] != 'K' || bufferRX[2] != '!')
+  {
+    HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
+    HAL_UART_Receive_DMA(&huart2, bufferRX, 4);
+    led_DIR_circle(1, 100);
+  }
+  HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
   bufferRX[2] = ' ';
   for (;;)
   {
@@ -201,9 +194,9 @@ void Task_Uart(void const *argument)
         if (bufferRX[0] == '1')
         {
           move = 10;
-          //while (ID == 0)
-           // vTaskDelay(1);
-          //move = 0;
+          while (ID == 0)
+            vTaskDelay(1);
+          move = 0;
           break;
         }
       default:
@@ -223,13 +216,13 @@ void Task_Uart(void const *argument)
           // vTaskSuspend(TaskmoveDir_Handle);
           HAL_NVIC_SystemReset();
         }
-        if (bufferRX[0] == 'O' && bufferRX[1] == 'K')
-        {
-          sprintf(bufferTX, "OK!");
-          HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
-          vTaskDelay(1000);
-          HAL_NVIC_SystemReset();
-        }
+        // if (bufferRX[0] == 'O' && bufferRX[1] == 'K')
+        // {
+        //   sprintf(bufferTX, "OK!");
+        //   vTaskDelay(1000);
+        //   HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
+        //   HAL_NVIC_SystemReset();
+        // }
         break;
       }
       break;
@@ -272,7 +265,6 @@ void Task_Check_RFID(void const *argument)
 */
 void calculator_Dijkstra(void const *argument)
 {
-  uint8_t bufferTX[5];
   for (;;)
   {
     for (uint8_t i = 0; i < 5; i++)
@@ -298,7 +290,6 @@ void calculator_Dijkstra(void const *argument)
 */
 void Taskmove(void const *argument)
 {
-  uint8_t bufferTX[5];
   while (1)
   {
     if (List_Move.Length_way < 25 || List_Move.Length_way != 0xFF)

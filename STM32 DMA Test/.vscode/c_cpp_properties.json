@@ -3,8 +3,6 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:\\Users\\ASUS CAO HUY\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**",
-                "C:\\Users\\ASUS CAO HUY\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.6.2\\**",
                 "${workspaceFolder}/**",
                 "C:/Keil_v5/ARM/ARMCLANG/include/**"
             ],

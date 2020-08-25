@@ -56,6 +56,7 @@ namespace Omnidirectional_mobile_robot_V2
                         }
                         Thread.Sleep(1);
                     }
+                    InputData = null;
                     serialPort1.Close();
                     DashBoard control = new DashBoard(serialPort1.PortName, serialPort1.BaudRate);
                     this.TopMost = false;

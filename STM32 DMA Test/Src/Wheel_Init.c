@@ -16,14 +16,14 @@ void Wheel_GPIO_Init(void)
   GPIO_InitStruct.Pin = Wheel_Dir_1 | Wheel_Dir_2 | Wheel_Dir_3 | Wheel_Dir_4;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(Wheel_Dir_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : Wheel_Pulse_1|Wheel_Pulse_2|Wheel_Pulse_3|Wheel_Pulse_4 */
   GPIO_InitStruct.Pin = Wheel_Pulse_1 | Wheel_Pulse_2 | Wheel_Pulse_3 | Wheel_Pulse_4;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(Wheel_Pulse_Port, &GPIO_InitStruct);
 }
 /**

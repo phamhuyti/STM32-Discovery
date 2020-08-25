@@ -227,9 +227,19 @@ namespace Omnidirectional_mobile_robot_V2
         }
         private void Reset_Click(object sender, EventArgs e)
         {
-            serialPort1.Write("RE! ");
-            while (InputData != "OK!") ;
             serialPort1.Write("OK! ");
+            int T = 0;
+            while (InputData != "OK!")
+            {
+                T++;
+                if (T > 2000)
+                {
+                    serialPort1.Close();
+                    MessageBox.Show("TimeOut!!!");
+                    return;
+                }
+                Thread.Sleep(1);
+            }
             AutoRun_Click(null, null);
             enabel_button();
             AutoControl.Enabled = true;

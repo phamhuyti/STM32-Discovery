@@ -436,11 +436,6 @@ void MFRC522_Init(void)
 void MFRC522_Reset(void)
 {
 	MFRC522_WriteRegister(MFRC522_REG_COMMAND, PCD_RESETPHASE);
-	uint8_t count = 0;
-	do {
-		// Wait for the PowerDown bit in CommandReg to be cleared (max 3x50ms)
-		osDelay(1);
-	} while ((MFRC522_ReadRegister(MFRC522_REG_COMMAND) & (1 << 4)) && (++count) < 3);
 }
 
 void MFRC522_AntennaOn(void)
