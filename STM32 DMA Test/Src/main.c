@@ -128,7 +128,7 @@ void Task_Check_Ready(void const *argument)
     {
 			bufferTX[0] = i;
 			bufferTX[1] = '|';
-			osDelay(300);
+			osDelay(100);
 			HAL_UART_Transmit_DMA(&huart2, bufferTX, 2);
 		}
 	}

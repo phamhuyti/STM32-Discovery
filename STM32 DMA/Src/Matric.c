@@ -127,13 +127,17 @@ void UpdateMatric(uint8_t x, uint8_t y, uint8_t val)
 
 List_move_type Dijkstra(uint8_t a, uint8_t b)
 {
+	// Tao ma tran the hien moi qua he cua cac the
 	CreateMatricFromRFIDMatric();
-	// Len[i] - Gia tri nho nhat tu a -> i. Len1 danh dau do dai.
-	uint8_t Length_a_to_[25];
+	// tạo bien luu huong di sao khi tim duoc duong
 	List_move_type List_Move;
-	uint8_t Checked[25]; //Danh dau dinh thuoc danh sach dac biet
-	uint8_t P[25];		 //truy vet
+	// 	uint8_t Length_a_to_[i] - khoang cach nho nhat tu a -> i
+	uint8_t Length_a_to_[25];
+	uint8_t Checked[25]; //Danh dau dinh da duoc duyet qua
+	uint8_t P[25];		 //Luu lai duong duong di
+	//Do dai duong di sao khi tinh toan
 	List_Move.Length_way = 0;
+	// Dat gia tri ban dau cua cac bien
 	for (uint8_t i = 0; i < 25; i++)
 	{
 		Length_a_to_[i] = 80;
@@ -143,11 +147,13 @@ List_move_type Dijkstra(uint8_t a, uint8_t b)
 		List_Move.x[i] = 0;
 		List_Move.y[i] = 0;
 	}
-	Length_a_to_[a] = 0; // khoi tao do dai tu a->a = 0
+	Length_a_to_[a] = 0; // Do dai tu a->a = 0
+	// Dat diem xet dau tien la a
 	uint8_t addr_cur = a;
 
 	//while S<>V
-	for (uint8_t k = 0; k < 25; k++)
+	// for (uint8_t k = 0; k < 25; k++)
+	while (addr_cur != b && addr_cur != 25)
 	{
 		//tim do dai ngan nhat trong cac dinh
 		for (addr_cur = 0; addr_cur < 25; addr_cur++) // tim v thuoc (V-S) va Len[v] < vo cung
@@ -166,10 +172,12 @@ List_move_type Dijkstra(uint8_t a, uint8_t b)
 				if (Length_a_to_[addr_cur] + G[addr_cur][j] < Length_a_to_[j])
 				{
 					Length_a_to_[j] = Length_a_to_[addr_cur] + G[addr_cur][j];
-					P[j] = addr_cur; //truy vet
+					P[j] = addr_cur; //Luu duong di hien tai
 				}
 		}
+		// if(addr_cur == 24) break;
 	}
+	
 	uint8_t temb = b;
 	do
 	{
@@ -194,16 +202,16 @@ List_move_type Dijkstra(uint8_t a, uint8_t b)
 		temb = P[temb];
 		List_Move.Length_way++;
 	} while (temb != a);
-	for (uint8_t i = 0; i < 5; i++)
-		for (uint8_t j = 0; j < 5; j++)
-		{
-			if (temb == i*5+j)
-			{
-				List_Move.x[List_Move.Length_way] = i;
-				List_Move.y[List_Move.Length_way] = j;
-				goto next1;
-			}
-		}
+	// for (uint8_t i = 0; i < 5; i++)
+	// 	for (uint8_t j = 0; j < 5; j++)
+	// 	{
+	// 		if (temb == i*5+j)
+	// 		{
+	// 			List_Move.x[List_Move.Length_way] = i;
+	// 			List_Move.y[List_Move.Length_way] = j;
+	// 			goto next1;
+	// 		}
+	// 	}
 	next1:
 	for (uint8_t i = 0; i < List_Move.Length_way; i++)
 	{

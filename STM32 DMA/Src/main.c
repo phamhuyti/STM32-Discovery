@@ -196,15 +196,15 @@ void Task_Uart(void const *argument)
         if (bufferRX[0] == '1')
         {
           move = 10;
-          while (ID == 0)
-            vTaskDelay(1);
-          move = 0;
+          //while (ID == 0)
+           // vTaskDelay(1);
+          //move = 0;
           break;
         }
       default:
         move = 0;
-        if (bufferRX[0] == 'R' && bufferRX[1] == 'E')
-        {
+        // if (bufferRX[0] == 'R' && bufferRX[1] == 'E')
+        // {
           // move = 0;
           // reset(LD_GPIO_Port, LD3_Pin);
           // reset(LD_GPIO_Port, LD4_Pin);
@@ -216,13 +216,13 @@ void Task_Uart(void const *argument)
           // vTaskSuspend(calculator_Dijkstra_Handle);
           // vTaskSuspend(Taskmove_Handle);
           // vTaskSuspend(TaskmoveDir_Handle);
-          HAL_NVIC_SystemReset();
-        }
+          // HAL_NVIC_SystemReset();
+        // }
         if (bufferRX[0] == 'O' && bufferRX[1] == 'K')
         {
-          vTaskDelay(1000);
           sprintf(bufferTX, "OK!");
           HAL_UART_Transmit_DMA(&huart2, bufferTX, 3);
+          vTaskDelay(1000);
           HAL_NVIC_SystemReset();
         }
         break;
@@ -293,7 +293,6 @@ void calculator_Dijkstra(void const *argument)
 */
 void Taskmove(void const *argument)
 {
-  uint8_t bufferTX[5];
   while (1)
   {
     if (List_Move.Length_way < 25 || List_Move.Length_way != 0xFF)
@@ -329,9 +328,8 @@ void Taskmove(void const *argument)
       reset(LD_GPIO_Port, LD6_Pin);
       vTaskSuspend(calculator_Dijkstra_Handle);
       vTaskSuspend(TaskmoveDir_Handle);
-      sprintf(bufferTX, "Stop");
       vTaskDelay(100);
-      HAL_UART_Transmit_DMA(&huart2, bufferTX, 4);
+      HAL_UART_Transmit_DMA(&huart2, (uint8_t*)"Stop", 4);
       vTaskSuspend(Taskmove_Handle);
     }
     osDelay(1);
