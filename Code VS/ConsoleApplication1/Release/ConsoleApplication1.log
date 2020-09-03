@@ -1,8 +1,1 @@
-﻿  Source.cpp
-C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Code VS\ConsoleApplication1\Source.cpp(27,7): warning C4101: 'moveID': unreferenced local variable
-C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Code VS\ConsoleApplication1\Source.cpp(28,7): warning C4101: 'move': unreferenced local variable
-  Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 11 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  ConsoleApplication1.vcxproj -> C:\Users\ASUS CAO HUY\Documents\GitHub\STM32-Discovery\Code VS\Release\ConsoleApplication1.exe
+﻿

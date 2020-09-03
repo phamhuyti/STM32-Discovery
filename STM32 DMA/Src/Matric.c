@@ -202,16 +202,16 @@ List_move_type Dijkstra(uint8_t a, uint8_t b)
 		temb = P[temb];
 		List_Move.Length_way++;
 	} while (temb != a);
-	// for (uint8_t i = 0; i < 5; i++)
-	// 	for (uint8_t j = 0; j < 5; j++)
-	// 	{
-	// 		if (temb == i*5+j)
-	// 		{
-	// 			List_Move.x[List_Move.Length_way] = i;
-	// 			List_Move.y[List_Move.Length_way] = j;
-	// 			goto next1;
-	// 		}
-	// 	}
+	for (uint8_t i = 0; i < 5; i++)
+		for (uint8_t j = 0; j < 5; j++)
+		{
+			if (temb == i*5+j)
+			{
+				List_Move.x[List_Move.Length_way] = i;
+				List_Move.y[List_Move.Length_way] = j;
+				goto next1;
+			}
+		}
 	next1:
 	for (uint8_t i = 0; i < List_Move.Length_way; i++)
 	{

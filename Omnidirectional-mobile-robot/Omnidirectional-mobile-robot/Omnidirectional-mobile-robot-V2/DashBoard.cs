@@ -31,7 +31,7 @@ namespace Omnidirectional_mobile_robot_V2
         }
         private void Close_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
         public void DataReceive(object obj, SerialDataReceivedEventArgs e)
         {
@@ -200,6 +200,7 @@ namespace Omnidirectional_mobile_robot_V2
                         }
                         else
                         {
+                            enabel_button();
                             serialPort1.Write(StepMove[_StemMove]+ " ");
                         }
                         
@@ -244,6 +245,7 @@ namespace Omnidirectional_mobile_robot_V2
             enabel_button();
             AutoControl.Enabled = true;
             RUN.Enabled = true;
+            SidebarWrapper.Enabled = true;
         }
         private void enabel_button()
         {
@@ -277,7 +279,7 @@ namespace Omnidirectional_mobile_robot_V2
         {
             //serialPort1.Write("00.");
             StepMove[_StemMove++] = "00.";
-            button3.ForeColor = Color.Red;
+            button3.BackColor = Color.Red;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -522,126 +524,151 @@ namespace Omnidirectional_mobile_robot_V2
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("00S" + (checkBox00.Checked?1:0));
+            button3.BackColor = Color.Gray;
         }
 
         private void checkBox01_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("01S" + (checkBox01.Checked ? 1 : 0));
+            button4.BackColor = Color.Gray;
         }
 
         private void checkBox02_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("02S" + (checkBox02.Checked ? 1 : 0));
+            button5.BackColor = Color.Gray;
         }
 
         private void checkBox03_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("03S" + (checkBox03.Checked ? 1 : 0));
+            button6.BackColor = Color.Gray;
         }
 
         private void checkBox04_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("04S" + (checkBox04.Checked ? 1 : 0));
+            button7.BackColor = Color.Gray;
         }
 
         private void checkBox10_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("10S" + (checkBox10.Checked ? 1 : 0));
+            button8.BackColor = Color.Gray;
         }
 
         private void checkBox11_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("11S" + (checkBox11.Checked ? 1 : 0));
+            button9.BackColor = Color.Gray;
         }
 
         private void checkBox12_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("12S" + (checkBox12.Checked ? 1 : 0));
+            button10.BackColor = Color.Gray;
         }
 
         private void checkBox13_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("13S" + (checkBox13.Checked ? 1 : 0));
+            button11.BackColor = Color.Gray;
         }
 
         private void checkBox14_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("14S" + (checkBox14.Checked ? 1 : 0));
+            button12.BackColor = Color.Gray;
         }
 
         private void checkBox20_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("20S" + (checkBox20.Checked ? 1 : 0));
+            button13.BackColor = Color.Gray;
         }
 
         private void checkBox21_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("21S" + (checkBox21.Checked ? 1 : 0));
+            button14.BackColor = Color.Gray;
         }
 
         private void checkBox22_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("22S" + (checkBox22.Checked ? 1 : 0));
+            button15.BackColor = Color.Gray;
         }
 
         private void checkBox23_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("23S" + (checkBox23.Checked ? 1 : 0));
+            button16.BackColor = Color.Gray;
         }
 
         private void checkBox24_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("24S" + (checkBox24.Checked ? 1 : 0));
+            button17.BackColor = Color.Gray;
         }
 
         private void checkBox30_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("30S" + (checkBox30.Checked ? 1 : 0));
+            button18.BackColor = Color.Gray;
         }
 
         private void checkBox31_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("31S" + (checkBox31.Checked ? 1 : 0));
+            button20.BackColor = Color.Gray;
         }
 
         private void checkBox32_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("32S" + (checkBox32.Checked ? 1 : 0));
+            button21.BackColor = Color.Gray;
         }
 
         private void checkBox33_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("33S" + (checkBox33.Checked ? 1 : 0));
+            button22.BackColor = Color.Gray;
         }
 
         private void checkBox34_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("34S" + (checkBox34.Checked ? 1 : 0));
+            button23.BackColor = Color.Gray;
         }
 
         private void checkBox40_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("40S" + (checkBox40.Checked ? 1 : 0));
+            button19.BackColor = Color.Gray;
         }
 
         private void checkBox41_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("41S" + (checkBox41.Checked ? 1 : 0));
+            button24.BackColor = Color.Gray;
         }
 
         private void checkBox42_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("42S" + (checkBox42.Checked ? 1 : 0));
+            button25.BackColor = Color.Gray;
         }
 
         private void checkBox43_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("43S" + (checkBox43.Checked ? 1 : 0));
+            button26.BackColor = Color.Gray;
         }
 
         private void checkBox44_CheckedChanged(object sender, EventArgs e)
         {
             serialPort1.Write("44S" + (checkBox44.Checked ? 1 : 0));
+            button27.ForeColor = Color.Black;
         }
 
     }
